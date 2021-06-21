@@ -1,0 +1,6 @@
+.*.swp
+*.o
+.idea/**
+__pycache__/**
+Lectures/**
+Presentation notes*

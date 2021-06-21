@@ -2,6 +2,10 @@
 *.o
 .idea/**
 __pycache__/**
+demo/**
+ext/**
+ref-src/**
 Lectures/**
 *.docx
 *.pdf
+*.txt

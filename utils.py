@@ -1,6 +1,7 @@
 import os
 import sys
 import re
+import multiprocessing
 import operator
 import subprocess
 import argparse
@@ -48,20 +49,32 @@ def parse_arguments():
     :return: object containing a field for each parsed argument
     """
     parser = argparse.ArgumentParser(description='CFG Builder arguments', add_help=True, allow_abbrev=True)
-    parser.add_argument('-json_file', required=True, help='The name of the JSON file to get an AST from')
-    parser.add_argument('-function_name', required=True, help='Name of the function that should be verified')
+    parser.add_argument('-json_file', help='The name of the JSON file to get an AST from')
+    parser.add_argument('-function_name', help='Name of the function that should be verified')
+    parser.add_argument('-all_tests', action='store_const', const=True,
+                        help='Run verifier on all the available functions from all the available files')
     return parser.parse_args(sys.argv[1:])
 
 
-def filter_dictionary(dictionary, filter_keys):
+def execute_verifier_with_timer(verifier, timeout=13):
+    verifier_process = multiprocessing.Process(target=verifier)
+    verifier_process.start()
+    verifier_process.join(timeout)
+    if verifier_process.is_alive():
+        print("Verification timeout expired. Z3 couldn't find a solution during given time.")
+        verifier_process.kill()
+    verifier_process.join()
+
+
+def filter_dictionary(dictionary, keys_to_remove):
     """
     Filters the received dictionary according to the received keys - the items that their keys appear in "filter_keys"
     will be removed from the "dictionary"
     :param dictionary: Dictionary to filter
-    :param filter_keys: Keys to remove from the dictionary
+    :param keys_to_remove: Keys to remove from the dictionary
     :return: None
     """
-    for key in filter_keys:
+    for key in keys_to_remove:
         if key in dictionary.keys():
             del dictionary[key]
 

@@ -13,7 +13,6 @@ from cfg_nodes import AssertNode
 
 class CFG:
     """Class for representing the CFG"""
-
     def __init__(self, file_name, function_name):
         self.json_file = file_name
         # Read given JSON data to an object
@@ -341,6 +340,36 @@ class CFG:
         self.halt = HaltNode()
         highest_created_node = self.handle_scope(function_body, self.halt)
         self.start = StartNode(highest_created_node)
+
+    def invariants_back_patch(self, paths):
+        """
+        Uses to assign all the program invariants to the relevant CFG node when they are parsed from the configuration
+        file. Assigns q1 to the start node of the CFG, q2 to the halt node of the CFG. All the loop invariants are
+        assigned to the relevant condition nodes of the CFG using mapping (based on sorting) between invariants indexes
+        and the source code line number of the while/for statements
+        :return: None
+        """
+        utils.write_c_file_with_configuration(self.function_name, self.json_file)
+        q1, q2, invariants = utils.extract_configuration_subtrees()
+        self.start.invariant = q1
+        self.halt.invariant = q2
+        # Go over all the found paths, get from them all the cut points of the program, and create a set of cut points
+        # that are related only to condition (while/for) nodes
+        loops_nodes_set = set()
+        for path in paths:
+            if isinstance(path.start_node, ConditionNode):
+                loops_nodes_set.add(path.start_node)
+            if isinstance(path.end_node, ConditionNode):
+                loops_nodes_set.add(path.end_node)
+        # Sort invariants by index, and sort the loops by their line number (the first line of the loop block).
+        # This performs a mapping between invariants and loops
+        sorted_invariants_tuples = sorted(invariants, key=lambda tup: tup[1])
+        sorted_invariants = list(map(lambda tup: tup[0], sorted_invariants_tuples))
+        sorted_loops = sorted(loops_nodes_set, key=lambda loop: loop.start_line)
+        assert len(sorted_loops) == len(sorted_invariants)
+        # Assign each invariant to the related loop
+        for index in range(len(sorted_loops)):
+            sorted_loops[index].invariant = sorted_invariants[index]
 
     def print_variables(self):
         """

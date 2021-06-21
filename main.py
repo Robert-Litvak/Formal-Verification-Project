@@ -1,30 +1,28 @@
+import os
+import sys
+from configparser import ConfigParser
 import utils
-from cfg import CFG
-from cfg_paths import CfgPaths
-
-
-def main():
-    """
-    The main function of the program
-    :return: None
-    """
-    args = utils.parse_arguments()
-    cfg = CFG(args.json_file, args.function_name)
-    cfg.create_cfg()
-    paths = CfgPaths(cfg)
-    paths.generate_paths()
-    paths.invariants_back_patch()
-    paths.print_paths()
-    cfg.print_variables()
-    if not paths.not_proved_paths:
-        print('PROGRAM IS SUCCESSFULLY PROVED')
-    else:
-        print('FAILED TO PROVE THE PROGRAM. SEE THE FOLLOWING PATHS:')
-        for first, last, path in paths.not_proved_paths:
-            print(f'Path begin at: {first}')
-            print(f'Path ends at {last}')
-            print(f'Path action items are {path}')
+from verifier import Verifier
 
 
 if __name__ == '__main__':
-    main()
+    args = utils.parse_arguments()
+    verifier_configurations = []
+    if args.json_file and args.function_name:
+        verifier_configurations = [{'json': args.json_file, 'function': args.function_name}]
+    else:
+        ini_files = list(map(lambda ini: os.path.join('benchmarks', 'config_files', ini),
+                             os.listdir(os.path.join('benchmarks', 'config_files'))))
+        for ini_file in ini_files:
+            ini_file_basename = os.path.basename(ini_file)
+            json_file = os.path.join('benchmarks', 'json', ini_file_basename.split('.ini')[0] + '.c.ast.json')
+            parser = ConfigParser()
+            parser.read(ini_file)
+            for section_name in parser.sections():
+                verifier_configurations.append({'json': json_file, 'function': section_name})
+
+    for configuration in verifier_configurations:
+        print('*' * 113)
+        verifier = Verifier(configuration['json'], configuration['function'])
+        utils.execute_verifier_with_timer(verifier)
+        print('\n\n')

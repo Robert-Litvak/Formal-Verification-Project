@@ -1,5 +1,4 @@
 import os
-import sys
 from configparser import ConfigParser
 import utils
 from verifier import Verifier
@@ -24,5 +23,8 @@ if __name__ == '__main__':
     for configuration in verifier_configurations:
         print('*' * 113)
         verifier = Verifier(configuration['json'], configuration['function'])
-        utils.execute_verifier_with_timer(verifier)
+        if args.paths:
+            verifier.verify_paths()
+        else:
+            verifier.verify_program()
         print('\n\n')

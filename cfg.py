@@ -351,6 +351,7 @@ class CFG:
         """
         utils.write_c_file_with_configuration(self.function_name, self.json_file)
         q1, q2, invariants = utils.extract_configuration_subtrees()
+        assert q1 is not None and q2 is not None
         self.start.invariant = q1
         self.halt.invariant = q2
         # Go over all the found paths, get from them all the cut points of the program, and create a set of cut points
@@ -367,9 +368,19 @@ class CFG:
         sorted_invariants = list(map(lambda tup: tup[0], sorted_invariants_tuples))
         sorted_loops = sorted(loops_nodes_set, key=lambda loop: loop.start_line)
         assert len(sorted_loops) == len(sorted_invariants)
-        # Assign each invariant to the related loop
         for index in range(len(sorted_loops)):
+            # Assign each invariant to the related loop
             sorted_loops[index].invariant = sorted_invariants[index]
+            # Also create an Inv#I (where I is index) object that spacer will be able to use
+            invariant_arguments_types = []
+            for variable in self.variables.values():
+                if isinstance(variable, z3.ArrayRef):
+                    invariant_arguments_types.append(z3.ArraySort(variable.domain(), variable.range()))
+                else:
+                    invariant_arguments_types.append(z3.IntSort())
+            invariant_arguments_types.append(z3.BoolSort())
+            sorted_loops[index].spacer_invariant = z3.Function(f'Invariant#{sorted_invariants_tuples[index][1]}',
+                                                               *invariant_arguments_types)
 
     def print_variables(self):
         """

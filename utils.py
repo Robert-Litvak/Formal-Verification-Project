@@ -1,7 +1,6 @@
 import os
 import sys
 import re
-import multiprocessing
 import operator
 import subprocess
 import argparse
@@ -53,17 +52,8 @@ def parse_arguments():
     parser.add_argument('-function_name', help='Name of the function that should be verified')
     parser.add_argument('-all_tests', action='store_const', const=True,
                         help='Run verifier on all the available functions from all the available files')
+    parser.add_argument('-paths',  action='store_const', const=True, help='Verify the program by paths')
     return parser.parse_args(sys.argv[1:])
-
-
-def execute_verifier_with_timer(verifier, timeout=13):
-    verifier_process = multiprocessing.Process(target=verifier)
-    verifier_process.start()
-    verifier_process.join(timeout)
-    if verifier_process.is_alive():
-        print("Verification timeout expired. Z3 couldn't find a solution during given time.")
-        verifier_process.kill()
-    verifier_process.join()
 
 
 def filter_dictionary(dictionary, keys_to_remove):
@@ -113,8 +103,7 @@ def write_c_file_with_configuration(function_name, json_file):
     with open('temp_configuration.c', 'w') as c_config_file:
         c_config_file.write('void configuration(){\n')
         for key, value in configuration.items():
-            if value != 'True':
-                c_config_file.write(f'\tbool {key} = {value};\n')
+            c_config_file.write(f'\tbool {key} = {value};\n')
         c_config_file.write('}\n')
 
 
@@ -149,7 +138,6 @@ def extract_configuration_subtrees():
             match_object = re.match(r'invariant_(\d+)$', name)
             assert match_object
             invariants.append((expression, int(match_object.group(1))))
-    assert q2 is not None
     return q1, q2, invariants
 
 
@@ -191,6 +179,100 @@ def get_chain_deepest_mapping(mapping, start_key):
     return result
 
 
+def convert_variable_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
+                           logical_variables):
+    """See the description of convert_expression_to_z3"""
+    item_text = expression['text']
+    if allow_not_defined_variables and (item_text not in variables_dictionary.keys()):
+        # Variable is logical - doesn't appear in the code, but appears in the q1/q2/invariants
+        variables_dictionary[item_text] = z3.Int(item_text)
+        logical_variables[item_text] = z3.Int(item_text)
+    # Get the stored z3 object of the variable
+    item_z3_object = variables_dictionary[item_text]
+    # If mapping required, do so using variables_mapping dictionary
+    if variables_mapping and item_z3_object in variables_mapping:
+        return variables_mapping[item_z3_object]
+    else:
+        return item_z3_object
+
+
+def convert_array_to_z3(variables_dictionary, expression, variables_mapping, is_destination, place_for_index,
+                        allow_not_defined_variables, logical_variables):
+    """See the description of convert_expression_to_z3"""
+    items = expression['children']
+    array_name = items[0]['text']
+    # Doesn't pass "is_destination" or "place_for_index", because they are not relevant inside of the recursion
+    array_index = convert_expression_to_z3(variables_dictionary, items[2], variables_mapping,
+                                           allow_not_defined_variables=allow_not_defined_variables,
+                                           logical_variables=logical_variables)
+    array_object = variables_dictionary[array_name]
+    # If array expression is on the left side of assignment statement, return the array object to user, and put into
+    # "place_for_index" the index expression and subtree - z3.Store will be handled after
+    if is_destination:
+        result = array_object
+        place_for_index += [array_index, items[2]]
+    else:
+        # If mapping required, do so using variables_mapping dictionary
+        # (arrays require to find the last element of mapping chain)
+        if variables_mapping and array_object in variables_mapping:
+            result = get_chain_deepest_mapping(variables_mapping, array_object)[array_index]
+        else:
+            result = array_object[array_index]
+    return result
+
+
+def convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables):
+    """See the description of convert_expression_to_z3"""
+    # Name of the logical operator
+    keyword = expression['children'][0]['text']
+    assert keyword in logical_keywords
+    # Arguments for the logical operator
+    arguments = get_item_by_type(expression['children'], ['argument_expression_list'],
+                                 check_uniqueness=True)[0]['children']
+    # All of the logical operators we use get 2 arguments
+    left_expression = arguments[0]
+    right_expression = arguments[2]
+    left_z3 = convert_expression_to_z3(variables_dictionary, left_expression, variables_mapping,
+                                       allow_not_defined_variables=True, logical_variables=logical_variables)
+    right_z3 = convert_expression_to_z3(variables_dictionary, right_expression, variables_mapping,
+                                        allow_not_defined_variables=True, logical_variables=logical_variables)
+    if keyword == 'implies':
+        return z3.Implies(left_z3, right_z3)
+    if keyword == 'forall':
+        return z3.ForAll([left_z3], right_z3)
+    if keyword == 'exists':
+        return z3.Exists([left_z3], right_z3)
+
+
+def convert_unary_operation_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
+                                  logical_variables):
+    """See the description of convert_expression_to_z3"""
+    operand = convert_expression_to_z3(variables_dictionary, expression['children'][1], variables_mapping,
+                                       allow_not_defined_variables=allow_not_defined_variables,
+                                       logical_variables=logical_variables)
+    expression_operator = expression['children'][0]['text']
+    if expression_operator == '-':
+        return -operand
+    else:
+        return operators_mapping[expression_operator](operand)
+
+
+def convert_binary_operation_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
+                                   logical_variables):
+    """See the description of convert_expression_to_z3"""
+    operand_1 = convert_expression_to_z3(variables_dictionary, expression['children'][0], variables_mapping,
+                                         allow_not_defined_variables=allow_not_defined_variables,
+                                         logical_variables=logical_variables)
+    operand_2 = convert_expression_to_z3(variables_dictionary, expression['children'][2], variables_mapping,
+                                         allow_not_defined_variables=allow_not_defined_variables,
+                                         logical_variables=logical_variables)
+    expression_operator = expression['children'][1]['text']
+    if expression['type'] == 'assignment_expression':
+        assert len(expression_operator) == 2
+        expression_operator = expression_operator[0]
+    return operators_mapping[expression_operator](operand_1, operand_2)
+
+
 def convert_expression_to_z3(variables_dictionary, expression, variables_mapping=None, is_destination=False,
                              place_for_index=None, allow_not_defined_variables=False, logical_variables=None):
     """
@@ -211,61 +293,34 @@ def convert_expression_to_z3(variables_dictionary, expression, variables_mapping
             appeared in the specification
     :return: z3 object that represents the given expression
     """
-    # TODO: Try to split this function
     if expression['type'] == 'CONSTANT':
         # Received expression is a number
         return int(expression['text'])
 
+    elif expression['type'] == 'IDENTIFIER' and (expression['text'] == 'true' or expression['text'] == 'false'):
+        # Received expression is "true" or "false"
+        item_text = expression['text']
+        if item_text == 'true':
+            return z3.simplify(z3.And(True, True))
+        else:
+            assert item_text == 'false'
+            return z3.simplify(z3.And(False, False))
+
     elif expression['type'] == 'IDENTIFIER':
         # Received expression is a variable name
-        item_text = expression['text']
-        if allow_not_defined_variables and (item_text not in variables_dictionary.keys()):
-            variables_dictionary[item_text] = z3.Int(item_text)
-            logical_variables[item_text] = z3.Int(item_text)
-        item_z3_object = variables_dictionary[item_text]
-        if variables_mapping and item_z3_object in variables_mapping:
-            return variables_mapping[item_z3_object]
-        else:
-            return item_z3_object
+        return convert_variable_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
+                                      logical_variables)
 
     elif expression['type'] == 'postfix_expression' and expression['children'][1]['text'] == '[':
         assert expression['children'][3]['text'] == ']'
         # Received expression represents access to some array
-        items = expression['children']
-        array_name = items[0]['text']
-        # Doesn't pass "is_destination" or "place_for_index", because they are not relevant inside of the recursion
-        array_index = convert_expression_to_z3(variables_dictionary, items[2], variables_mapping,
-                                               allow_not_defined_variables=allow_not_defined_variables,
-                                               logical_variables=logical_variables)
-        array_object = variables_dictionary[array_name]
-        if is_destination:
-            result = array_object
-            place_for_index += [array_index, items[2]]
-        else:
-            if variables_mapping and array_object in variables_mapping:
-                result = get_chain_deepest_mapping(variables_mapping, array_object)[array_index]
-            else:
-                result = array_object[array_index]
-        return result
+        return convert_array_to_z3(variables_dictionary, expression, variables_mapping, is_destination, place_for_index,
+                                   allow_not_defined_variables, logical_variables)
 
     elif expression['type'] == 'postfix_expression' and expression['children'][1]['text'] == '(':
+        # Received expression represents "implies(...)", "forall(...)" or "exists(...)"
         assert expression['children'][3]['text'] == ')'
-        keyword = expression['children'][0]['text']
-        assert keyword in logical_keywords
-        arguments = get_item_by_type(expression['children'], ['argument_expression_list'],
-                                     check_uniqueness=True)[0]['children']
-        left_expression = arguments[0]
-        right_expression = arguments[2]
-        left_z3 = convert_expression_to_z3(variables_dictionary, left_expression, variables_mapping,
-                                           allow_not_defined_variables=True, logical_variables=logical_variables)
-        right_z3 = convert_expression_to_z3(variables_dictionary, right_expression, variables_mapping,
-                                            allow_not_defined_variables=True, logical_variables=logical_variables)
-        if keyword == 'implies':
-            return z3.Implies(left_z3, right_z3)
-        if keyword == 'forall':
-            return z3.ForAll([left_z3], right_z3)
-        if keyword == 'exists':
-            return z3.Exists([left_z3], right_z3)
+        return convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables)
 
     elif expression['type'] == 'primary_expression':
         # Received expression is wrapped by brackets
@@ -275,29 +330,28 @@ def convert_expression_to_z3(variables_dictionary, expression, variables_mapping
         return expression_inside_brackets
 
     elif expression['type'] == 'unary_expression':
-        operand = convert_expression_to_z3(variables_dictionary, expression['children'][1], variables_mapping,
-                                           allow_not_defined_variables=allow_not_defined_variables,
-                                           logical_variables=logical_variables)
-        expression_operator = expression['children'][0]['text']
-        if expression_operator == '-':
-            return -operand
-        else:
-            assert expression_operator == '!'
-            return operators_mapping[expression_operator](operand)
+        # Received expression represents some unary operation
+        return convert_unary_operation_to_z3(variables_dictionary, expression, variables_mapping,
+                                             allow_not_defined_variables, logical_variables)
 
     else:
         # Received expression represents some binary operation
-        operand_1 = convert_expression_to_z3(variables_dictionary, expression['children'][0], variables_mapping,
-                                             allow_not_defined_variables=allow_not_defined_variables,
-                                             logical_variables=logical_variables)
-        operand_2 = convert_expression_to_z3(variables_dictionary, expression['children'][2], variables_mapping,
-                                             allow_not_defined_variables=allow_not_defined_variables,
-                                             logical_variables=logical_variables)
-        expression_operator = expression['children'][1]['text']
-        if expression['type'] == 'assignment_expression':
-            assert len(expression_operator) == 2
-            expression_operator = expression_operator[0]
-        return operators_mapping[expression_operator](operand_1, operand_2)
+        return convert_binary_operation_to_z3(variables_dictionary, expression, variables_mapping,
+                                              allow_not_defined_variables, logical_variables)
+
+
+def list_to_z3_and(items):
+    """
+    Converts a list of boolean z3 expressions to a single z3.And(...) between the expressions
+    :param items: A list of boolean z3 expressions
+    :return: z3.And object operating on all the received expressions
+    """
+    if not items:
+        return z3.simplify(z3.And(True, True))
+    elif len(items) == 1:
+        return items[0]
+    else:
+        return z3.And(*items)
 
 
 def prove(formula):
@@ -322,3 +376,36 @@ def prove(formula):
         result = False
     solver.pop()
     return result
+
+
+def horn_prove(rules, variables=None):
+    """
+    Receives a list of rules (which represent horn clauses), and tries to find an invariant that satisfies the rules.
+    All the received rules will be printed in python z3 format.
+    If result is success (sat), all the Var(<i>) variable names will be replaced with actual variables from the program
+    :param rules: A list of rules which represent horn clauses
+    :param variables: Variables list of the verifier
+    :return: None
+    """
+    solver = z3.SolverFor('HORN')
+    print('Adding rules:')
+    for rule in rules:
+        print(rule)
+        solver.add(rule)
+        print('#' * 113)
+    result = solver.check()
+    if result == z3.sat:
+        print('PROVED')
+        model = solver.model()
+        if model.decls():
+            print('THE INVARIANTS:')
+        else:
+            print('No invariants required')
+        for declaration in model.decls():
+            value = str(model[declaration])
+            for index in range(len(variables)):
+                value = re.sub(fr'Var\({index}\)', str(variables[index]), value)
+            print(f'{declaration.name()} = {value}')
+    else:
+        print('FAILED TO PROVE')
+        print(f'Z3 returned {result}')

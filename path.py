@@ -14,6 +14,9 @@ class Path:
         self.variables = variables
         self.logical_variables = {}
         self.reachability_condition, self.state_transformation, self.array_constraint = self.calculate_t_and_r()
+        self.start_invariant = None
+        self.end_invariant = None
+        self.mapped_end_invariant = None
         self.path_proved = None
 
     def calculate_t_and_r(self):
@@ -25,11 +28,11 @@ class Path:
         :return: Reachability condition, state transformation, array constraint
         """
         # Initialize R, T and AC: (T = variables), (R = True), (AC = True)
-        reachability_condition = z3.simplify(z3.And(True, True))
+        reachability_conditions = []
         state_transformation = {}
         for var in self.variables.values():
             state_transformation[var] = var
-        array_constraint = z3.simplify(z3.And(True, True))
+        array_constraints = []
         # Index that allows to create each time a new array (during assignment to array) with a unique name
         next_array_index = 0
 
@@ -56,8 +59,7 @@ class Path:
                                                                variables_mapping=state_transformation)
                         new_array = z3.Array(f'TMP$ARR_{next_array_index}', dest.domain(), dest.range())
                         deepest_dest_mapping = utils.get_chain_deepest_mapping(state_transformation, dest)
-                        array_constraint = z3.And(array_constraint,
-                                                  z3.Store(deepest_dest_mapping, index, value) == new_array)
+                        array_constraints.append(z3.Store(deepest_dest_mapping, index, value) == new_array)
                         state_transformation[deepest_dest_mapping] = new_array
                         next_array_index += 1
                     current_node = current_node.son
@@ -66,20 +68,48 @@ class Path:
                 condition = utils.convert_expression_to_z3(self.variables, current_node.condition_subtree,
                                                            variables_mapping=state_transformation)
                 if action:
-                    reachability_condition = z3.And(reachability_condition, condition)
+                    reachability_conditions.append(condition)
                     current_node = current_node.son_true
                 else:
-                    reachability_condition = z3.And(reachability_condition, z3.Not(condition))
+                    reachability_conditions.append(z3.Not(condition))
                     current_node = current_node.son_false
-        return reachability_condition, state_transformation, array_constraint
+
+        return utils.list_to_z3_and(reachability_conditions), state_transformation,\
+               utils.list_to_z3_and(array_constraints)
+
+    def calculate_path_z3_invariants(self):
+        """
+        Generates Z3 expression for the invariant in the beginning of the path,
+        and for the invariant in the end of the path (last is using the state transformation).
+        Also removes all the logical variables from the variables dictionary
+        :return: None
+        """
+        self.start_invariant = utils.convert_expression_to_z3(self.variables, self.start_node.invariant,
+                                                              allow_not_defined_variables=True,
+                                                              logical_variables=self.logical_variables)
+        self.mapped_end_invariant = utils.convert_expression_to_z3(self.variables, self.end_node.invariant,
+                                                                   variables_mapping=self.state_transformation,
+                                                                   allow_not_defined_variables=True,
+                                                                   logical_variables=self.logical_variables)
+        # Remove logical variables form the variables dictionary
+        utils.filter_dictionary(self.variables, self.logical_variables.keys())
+
+    def prove_path(self):
+        """
+        Uses Z3 to prove the partial correctness of the path, according to the formula:
+        (InvariantInPathBeginning AND ReachabilityCondition AND ArrayConstraint) ->
+            InvariantInPathEnd(StateTransformation)
+        :return: None
+        """
+        floyd_proof = z3.Implies(z3.And(self.start_invariant, self.reachability_condition, self.array_constraint),
+                                 self.mapped_end_invariant)
+        self.path_proved = utils.prove(floyd_proof)
 
     def print_path(self):
         """
-        Prints all the paths that were found. This method should be used only after the "generate_paths" method.
-        For each path, also prints its R, T, q2(T), and the array constraint
+        Prints all the paths that were found. This method should be used only after the "generate_paths" method
         :return: None
         """
-        # TODO: print(f'Found {len(self.paths)} paths:')
         print('')
         current_node = self.start_node
         for action in self.action_items:
@@ -95,32 +125,24 @@ class Path:
         assert current_node.is_cut_point
         print(current_node)
 
+    def verify_path(self):
+        """
+        Prints the path summary and the proving results for it
+        :return: None
+        """
+        self.calculate_path_z3_invariants()
         print('')
         print(f'R is:\t{self.reachability_condition}')
         print(f'Simplified R is:\t{z3.simplify(self.reachability_condition)}')
         print(f'T is:\t{dict(self.state_transformation.items())}')
 
-        if self.start_node.invariant is None:
-            start_invariant = z3.simplify(z3.And(True, True))
-        else:
-            start_invariant =\
-                utils.convert_expression_to_z3(self.variables, self.start_node.invariant,
-                                               allow_not_defined_variables=True,
-                                               logical_variables=self.logical_variables)
-        print(f'I_start(vars) is:\t {start_invariant}')
-        print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, start_invariant))}')
-        converted_and_mapped_end_invariant =\
-            utils.convert_expression_to_z3(self.variables, self.end_node.invariant,
-                                           variables_mapping=self.state_transformation,
-                                           allow_not_defined_variables=True,
-                                           logical_variables=self.logical_variables)
-        print(f'I_end(T(vars)) is:\t {converted_and_mapped_end_invariant}')
-        print(f'Simplified I_end(T(vars)) is:\t {z3.simplify(z3.And(True, converted_and_mapped_end_invariant))}')
+        print(f'I_start(vars) is:\t {self.start_invariant}')
+        print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, self.start_invariant))}')
+
+        print(f'I_end(T(vars)) is:\t {self.mapped_end_invariant}')
+        print(f'Simplified I_end(T(vars)) is:\t {z3.simplify(z3.And(True, self.mapped_end_invariant))}')
+
         print(f'Array constraints: {self.array_constraint}')
 
-        floyd_proof = z3.Implies(z3.And(start_invariant, self.reachability_condition, self.array_constraint),
-                                 converted_and_mapped_end_invariant)
-        self.path_proved = utils.prove(floyd_proof)
+        self.prove_path()
         print('\n\n')
-
-        utils.filter_dictionary(self.variables, self.logical_variables.keys())

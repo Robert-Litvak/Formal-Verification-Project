@@ -49,6 +49,7 @@ class ConditionNode:
         self.is_cut_point = is_cut_point
         self.start_line = start_line
         self.invariant = None
+        self.spacer_invariant = None
 
     def __str__(self):
         return f'***CONDITION***\t{self.condition_z3}'
@@ -60,8 +61,8 @@ class AssertNode:
         self.son = son
         self.expression_subtree = expression_subtree
         self.expression_z3 = expression_z3
-        self.invariant = expression_z3
         self.is_cut_point = True
+        self.invariant = expression_z3
 
     def __str__(self):
         return f'***ASSERT***\t{self.expression_z3}'

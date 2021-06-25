@@ -1,10 +1,3 @@
-
-/**
- * Computes the maximal of three integers.
- *
- * @ensures ((ret == x) || (ret == y) || (ret == z))
- *            && (ret <= x) && (ret <= y) && (ret <= z)
- */
 int min3_v1(int x, int y, int z) {
     if (x < y) {
         if (x < z) return x;
@@ -16,9 +9,6 @@ int min3_v1(int x, int y, int z) {
     }
 }
 
-/**
- * (same)
- */
 int min3_v2(int x, int y, int z) {
     if (x < y) {
         if (x < z) return x;
@@ -29,9 +19,6 @@ int min3_v2(int x, int y, int z) {
     return z;
 }
 
-/**
- * (still same)
- */
 int min3_v3(int x, int y, int z) {
     int tmp = x;
     if (y < tmp) tmp = y;

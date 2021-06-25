@@ -24,10 +24,14 @@ int mul(int x, int y){
 
 int div(int x, int y){
 	int result = 0;
-	for (int i = x; i >= y; i -= y){
-		result += 1;
+	for (int i = 0; i <= x; i += y){
+		if (i + y <= x){
+			result += 1;
+		}
+		else {
+			return result;
+		}
 	}
-	return result;
 }
 
 int mod(int x, int y){

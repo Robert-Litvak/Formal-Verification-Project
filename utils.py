@@ -34,9 +34,10 @@ logical_keywords = ['implies', 'forall', 'exists']
 basic_types_mapping = {'int': z3.Int, 'bool': z3.Bool}
 array_types_mapping = {'int': z3.IntSort, 'bool': z3.BoolSort}
 operators_mapping = {'!': (lambda op: z3.Not(op)), '||': (lambda op1, op2: z3.Or(op1, op2)),
-                     '&&': (lambda op1, op2: z3.And(op1, op2)), '+': operator.add, '-': operator.sub, '*': operator.mul,
-                     '/': operator.truediv, '%': operator.mod, '^': operator.xor, '<': operator.lt, '<=': operator.le,
-                     '==': operator.eq, '!=': operator.ne, '>=': operator.ge, '>': operator.gt}
+                     '&&': (lambda op1, op2: z3.And(op1, op2)), '/': (lambda op1, op2: op1.__div__(op2)),
+                     '+': operator.add, '-': operator.sub, '*': operator.mul, '%': operator.mod, '^': operator.xor,
+                     '<': operator.lt, '<=': operator.le, '==': operator.eq, '!=': operator.ne, '>=': operator.ge,
+                     '>': operator.gt}
 
 
 # Program verbosity parameters
@@ -410,8 +411,8 @@ def prove(formula):
     :return: True if the formula was successfully proved, False otherwise
     """
     solver = z3.Solver()
-    solver.push()
     solver.add(z3.Not(formula))
+    v_print(f'Proving formula:\n{formula}', verbosity=1)
     if solver.check() == z3.unsat:
         v_print('PROVED', verbosity=1)
         result = True
@@ -421,7 +422,6 @@ def prove(formula):
         for declaration in model.decls():
             v_print(f'{declaration.name()} = {model[declaration]}', verbosity=0)
         result = False
-    solver.pop()
     return result
 
 

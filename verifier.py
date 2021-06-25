@@ -1,4 +1,3 @@
-import re
 import z3
 import utils
 from cfg_nodes import ConditionNode
@@ -33,7 +32,7 @@ class Verifier:
         Goes over all the paths in CFG, and tries to prove them according to Floyd proof system
         :return: None
         """
-        print(f'Found {len(self.paths)} paths:')
+        utils.v_print(f'Found {len(self.paths)} paths:', verbosity=1)
         for path in self.paths:
             path.print_path()
             path.verify_path()
@@ -41,13 +40,14 @@ class Verifier:
 
         not_proved_paths = list(filter(lambda cfg_path: not cfg_path.path_proved, self.paths))
         if not not_proved_paths:
-            print('PROGRAM IS SUCCESSFULLY PROVED')
+            utils.v_print('PROGRAM IS SUCCESSFULLY PROVED', verbosity=0)
         else:
-            print('FAILED TO PROVE THE PROGRAM. SEE THE FOLLOWING PATHS:')
+            utils.v_print('FAILED TO PROVE THE PROGRAM', verbosity=0)
+            utils.v_print('SEE THE FOLLOWING PATHS:', verbosity=1)
             for path in not_proved_paths:
-                print(f'Path begin at: {path.start_node}')
-                print(f'Path ends at {path.end_node}')
-                print(f'Path action items are {path.action_items}')
+                utils.v_print(f'Path begin at: {path.start_node}', verbosity=1)
+                utils.v_print(f'Path ends at {path.end_node}', verbosity=1)
+                utils.v_print(f'Path action items are {path.action_items}', verbosity=1)
 
     def get_spacer_source_invariant(self, path):
         """
@@ -89,11 +89,6 @@ class Verifier:
         else:
             dest_invariant = utils.list_to_z3_and([])           # True
 
-        # Add to new variables the temporary array variables (appear in state transformation dictionary)
-        for var in path.state_transformation.values():
-            if re.match(r'TMP\$ARR_\d+$', str(var)):
-                new_variables.append(var)
-
         return dest_invariant, utils.list_to_z3_and(boolean_state_transformations), new_variables
 
     def verify_program(self):
@@ -102,7 +97,8 @@ class Verifier:
         and tries to find a proper invariants using horn clauses
         :return: None
         """
-        print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"')
+        utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',
+                      verbosity=0)
         rules = []
         for path in self.paths:
             path.calculate_path_z3_invariants()
@@ -111,14 +107,14 @@ class Verifier:
 
             if not (isinstance(path.mapped_end_invariant, z3.BoolRef) and str(path.mapped_end_invariant) == 'True'):
                 # If the given by user invariant is not a trivial one (True), use it for the path
-                rules.append(z3.ForAll(self.variables_list,
+                rules.append(z3.ForAll(self.variables_list + path.array_tmp_variables,
                                        z3.Implies(z3.And(source_invariant, path.start_invariant,
                                                          path.reachability_condition, path.array_constraint),
                                                   path.mapped_end_invariant)))
             if not (isinstance(dest_invariant, z3.BoolRef) and str(dest_invariant) == 'True'):
                 # If there is no spacer destination invariant function for the end node of the path,
                 # don't need to create a rule. Otherwise, append it to the rules list
-                rules.append(z3.ForAll(self.variables_list + new_variables,
+                rules.append(z3.ForAll(self.variables_list + path.array_tmp_variables + new_variables,
                                        z3.Implies(z3.And(source_invariant, path.start_invariant,
                                                          path.reachability_condition, path.array_constraint,
                                                          boolean_state_transformations),

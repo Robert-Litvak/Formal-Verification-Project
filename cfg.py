@@ -387,7 +387,7 @@ class CFG:
         Prints the program variables
         :return: None
         """
-        print('PROGRAM VARIABLES:')
+        utils.v_print('PROGRAM VARIABLES:', verbosity=3)
         for variable in sorted(self.variables):
-            print(variable)
-        print('\n\n')
+            utils.v_print(variable, verbosity=3)
+        utils.v_print('\n\n', verbosity=3)

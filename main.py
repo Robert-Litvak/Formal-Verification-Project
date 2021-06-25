@@ -6,6 +6,8 @@ from verifier import Verifier
 
 if __name__ == '__main__':
     args = utils.parse_arguments()
+    utils.set_verbosity(args.verbosity)
+
     verifier_configurations = []
     if args.json_file and args.function_name:
         verifier_configurations = [{'json': args.json_file, 'function': args.function_name}]
@@ -21,10 +23,10 @@ if __name__ == '__main__':
                 verifier_configurations.append({'json': json_file, 'function': section_name})
 
     for configuration in verifier_configurations:
-        print('*' * 113)
+        utils.v_print('*' * 113, verbosity=0)
         verifier = Verifier(configuration['json'], configuration['function'])
         if args.paths:
             verifier.verify_paths()
         else:
             verifier.verify_program()
-        print('\n\n')
+        utils.v_print('\n\n', verbosity=0)

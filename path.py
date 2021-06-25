@@ -13,6 +13,7 @@ class Path:
         self.action_items = action_items
         self.variables = variables
         self.logical_variables = {}
+        self.array_tmp_variables = []
         self.reachability_condition, self.state_transformation, self.array_constraint = self.calculate_t_and_r()
         self.start_invariant = None
         self.end_invariant = None
@@ -58,6 +59,7 @@ class Path:
                         index = utils.convert_expression_to_z3(self.variables, current_node.target_index_subtree,
                                                                variables_mapping=state_transformation)
                         new_array = z3.Array(f'TMP$ARR_{next_array_index}', dest.domain(), dest.range())
+                        self.array_tmp_variables.append(new_array)
                         deepest_dest_mapping = utils.get_chain_deepest_mapping(state_transformation, dest)
                         array_constraints.append(z3.Store(deepest_dest_mapping, index, value) == new_array)
                         state_transformation[deepest_dest_mapping] = new_array
@@ -110,20 +112,20 @@ class Path:
         Prints all the paths that were found. This method should be used only after the "generate_paths" method
         :return: None
         """
-        print('')
+        utils.v_print('', verbosity=1)
         current_node = self.start_node
         for action in self.action_items:
-            print(current_node)
+            utils.v_print(current_node, verbosity=1)
             if action is None:
                 current_node = current_node.son
             else:
-                print(action)
+                utils.v_print(action, verbosity=1)
                 if action:
                     current_node = current_node.son_true
                 else:
                     current_node = current_node.son_false
         assert current_node.is_cut_point
-        print(current_node)
+        utils.v_print(current_node, verbosity=1)
 
     def verify_path(self):
         """
@@ -131,18 +133,19 @@ class Path:
         :return: None
         """
         self.calculate_path_z3_invariants()
-        print('')
-        print(f'R is:\t{self.reachability_condition}')
-        print(f'Simplified R is:\t{z3.simplify(self.reachability_condition)}')
-        print(f'T is:\t{dict(self.state_transformation.items())}')
+        utils.v_print('', verbosity=1)
+        utils.v_print(f'R is:\t{self.reachability_condition}', verbosity=1)
+        utils.v_print(f'Simplified R is:\t{z3.simplify(self.reachability_condition)}', verbosity=2)
+        utils.v_print(f'T is:\t{dict(self.state_transformation.items())}', verbosity=1)
 
-        print(f'I_start(vars) is:\t {self.start_invariant}')
-        print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, self.start_invariant))}')
+        utils.v_print(f'I_start(vars) is:\t {self.start_invariant}', verbosity=1)
+        utils.v_print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, self.start_invariant))}', verbosity=2)
 
-        print(f'I_end(T(vars)) is:\t {self.mapped_end_invariant}')
-        print(f'Simplified I_end(T(vars)) is:\t {z3.simplify(z3.And(True, self.mapped_end_invariant))}')
+        utils.v_print(f'I_end(T(vars)) is:\t {self.mapped_end_invariant}', verbosity=1)
+        utils.v_print(f'Simplified I_end(T(vars)) is:\t {z3.simplify(z3.And(True, self.mapped_end_invariant))}',
+                      verbosity=2)
 
-        print(f'Array constraints: {self.array_constraint}')
+        utils.v_print(f'Array constraints: {self.array_constraint}', verbosity=1)
 
         self.prove_path()
-        print('\n\n')
+        utils.v_print('\n\n', verbosity=1)

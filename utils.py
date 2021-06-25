@@ -18,6 +18,14 @@ class UnknownStatementTypeInScope(Exception):
     pass
 
 
+class VerbosityCannotBeSetMoreThanOnce(Exception):
+    pass
+
+
+class InvalidVerbosityLevel(Exception):
+    pass
+
+
 # Logical keywords
 logical_keywords = ['implies', 'forall', 'exists']
 
@@ -29,6 +37,26 @@ operators_mapping = {'!': (lambda op: z3.Not(op)), '||': (lambda op1, op2: z3.Or
                      '&&': (lambda op1, op2: z3.And(op1, op2)), '+': operator.add, '-': operator.sub, '*': operator.mul,
                      '/': operator.truediv, '%': operator.mod, '^': operator.xor, '<': operator.lt, '<=': operator.le,
                      '==': operator.eq, '!=': operator.ne, '>=': operator.ge, '>': operator.gt}
+
+
+# Program verbosity parameters
+verbosity_levels = [0, 1, 2, 3]
+program_verbosity = -1
+
+
+def set_verbosity(level):
+    global program_verbosity
+    if level not in verbosity_levels:
+        raise InvalidVerbosityLevel(f'Invalid verbosity {level}. The only allowed levels: {verbosity_levels}')
+    if program_verbosity != -1:
+        raise VerbosityCannotBeSetMoreThanOnce
+
+    program_verbosity = level
+
+
+def v_print(string, verbosity):
+    if verbosity <= program_verbosity:
+        print(string)
 
 
 def read_json(json_file_name):
@@ -53,6 +81,8 @@ def parse_arguments():
     parser.add_argument('-all_tests', action='store_const', const=True,
                         help='Run verifier on all the available functions from all the available files')
     parser.add_argument('-paths',  action='store_const', const=True, help='Verify the program by paths')
+    parser.add_argument('-verbosity', type=int, choices=verbosity_levels, default=0,
+                        help='The higher the verbosity level - the more information will be displayed')
     return parser.parse_args(sys.argv[1:])
 
 
@@ -117,7 +147,7 @@ def extract_configuration_subtrees():
     parsing_command = ['node.exe', os.path.join('ext', 'sindarin.js'), 'parse', 'temp_configuration.c']
     parsing_process = subprocess.Popen(parsing_command)
     parsing_process.wait()
-    print('')
+    v_print('', verbosity=0)
     configuration_ast = read_json('temp_configuration.c.ast.json')
     # Remove temporary "c" and "json" files that used to get the configuration
     os.remove('temp_configuration.c')
@@ -354,11 +384,28 @@ def list_to_z3_and(items):
         return z3.And(*items)
 
 
+def process_rule_string(rule_string, variables):
+    """
+    Converts the invariant string to a more readable format
+    :param rule_string: The string representing the invariants
+    :param variables: List of the program variables
+    :return: Processed string
+    """
+    result = rule_string
+    # Change all the "Var(\d+)" Z3 variables names to the corresponding program variables
+    for index in range(len(variables)):
+        result = re.sub(fr'Var\({index}\)', str(variables[index]), result)
+    # Change all the "+ -1*expression" subtract representation to the regular "- expression" representation
+    result = re.sub(r'\+ -1\*', '- ', result)
+    result = re.sub(r'Or\(Not\((.+)\), (.+)\)', r'\1 -> \2', result)
+    return result
+
+
 def prove(formula):
     """
     Checks if the given formula is a tautology, using z3.
-    If the formula is a tautology, will print "PROVED",
-    Otherwise will print "FAILED TO PROVE. ASSIGNMENT:" with the assignment (counter-example)
+    If the formula is a tautology, will v_print "PROVED",
+    Otherwise will v_print "FAILED TO PROVE. ASSIGNMENT:" with the assignment (counter-example)
     :param formula: z3 formula object
     :return: True if the formula was successfully proved, False otherwise
     """
@@ -366,13 +413,13 @@ def prove(formula):
     solver.push()
     solver.add(z3.Not(formula))
     if solver.check() == z3.unsat:
-        print('PROVED')
+        v_print('PROVED', verbosity=1)
         result = True
     else:
-        print('FAILED TO PROVE. ASSIGNMENT:')
+        v_print('FAILED TO PROVE. ASSIGNMENT:', verbosity=0)
         model = solver.model()
         for declaration in model.decls():
-            print(f'{declaration.name()} = {model[declaration]}')
+            v_print(f'{declaration.name()} = {model[declaration]}', verbosity=0)
         result = False
     solver.pop()
     return result
@@ -388,24 +435,22 @@ def horn_prove(rules, variables=None):
     :return: None
     """
     solver = z3.SolverFor('HORN')
-    print('Adding rules:')
+    v_print('Adding rules:', verbosity=1)
     for rule in rules:
-        print(rule)
+        v_print(rule, verbosity=1)
         solver.add(rule)
-        print('#' * 113)
+        v_print('#' * 113, verbosity=1)
     result = solver.check()
     if result == z3.sat:
-        print('PROVED')
+        v_print('PROVED', verbosity=0)
         model = solver.model()
         if model.decls():
-            print('THE INVARIANTS:')
+            v_print('THE INVARIANTS:', verbosity=0)
+            for declaration in model.decls():
+                value = process_rule_string(str(model[declaration]), variables)
+                v_print(f'{declaration.name()} = {value}', verbosity=0)
         else:
-            print('No invariants required')
-        for declaration in model.decls():
-            value = str(model[declaration])
-            for index in range(len(variables)):
-                value = re.sub(fr'Var\({index}\)', str(variables[index]), value)
-            print(f'{declaration.name()} = {value}')
+            v_print('No invariants required', verbosity=0)
     else:
-        print('FAILED TO PROVE')
-        print(f'Z3 returned {result}')
+        v_print('FAILED TO PROVE', verbosity=0)
+        v_print(f'Z3 returned {result}', verbosity=0)

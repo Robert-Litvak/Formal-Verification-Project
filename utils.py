@@ -41,7 +41,7 @@ operators_mapping = {'!': (lambda op: z3.Not(op)), '||': (lambda op1, op2: z3.Or
 
 
 # Program verbosity parameters
-verbosity_levels = [0, 1, 2, 3]
+verbosity_levels = [0, 1, 2, 3, 4]
 program_verbosity = -1
 
 
@@ -84,6 +84,8 @@ def parse_arguments():
     parser.add_argument('-paths',  action='store_const', const=True, help='Verify the program by paths')
     parser.add_argument('-verbosity', type=int, choices=verbosity_levels, default=0,
                         help='The higher the verbosity level - the more information will be displayed')
+    parser.add_argument('-only_horn', action='store_const', const=True,
+                        help='Do not rerun paths verifier in case of failure')
     return parser.parse_args(sys.argv[1:])
 
 
@@ -412,15 +414,15 @@ def prove(formula):
     """
     solver = z3.Solver()
     solver.add(z3.Not(formula))
-    v_print(f'Proving formula:\n{formula}', verbosity=1)
+    v_print(f'Proving formula:\n{formula}', verbosity=2)
     if solver.check() == z3.unsat:
         v_print('PROVED', verbosity=1)
         result = True
     else:
-        v_print('FAILED TO PROVE. ASSIGNMENT:', verbosity=0)
+        v_print('FAILED TO PROVE. ASSIGNMENT:', verbosity=1)
         model = solver.model()
         for declaration in model.decls():
-            v_print(f'{declaration.name()} = {model[declaration]}', verbosity=0)
+            v_print(f'{declaration.name()} = {model[declaration]}', verbosity=1)
         result = False
     return result
 
@@ -429,19 +431,18 @@ def horn_prove(rules, variables=None):
     """
     Receives a list of rules (which represent horn clauses), and tries to find an invariant that satisfies the rules.
     All the received rules will be printed in python z3 format.
-    If result is success (sat), all the Var(<i>) variable names will be replaced with actual variables from the program
     :param rules: A list of rules which represent horn clauses
     :param variables: Variables list of the verifier
     :return: None
     """
     solver = z3.SolverFor('HORN')
-    v_print('Adding rules:', verbosity=1)
+    v_print('Adding rules:', verbosity=2)
     for rule in rules:
-        v_print(rule, verbosity=1)
+        v_print(rule, verbosity=2)
         solver.add(rule)
-        v_print('#' * 113, verbosity=1)
-    result = solver.check()
-    if result == z3.sat:
+        v_print('#' * 113, verbosity=2)
+    solver_result = solver.check()
+    if solver_result == z3.sat:
         v_print('PROVED', verbosity=0)
         model = solver.model()
         if model.decls():
@@ -451,6 +452,9 @@ def horn_prove(rules, variables=None):
                 v_print(f'{declaration.name()} = {value}', verbosity=0)
         else:
             v_print('No invariants required', verbosity=0)
+        result = True
     else:
-        v_print('FAILED TO PROVE', verbosity=0)
-        v_print(f'Z3 returned {result}', verbosity=0)
+        v_print('FAILED TO PROVE USING HORN CLAUSES', verbosity=0)
+        v_print(f'Z3 returned {solver_result}', verbosity=0)
+        result = False
+    return result

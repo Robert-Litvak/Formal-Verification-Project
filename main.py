@@ -28,5 +28,10 @@ if __name__ == '__main__':
         if args.paths:
             verifier.verify_paths()
         else:
-            verifier.verify_program()
+            program_verified = verifier.verify_program()
+            if not program_verified and not args.only_horn:
+                utils.v_print('Running non-Horn-Clauses solver with the given invariants...\n', verbosity=0)
+                utils.v_print('*' * 113, verbosity=0)
+                paths_verifier = Verifier(configuration['json'], configuration['function'])
+                paths_verifier.verify_paths()
         utils.v_print('\n\n', verbosity=0)

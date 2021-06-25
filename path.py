@@ -134,18 +134,18 @@ class Path:
         """
         self.calculate_path_z3_invariants()
         utils.v_print('', verbosity=1)
-        utils.v_print(f'R is:\t{self.reachability_condition}', verbosity=1)
-        utils.v_print(f'Simplified R is:\t{z3.simplify(self.reachability_condition)}', verbosity=2)
-        utils.v_print(f'T is:\t{dict(self.state_transformation.items())}', verbosity=1)
+        utils.v_print(f'R is:\t{self.reachability_condition}', verbosity=2)
+        utils.v_print(f'Simplified R is:\t{z3.simplify(self.reachability_condition)}', verbosity=3)
+        utils.v_print(f'T is:\t{dict(self.state_transformation.items())}', verbosity=2)
 
-        utils.v_print(f'I_start(vars) is:\t {self.start_invariant}', verbosity=1)
-        utils.v_print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, self.start_invariant))}', verbosity=2)
+        utils.v_print(f'I_start(vars) is:\t {self.start_invariant}', verbosity=2)
+        utils.v_print(f'Simplified I_start(vars) is:\t {z3.simplify(z3.And(True, self.start_invariant))}', verbosity=3)
 
-        utils.v_print(f'I_end(T(vars)) is:\t {self.mapped_end_invariant}', verbosity=1)
+        utils.v_print(f'I_end(T(vars)) is:\t {self.mapped_end_invariant}', verbosity=2)
         utils.v_print(f'Simplified I_end(T(vars)) is:\t {z3.simplify(z3.And(True, self.mapped_end_invariant))}',
-                      verbosity=2)
+                      verbosity=3)
 
-        utils.v_print(f'Array constraints: {self.array_constraint}', verbosity=1)
+        utils.v_print(f'Array constraints: {self.array_constraint}', verbosity=2)
 
         self.prove_path()
         utils.v_print('\n\n', verbosity=1)

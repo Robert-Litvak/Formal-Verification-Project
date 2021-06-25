@@ -120,4 +120,4 @@ class Verifier:
                                                          boolean_state_transformations),
                                                   dest_invariant)))
 
-        utils.horn_prove(rules, self.variables_list)
+        return utils.horn_prove(rules, self.variables_list)

@@ -23,26 +23,23 @@ int mul(int x, int y){
 }
 
 int div(int x, int y){
-	int result = 0;
-	for (int i = 0; i <= x; i += y){
-		if (i + y <= x){
-			result += 1;
-		}
-		else {
-			return result;
-		}
+	int q = 0;
+	int r = x - q * y;
+	while (r >= y){
+		q += 1;
+		r -= y;
 	}
+	return q;
 }
 
 int mod(int x, int y){
-	if (x < y){
-		return x;
+	int q = 0;
+	int r = x - q * y;
+	while (r >= y){
+		q += 1;
+		r -= y;
 	}
-	int result = x;
-	while (result >= y){
-		result -= y;
-	}
-	return result;
+	return r;
 }
 
 int abs(int x){
@@ -52,11 +49,10 @@ int abs(int x){
 	return x;
 }
 
-int fibonacci_1000_array(){
-	int fib[1000];
+int fibonacci_1000_array(int fib[], int length){
 	fib[0] = 1;
 	fib[1] = 1;
-	for (int i = 2; i < 1000; i += 1){
+	for (int i = 2; i < length; i += 1){
 		fib[i] = fib[i-2] + fib[i-1];
 	}
 }

@@ -3,7 +3,7 @@
  "range": {
   "startLineNumber": 1,
   "startColumn": 1,
-  "endLineNumber": 62,
+  "endLineNumber": 58,
   "endColumn": 2
  },
  "children": [
@@ -1992,7 +1992,7 @@
    "range": {
     "startLineNumber": 25,
     "startColumn": 1,
-    "endLineNumber": 35,
+    "endLineNumber": 33,
     "endColumn": 2
    },
    "children": [
@@ -2144,7 +2144,7 @@
      "range": {
       "startLineNumber": 25,
       "startColumn": 22,
-      "endLineNumber": 35,
+      "endLineNumber": 33,
       "endColumn": 2
      },
      "children": [
@@ -2164,8 +2164,8 @@
        "range": {
         "startLineNumber": 26,
         "startColumn": 2,
-        "endLineNumber": 34,
-        "endColumn": 3
+        "endLineNumber": 32,
+        "endColumn": 11
        },
        "children": [
         {
@@ -2174,7 +2174,7 @@
           "startLineNumber": 26,
           "startColumn": 2,
           "endLineNumber": 26,
-          "endColumn": 17
+          "endColumn": 12
          },
          "children": [
           {
@@ -2194,18 +2194,18 @@
             "startLineNumber": 26,
             "startColumn": 6,
             "endLineNumber": 26,
-            "endColumn": 16
+            "endColumn": 11
            },
            "children": [
             {
              "type": "IDENTIFIER",
-             "text": "result",
+             "text": "q",
              "children": null,
              "range": {
               "startLineNumber": 26,
               "startColumn": 6,
               "endLineNumber": 26,
-              "endColumn": 12
+              "endColumn": 7
              }
             },
             {
@@ -2214,9 +2214,9 @@
              "children": null,
              "range": {
               "startLineNumber": 26,
-              "startColumn": 13,
+              "startColumn": 8,
               "endLineNumber": 26,
-              "endColumn": 14
+              "endColumn": 9
              }
             },
             {
@@ -2225,9 +2225,9 @@
              "children": null,
              "range": {
               "startLineNumber": 26,
-              "startColumn": 15,
+              "startColumn": 10,
               "endLineNumber": 26,
-              "endColumn": 16
+              "endColumn": 11
              }
             }
            ]
@@ -2238,999 +2238,20 @@
            "children": null,
            "range": {
             "startLineNumber": 26,
-            "startColumn": 16,
-            "endLineNumber": 26,
-            "endColumn": 17
-           }
-          }
-         ]
-        },
-        {
-         "type": "iteration_statement",
-         "range": {
-          "startLineNumber": 27,
-          "startColumn": 2,
-          "endLineNumber": 34,
-          "endColumn": 3
-         },
-         "children": [
-          {
-           "type": "FOR",
-           "text": "for",
-           "children": null,
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 2,
-            "endLineNumber": 27,
-            "endColumn": 5
-           }
-          },
-          {
-           "type": "(",
-           "text": "(",
-           "children": null,
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 6,
-            "endLineNumber": 27,
-            "endColumn": 7
-           }
-          },
-          {
-           "type": "declaration",
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 7,
-            "endLineNumber": 27,
-            "endColumn": 17
-           },
-           "children": [
-            {
-             "type": "INT",
-             "text": "int",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 7,
-              "endLineNumber": 27,
-              "endColumn": 10
-             }
-            },
-            {
-             "type": "init_declarator",
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 11,
-              "endLineNumber": 27,
-              "endColumn": 16
-             },
-             "children": [
-              {
-               "type": "IDENTIFIER",
-               "text": "i",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 11,
-                "endLineNumber": 27,
-                "endColumn": 12
-               }
-              },
-              {
-               "type": "=",
-               "text": "=",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 13,
-                "endLineNumber": 27,
-                "endColumn": 14
-               }
-              },
-              {
-               "type": "CONSTANT",
-               "text": "0",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 15,
-                "endLineNumber": 27,
-                "endColumn": 16
-               }
-              }
-             ]
-            },
-            {
-             "type": ";",
-             "text": ";",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 16,
-              "endLineNumber": 27,
-              "endColumn": 17
-             }
-            }
-           ]
-          },
-          {
-           "type": "expression_statement",
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 18,
-            "endLineNumber": 27,
-            "endColumn": 25
-           },
-           "children": [
-            {
-             "type": "relational_expression",
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 18,
-              "endLineNumber": 27,
-              "endColumn": 24
-             },
-             "children": [
-              {
-               "type": "IDENTIFIER",
-               "text": "i",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 18,
-                "endLineNumber": 27,
-                "endColumn": 19
-               }
-              },
-              {
-               "type": "LE_OP",
-               "text": "<=",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 20,
-                "endLineNumber": 27,
-                "endColumn": 22
-               }
-              },
-              {
-               "type": "IDENTIFIER",
-               "text": "x",
-               "children": null,
-               "range": {
-                "startLineNumber": 27,
-                "startColumn": 23,
-                "endLineNumber": 27,
-                "endColumn": 24
-               }
-              }
-             ]
-            },
-            {
-             "type": ";",
-             "text": ";",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 24,
-              "endLineNumber": 27,
-              "endColumn": 25
-             }
-            }
-           ]
-          },
-          {
-           "type": "assignment_expression",
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 26,
-            "endLineNumber": 27,
-            "endColumn": 32
-           },
-           "children": [
-            {
-             "type": "IDENTIFIER",
-             "text": "i",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 26,
-              "endLineNumber": 27,
-              "endColumn": 27
-             }
-            },
-            {
-             "type": "ADD_ASSIGN",
-             "text": "+=",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 28,
-              "endLineNumber": 27,
-              "endColumn": 30
-             }
-            },
-            {
-             "type": "IDENTIFIER",
-             "text": "y",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 31,
-              "endLineNumber": 27,
-              "endColumn": 32
-             }
-            }
-           ]
-          },
-          {
-           "type": ")",
-           "text": ")",
-           "children": null,
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 32,
-            "endLineNumber": 27,
-            "endColumn": 33
-           }
-          },
-          {
-           "type": "compound_statement",
-           "range": {
-            "startLineNumber": 27,
-            "startColumn": 33,
-            "endLineNumber": 34,
-            "endColumn": 3
-           },
-           "children": [
-            {
-             "type": "{",
-             "text": "{",
-             "children": null,
-             "range": {
-              "startLineNumber": 27,
-              "startColumn": 33,
-              "endLineNumber": 27,
-              "endColumn": 34
-             }
-            },
-            {
-             "type": "block_item_list",
-             "range": {
-              "startLineNumber": 28,
-              "startColumn": 3,
-              "endLineNumber": 33,
-              "endColumn": 4
-             },
-             "children": [
-              {
-               "type": "selection_statement",
-               "range": {
-                "startLineNumber": 28,
-                "startColumn": 3,
-                "endLineNumber": 33,
-                "endColumn": 4
-               },
-               "children": [
-                {
-                 "type": "IF",
-                 "text": "if",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 28,
-                  "startColumn": 3,
-                  "endLineNumber": 28,
-                  "endColumn": 5
-                 }
-                },
-                {
-                 "type": "(",
-                 "text": "(",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 28,
-                  "startColumn": 6,
-                  "endLineNumber": 28,
-                  "endColumn": 7
-                 }
-                },
-                {
-                 "type": "relational_expression",
-                 "range": {
-                  "startLineNumber": 28,
-                  "startColumn": 7,
-                  "endLineNumber": 28,
-                  "endColumn": 17
-                 },
-                 "children": [
-                  {
-                   "type": "additive_expression",
-                   "range": {
-                    "startLineNumber": 28,
-                    "startColumn": 7,
-                    "endLineNumber": 28,
-                    "endColumn": 12
-                   },
-                   "children": [
-                    {
-                     "type": "IDENTIFIER",
-                     "text": "i",
-                     "children": null,
-                     "range": {
-                      "startLineNumber": 28,
-                      "startColumn": 7,
-                      "endLineNumber": 28,
-                      "endColumn": 8
-                     }
-                    },
-                    {
-                     "type": "+",
-                     "text": "+",
-                     "children": null,
-                     "range": {
-                      "startLineNumber": 28,
-                      "startColumn": 9,
-                      "endLineNumber": 28,
-                      "endColumn": 10
-                     }
-                    },
-                    {
-                     "type": "IDENTIFIER",
-                     "text": "y",
-                     "children": null,
-                     "range": {
-                      "startLineNumber": 28,
-                      "startColumn": 11,
-                      "endLineNumber": 28,
-                      "endColumn": 12
-                     }
-                    }
-                   ]
-                  },
-                  {
-                   "type": "LE_OP",
-                   "text": "<=",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 28,
-                    "startColumn": 13,
-                    "endLineNumber": 28,
-                    "endColumn": 15
-                   }
-                  },
-                  {
-                   "type": "IDENTIFIER",
-                   "text": "x",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 28,
-                    "startColumn": 16,
-                    "endLineNumber": 28,
-                    "endColumn": 17
-                   }
-                  }
-                 ]
-                },
-                {
-                 "type": ")",
-                 "text": ")",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 28,
-                  "startColumn": 17,
-                  "endLineNumber": 28,
-                  "endColumn": 18
-                 }
-                },
-                {
-                 "type": "compound_statement",
-                 "range": {
-                  "startLineNumber": 28,
-                  "startColumn": 18,
-                  "endLineNumber": 30,
-                  "endColumn": 4
-                 },
-                 "children": [
-                  {
-                   "type": "{",
-                   "text": "{",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 28,
-                    "startColumn": 18,
-                    "endLineNumber": 28,
-                    "endColumn": 19
-                   }
-                  },
-                  {
-                   "type": "block_item_list",
-                   "range": {
-                    "startLineNumber": 29,
-                    "startColumn": 4,
-                    "endLineNumber": 29,
-                    "endColumn": 16
-                   },
-                   "children": [
-                    {
-                     "type": "expression_statement",
-                     "range": {
-                      "startLineNumber": 29,
-                      "startColumn": 4,
-                      "endLineNumber": 29,
-                      "endColumn": 16
-                     },
-                     "children": [
-                      {
-                       "type": "assignment_expression",
-                       "range": {
-                        "startLineNumber": 29,
-                        "startColumn": 4,
-                        "endLineNumber": 29,
-                        "endColumn": 15
-                       },
-                       "children": [
-                        {
-                         "type": "IDENTIFIER",
-                         "text": "result",
-                         "children": null,
-                         "range": {
-                          "startLineNumber": 29,
-                          "startColumn": 4,
-                          "endLineNumber": 29,
-                          "endColumn": 10
-                         }
-                        },
-                        {
-                         "type": "ADD_ASSIGN",
-                         "text": "+=",
-                         "children": null,
-                         "range": {
-                          "startLineNumber": 29,
-                          "startColumn": 11,
-                          "endLineNumber": 29,
-                          "endColumn": 13
-                         }
-                        },
-                        {
-                         "type": "CONSTANT",
-                         "text": "1",
-                         "children": null,
-                         "range": {
-                          "startLineNumber": 29,
-                          "startColumn": 14,
-                          "endLineNumber": 29,
-                          "endColumn": 15
-                         }
-                        }
-                       ]
-                      },
-                      {
-                       "type": ";",
-                       "text": ";",
-                       "children": null,
-                       "range": {
-                        "startLineNumber": 29,
-                        "startColumn": 15,
-                        "endLineNumber": 29,
-                        "endColumn": 16
-                       }
-                      }
-                     ]
-                    }
-                   ]
-                  },
-                  {
-                   "type": "}",
-                   "text": "}",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 30,
-                    "startColumn": 3,
-                    "endLineNumber": 30,
-                    "endColumn": 4
-                   }
-                  }
-                 ]
-                },
-                {
-                 "type": "ELSE",
-                 "text": "else",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 31,
-                  "startColumn": 3,
-                  "endLineNumber": 31,
-                  "endColumn": 7
-                 }
-                },
-                {
-                 "type": "compound_statement",
-                 "range": {
-                  "startLineNumber": 31,
-                  "startColumn": 8,
-                  "endLineNumber": 33,
-                  "endColumn": 4
-                 },
-                 "children": [
-                  {
-                   "type": "{",
-                   "text": "{",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 31,
-                    "startColumn": 8,
-                    "endLineNumber": 31,
-                    "endColumn": 9
-                   }
-                  },
-                  {
-                   "type": "block_item_list",
-                   "range": {
-                    "startLineNumber": 32,
-                    "startColumn": 4,
-                    "endLineNumber": 32,
-                    "endColumn": 18
-                   },
-                   "children": [
-                    {
-                     "type": "jump_statement",
-                     "range": {
-                      "startLineNumber": 32,
-                      "startColumn": 4,
-                      "endLineNumber": 32,
-                      "endColumn": 18
-                     },
-                     "children": [
-                      {
-                       "type": "RETURN",
-                       "text": "return",
-                       "children": null,
-                       "range": {
-                        "startLineNumber": 32,
-                        "startColumn": 4,
-                        "endLineNumber": 32,
-                        "endColumn": 10
-                       }
-                      },
-                      {
-                       "type": "IDENTIFIER",
-                       "text": "result",
-                       "children": null,
-                       "range": {
-                        "startLineNumber": 32,
-                        "startColumn": 11,
-                        "endLineNumber": 32,
-                        "endColumn": 17
-                       }
-                      },
-                      {
-                       "type": ";",
-                       "text": ";",
-                       "children": null,
-                       "range": {
-                        "startLineNumber": 32,
-                        "startColumn": 17,
-                        "endLineNumber": 32,
-                        "endColumn": 18
-                       }
-                      }
-                     ]
-                    }
-                   ]
-                  },
-                  {
-                   "type": "}",
-                   "text": "}",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 33,
-                    "startColumn": 3,
-                    "endLineNumber": 33,
-                    "endColumn": 4
-                   }
-                  }
-                 ]
-                }
-               ]
-              }
-             ]
-            },
-            {
-             "type": "}",
-             "text": "}",
-             "children": null,
-             "range": {
-              "startLineNumber": 34,
-              "startColumn": 2,
-              "endLineNumber": 34,
-              "endColumn": 3
-             }
-            }
-           ]
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "type": "}",
-       "text": "}",
-       "children": null,
-       "range": {
-        "startLineNumber": 35,
-        "startColumn": 1,
-        "endLineNumber": 35,
-        "endColumn": 2
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "type": "function_definition",
-   "range": {
-    "startLineNumber": 37,
-    "startColumn": 1,
-    "endLineNumber": 46,
-    "endColumn": 2
-   },
-   "children": [
-    {
-     "type": "INT",
-     "text": "int",
-     "children": null,
-     "range": {
-      "startLineNumber": 37,
-      "startColumn": 1,
-      "endLineNumber": 37,
-      "endColumn": 4
-     }
-    },
-    {
-     "type": "direct_declarator",
-     "range": {
-      "startLineNumber": 37,
-      "startColumn": 5,
-      "endLineNumber": 37,
-      "endColumn": 22
-     },
-     "children": [
-      {
-       "type": "IDENTIFIER",
-       "text": "mod",
-       "children": null,
-       "range": {
-        "startLineNumber": 37,
-        "startColumn": 5,
-        "endLineNumber": 37,
-        "endColumn": 8
-       }
-      },
-      {
-       "type": "(",
-       "text": "(",
-       "children": null,
-       "range": {
-        "startLineNumber": 37,
-        "startColumn": 8,
-        "endLineNumber": 37,
-        "endColumn": 9
-       }
-      },
-      {
-       "type": "parameter_list",
-       "range": {
-        "startLineNumber": 37,
-        "startColumn": 9,
-        "endLineNumber": 37,
-        "endColumn": 21
-       },
-       "children": [
-        {
-         "type": "parameter_declaration",
-         "range": {
-          "startLineNumber": 37,
-          "startColumn": 9,
-          "endLineNumber": 37,
-          "endColumn": 14
-         },
-         "children": [
-          {
-           "type": "INT",
-           "text": "int",
-           "children": null,
-           "range": {
-            "startLineNumber": 37,
-            "startColumn": 9,
-            "endLineNumber": 37,
-            "endColumn": 12
-           }
-          },
-          {
-           "type": "IDENTIFIER",
-           "text": "x",
-           "children": null,
-           "range": {
-            "startLineNumber": 37,
-            "startColumn": 13,
-            "endLineNumber": 37,
-            "endColumn": 14
-           }
-          }
-         ]
-        },
-        {
-         "type": ",",
-         "text": ",",
-         "children": null,
-         "range": {
-          "startLineNumber": 37,
-          "startColumn": 14,
-          "endLineNumber": 37,
-          "endColumn": 15
-         }
-        },
-        {
-         "type": "parameter_declaration",
-         "range": {
-          "startLineNumber": 37,
-          "startColumn": 16,
-          "endLineNumber": 37,
-          "endColumn": 21
-         },
-         "children": [
-          {
-           "type": "INT",
-           "text": "int",
-           "children": null,
-           "range": {
-            "startLineNumber": 37,
-            "startColumn": 16,
-            "endLineNumber": 37,
-            "endColumn": 19
-           }
-          },
-          {
-           "type": "IDENTIFIER",
-           "text": "y",
-           "children": null,
-           "range": {
-            "startLineNumber": 37,
-            "startColumn": 20,
-            "endLineNumber": 37,
-            "endColumn": 21
-           }
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "type": ")",
-       "text": ")",
-       "children": null,
-       "range": {
-        "startLineNumber": 37,
-        "startColumn": 21,
-        "endLineNumber": 37,
-        "endColumn": 22
-       }
-      }
-     ]
-    },
-    {
-     "type": "compound_statement",
-     "range": {
-      "startLineNumber": 37,
-      "startColumn": 22,
-      "endLineNumber": 46,
-      "endColumn": 2
-     },
-     "children": [
-      {
-       "type": "{",
-       "text": "{",
-       "children": null,
-       "range": {
-        "startLineNumber": 37,
-        "startColumn": 22,
-        "endLineNumber": 37,
-        "endColumn": 23
-       }
-      },
-      {
-       "type": "block_item_list",
-       "range": {
-        "startLineNumber": 38,
-        "startColumn": 2,
-        "endLineNumber": 45,
-        "endColumn": 16
-       },
-       "children": [
-        {
-         "type": "selection_statement",
-         "range": {
-          "startLineNumber": 38,
-          "startColumn": 2,
-          "endLineNumber": 40,
-          "endColumn": 3
-         },
-         "children": [
-          {
-           "type": "IF",
-           "text": "if",
-           "children": null,
-           "range": {
-            "startLineNumber": 38,
-            "startColumn": 2,
-            "endLineNumber": 38,
-            "endColumn": 4
-           }
-          },
-          {
-           "type": "(",
-           "text": "(",
-           "children": null,
-           "range": {
-            "startLineNumber": 38,
-            "startColumn": 5,
-            "endLineNumber": 38,
-            "endColumn": 6
-           }
-          },
-          {
-           "type": "relational_expression",
-           "range": {
-            "startLineNumber": 38,
-            "startColumn": 6,
-            "endLineNumber": 38,
-            "endColumn": 11
-           },
-           "children": [
-            {
-             "type": "IDENTIFIER",
-             "text": "x",
-             "children": null,
-             "range": {
-              "startLineNumber": 38,
-              "startColumn": 6,
-              "endLineNumber": 38,
-              "endColumn": 7
-             }
-            },
-            {
-             "type": "<",
-             "text": "<",
-             "children": null,
-             "range": {
-              "startLineNumber": 38,
-              "startColumn": 8,
-              "endLineNumber": 38,
-              "endColumn": 9
-             }
-            },
-            {
-             "type": "IDENTIFIER",
-             "text": "y",
-             "children": null,
-             "range": {
-              "startLineNumber": 38,
-              "startColumn": 10,
-              "endLineNumber": 38,
-              "endColumn": 11
-             }
-            }
-           ]
-          },
-          {
-           "type": ")",
-           "text": ")",
-           "children": null,
-           "range": {
-            "startLineNumber": 38,
             "startColumn": 11,
-            "endLineNumber": 38,
+            "endLineNumber": 26,
             "endColumn": 12
            }
-          },
-          {
-           "type": "compound_statement",
-           "range": {
-            "startLineNumber": 38,
-            "startColumn": 12,
-            "endLineNumber": 40,
-            "endColumn": 3
-           },
-           "children": [
-            {
-             "type": "{",
-             "text": "{",
-             "children": null,
-             "range": {
-              "startLineNumber": 38,
-              "startColumn": 12,
-              "endLineNumber": 38,
-              "endColumn": 13
-             }
-            },
-            {
-             "type": "block_item_list",
-             "range": {
-              "startLineNumber": 39,
-              "startColumn": 3,
-              "endLineNumber": 39,
-              "endColumn": 12
-             },
-             "children": [
-              {
-               "type": "jump_statement",
-               "range": {
-                "startLineNumber": 39,
-                "startColumn": 3,
-                "endLineNumber": 39,
-                "endColumn": 12
-               },
-               "children": [
-                {
-                 "type": "RETURN",
-                 "text": "return",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 39,
-                  "startColumn": 3,
-                  "endLineNumber": 39,
-                  "endColumn": 9
-                 }
-                },
-                {
-                 "type": "IDENTIFIER",
-                 "text": "x",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 39,
-                  "startColumn": 10,
-                  "endLineNumber": 39,
-                  "endColumn": 11
-                 }
-                },
-                {
-                 "type": ";",
-                 "text": ";",
-                 "children": null,
-                 "range": {
-                  "startLineNumber": 39,
-                  "startColumn": 11,
-                  "endLineNumber": 39,
-                  "endColumn": 12
-                 }
-                }
-               ]
-              }
-             ]
-            },
-            {
-             "type": "}",
-             "text": "}",
-             "children": null,
-             "range": {
-              "startLineNumber": 40,
-              "startColumn": 2,
-              "endLineNumber": 40,
-              "endColumn": 3
-             }
-            }
-           ]
           }
          ]
         },
         {
          "type": "declaration",
          "range": {
-          "startLineNumber": 41,
+          "startLineNumber": 27,
           "startColumn": 2,
-          "endLineNumber": 41,
-          "endColumn": 17
+          "endLineNumber": 27,
+          "endColumn": 20
          },
          "children": [
           {
@@ -3238,30 +2259,30 @@
            "text": "int",
            "children": null,
            "range": {
-            "startLineNumber": 41,
+            "startLineNumber": 27,
             "startColumn": 2,
-            "endLineNumber": 41,
+            "endLineNumber": 27,
             "endColumn": 5
            }
           },
           {
            "type": "init_declarator",
            "range": {
-            "startLineNumber": 41,
+            "startLineNumber": 27,
             "startColumn": 6,
-            "endLineNumber": 41,
-            "endColumn": 16
+            "endLineNumber": 27,
+            "endColumn": 19
            },
            "children": [
             {
              "type": "IDENTIFIER",
-             "text": "result",
+             "text": "r",
              "children": null,
              "range": {
-              "startLineNumber": 41,
+              "startLineNumber": 27,
               "startColumn": 6,
-              "endLineNumber": 41,
-              "endColumn": 12
+              "endLineNumber": 27,
+              "endColumn": 7
              }
             },
             {
@@ -3269,22 +2290,88 @@
              "text": "=",
              "children": null,
              "range": {
-              "startLineNumber": 41,
-              "startColumn": 13,
-              "endLineNumber": 41,
-              "endColumn": 14
+              "startLineNumber": 27,
+              "startColumn": 8,
+              "endLineNumber": 27,
+              "endColumn": 9
              }
             },
             {
-             "type": "IDENTIFIER",
-             "text": "x",
-             "children": null,
+             "type": "additive_expression",
              "range": {
-              "startLineNumber": 41,
-              "startColumn": 15,
-              "endLineNumber": 41,
-              "endColumn": 16
-             }
+              "startLineNumber": 27,
+              "startColumn": 10,
+              "endLineNumber": 27,
+              "endColumn": 19
+             },
+             "children": [
+              {
+               "type": "IDENTIFIER",
+               "text": "x",
+               "children": null,
+               "range": {
+                "startLineNumber": 27,
+                "startColumn": 10,
+                "endLineNumber": 27,
+                "endColumn": 11
+               }
+              },
+              {
+               "type": "-",
+               "text": "-",
+               "children": null,
+               "range": {
+                "startLineNumber": 27,
+                "startColumn": 12,
+                "endLineNumber": 27,
+                "endColumn": 13
+               }
+              },
+              {
+               "type": "multiplicative_expression",
+               "range": {
+                "startLineNumber": 27,
+                "startColumn": 14,
+                "endLineNumber": 27,
+                "endColumn": 19
+               },
+               "children": [
+                {
+                 "type": "IDENTIFIER",
+                 "text": "q",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 27,
+                  "startColumn": 14,
+                  "endLineNumber": 27,
+                  "endColumn": 15
+                 }
+                },
+                {
+                 "type": "*",
+                 "text": "*",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 27,
+                  "startColumn": 16,
+                  "endLineNumber": 27,
+                  "endColumn": 17
+                 }
+                },
+                {
+                 "type": "IDENTIFIER",
+                 "text": "y",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 27,
+                  "startColumn": 18,
+                  "endLineNumber": 27,
+                  "endColumn": 19
+                 }
+                }
+               ]
+              }
+             ]
             }
            ]
           },
@@ -3293,10 +2380,10 @@
            "text": ";",
            "children": null,
            "range": {
-            "startLineNumber": 41,
-            "startColumn": 16,
-            "endLineNumber": 41,
-            "endColumn": 17
+            "startLineNumber": 27,
+            "startColumn": 19,
+            "endLineNumber": 27,
+            "endColumn": 20
            }
           }
          ]
@@ -3304,9 +2391,9 @@
         {
          "type": "iteration_statement",
          "range": {
-          "startLineNumber": 42,
+          "startLineNumber": 28,
           "startColumn": 2,
-          "endLineNumber": 44,
+          "endLineNumber": 31,
           "endColumn": 3
          },
          "children": [
@@ -3315,9 +2402,9 @@
            "text": "while",
            "children": null,
            "range": {
-            "startLineNumber": 42,
+            "startLineNumber": 28,
             "startColumn": 2,
-            "endLineNumber": 42,
+            "endLineNumber": 28,
             "endColumn": 7
            }
           },
@@ -3326,30 +2413,30 @@
            "text": "(",
            "children": null,
            "range": {
-            "startLineNumber": 42,
+            "startLineNumber": 28,
             "startColumn": 8,
-            "endLineNumber": 42,
+            "endLineNumber": 28,
             "endColumn": 9
            }
           },
           {
            "type": "relational_expression",
            "range": {
-            "startLineNumber": 42,
+            "startLineNumber": 28,
             "startColumn": 9,
-            "endLineNumber": 42,
-            "endColumn": 20
+            "endLineNumber": 28,
+            "endColumn": 15
            },
            "children": [
             {
              "type": "IDENTIFIER",
-             "text": "result",
+             "text": "r",
              "children": null,
              "range": {
-              "startLineNumber": 42,
+              "startLineNumber": 28,
               "startColumn": 9,
-              "endLineNumber": 42,
-              "endColumn": 15
+              "endLineNumber": 28,
+              "endColumn": 10
              }
             },
             {
@@ -3357,10 +2444,10 @@
              "text": ">=",
              "children": null,
              "range": {
-              "startLineNumber": 42,
-              "startColumn": 16,
-              "endLineNumber": 42,
-              "endColumn": 18
+              "startLineNumber": 28,
+              "startColumn": 11,
+              "endLineNumber": 28,
+              "endColumn": 13
              }
             },
             {
@@ -3368,10 +2455,10 @@
              "text": "y",
              "children": null,
              "range": {
-              "startLineNumber": 42,
-              "startColumn": 19,
-              "endLineNumber": 42,
-              "endColumn": 20
+              "startLineNumber": 28,
+              "startColumn": 14,
+              "endLineNumber": 28,
+              "endColumn": 15
              }
             }
            ]
@@ -3381,18 +2468,18 @@
            "text": ")",
            "children": null,
            "range": {
-            "startLineNumber": 42,
-            "startColumn": 20,
-            "endLineNumber": 42,
-            "endColumn": 21
+            "startLineNumber": 28,
+            "startColumn": 15,
+            "endLineNumber": 28,
+            "endColumn": 16
            }
           },
           {
            "type": "compound_statement",
            "range": {
-            "startLineNumber": 42,
-            "startColumn": 21,
-            "endLineNumber": 44,
+            "startLineNumber": 28,
+            "startColumn": 16,
+            "endLineNumber": 31,
             "endColumn": 3
            },
            "children": [
@@ -3401,70 +2488,70 @@
              "text": "{",
              "children": null,
              "range": {
-              "startLineNumber": 42,
-              "startColumn": 21,
-              "endLineNumber": 42,
-              "endColumn": 22
+              "startLineNumber": 28,
+              "startColumn": 16,
+              "endLineNumber": 28,
+              "endColumn": 17
              }
             },
             {
              "type": "block_item_list",
              "range": {
-              "startLineNumber": 43,
+              "startLineNumber": 29,
               "startColumn": 3,
-              "endLineNumber": 43,
-              "endColumn": 15
+              "endLineNumber": 30,
+              "endColumn": 10
              },
              "children": [
               {
                "type": "expression_statement",
                "range": {
-                "startLineNumber": 43,
+                "startLineNumber": 29,
                 "startColumn": 3,
-                "endLineNumber": 43,
-                "endColumn": 15
+                "endLineNumber": 29,
+                "endColumn": 10
                },
                "children": [
                 {
                  "type": "assignment_expression",
                  "range": {
-                  "startLineNumber": 43,
+                  "startLineNumber": 29,
                   "startColumn": 3,
-                  "endLineNumber": 43,
-                  "endColumn": 14
+                  "endLineNumber": 29,
+                  "endColumn": 9
                  },
                  "children": [
                   {
                    "type": "IDENTIFIER",
-                   "text": "result",
+                   "text": "q",
                    "children": null,
                    "range": {
-                    "startLineNumber": 43,
+                    "startLineNumber": 29,
                     "startColumn": 3,
-                    "endLineNumber": 43,
+                    "endLineNumber": 29,
+                    "endColumn": 4
+                   }
+                  },
+                  {
+                   "type": "ADD_ASSIGN",
+                   "text": "+=",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 29,
+                    "startColumn": 5,
+                    "endLineNumber": 29,
+                    "endColumn": 7
+                   }
+                  },
+                  {
+                   "type": "CONSTANT",
+                   "text": "1",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 29,
+                    "startColumn": 8,
+                    "endLineNumber": 29,
                     "endColumn": 9
-                   }
-                  },
-                  {
-                   "type": "SUB_ASSIGN",
-                   "text": "-=",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 43,
-                    "startColumn": 10,
-                    "endLineNumber": 43,
-                    "endColumn": 12
-                   }
-                  },
-                  {
-                   "type": "IDENTIFIER",
-                   "text": "y",
-                   "children": null,
-                   "range": {
-                    "startLineNumber": 43,
-                    "startColumn": 13,
-                    "endLineNumber": 43,
-                    "endColumn": 14
                    }
                   }
                  ]
@@ -3474,10 +2561,76 @@
                  "text": ";",
                  "children": null,
                  "range": {
-                  "startLineNumber": 43,
-                  "startColumn": 14,
-                  "endLineNumber": 43,
-                  "endColumn": 15
+                  "startLineNumber": 29,
+                  "startColumn": 9,
+                  "endLineNumber": 29,
+                  "endColumn": 10
+                 }
+                }
+               ]
+              },
+              {
+               "type": "expression_statement",
+               "range": {
+                "startLineNumber": 30,
+                "startColumn": 3,
+                "endLineNumber": 30,
+                "endColumn": 10
+               },
+               "children": [
+                {
+                 "type": "assignment_expression",
+                 "range": {
+                  "startLineNumber": 30,
+                  "startColumn": 3,
+                  "endLineNumber": 30,
+                  "endColumn": 9
+                 },
+                 "children": [
+                  {
+                   "type": "IDENTIFIER",
+                   "text": "r",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 30,
+                    "startColumn": 3,
+                    "endLineNumber": 30,
+                    "endColumn": 4
+                   }
+                  },
+                  {
+                   "type": "SUB_ASSIGN",
+                   "text": "-=",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 30,
+                    "startColumn": 5,
+                    "endLineNumber": 30,
+                    "endColumn": 7
+                   }
+                  },
+                  {
+                   "type": "IDENTIFIER",
+                   "text": "y",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 30,
+                    "startColumn": 8,
+                    "endLineNumber": 30,
+                    "endColumn": 9
+                   }
+                  }
+                 ]
+                },
+                {
+                 "type": ";",
+                 "text": ";",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 30,
+                  "startColumn": 9,
+                  "endLineNumber": 30,
+                  "endColumn": 10
                  }
                 }
                ]
@@ -3489,9 +2642,9 @@
              "text": "}",
              "children": null,
              "range": {
-              "startLineNumber": 44,
+              "startLineNumber": 31,
               "startColumn": 2,
-              "endLineNumber": 44,
+              "endLineNumber": 31,
               "endColumn": 3
              }
             }
@@ -3502,10 +2655,10 @@
         {
          "type": "jump_statement",
          "range": {
-          "startLineNumber": 45,
+          "startLineNumber": 32,
           "startColumn": 2,
-          "endLineNumber": 45,
-          "endColumn": 16
+          "endLineNumber": 32,
+          "endColumn": 11
          },
          "children": [
           {
@@ -3513,21 +2666,21 @@
            "text": "return",
            "children": null,
            "range": {
-            "startLineNumber": 45,
+            "startLineNumber": 32,
             "startColumn": 2,
-            "endLineNumber": 45,
+            "endLineNumber": 32,
             "endColumn": 8
            }
           },
           {
            "type": "IDENTIFIER",
-           "text": "result",
+           "text": "q",
            "children": null,
            "range": {
-            "startLineNumber": 45,
+            "startLineNumber": 32,
             "startColumn": 9,
-            "endLineNumber": 45,
-            "endColumn": 15
+            "endLineNumber": 32,
+            "endColumn": 10
            }
           },
           {
@@ -3535,10 +2688,10 @@
            "text": ";",
            "children": null,
            "range": {
-            "startLineNumber": 45,
-            "startColumn": 15,
-            "endLineNumber": 45,
-            "endColumn": 16
+            "startLineNumber": 32,
+            "startColumn": 10,
+            "endLineNumber": 32,
+            "endColumn": 11
            }
           }
          ]
@@ -3550,9 +2703,9 @@
        "text": "}",
        "children": null,
        "range": {
-        "startLineNumber": 46,
+        "startLineNumber": 33,
         "startColumn": 1,
-        "endLineNumber": 46,
+        "endLineNumber": 33,
         "endColumn": 2
        }
       }
@@ -3563,9 +2716,9 @@
   {
    "type": "function_definition",
    "range": {
-    "startLineNumber": 48,
+    "startLineNumber": 35,
     "startColumn": 1,
-    "endLineNumber": 53,
+    "endLineNumber": 43,
     "endColumn": 2
    },
    "children": [
@@ -3574,29 +2727,29 @@
      "text": "int",
      "children": null,
      "range": {
-      "startLineNumber": 48,
+      "startLineNumber": 35,
       "startColumn": 1,
-      "endLineNumber": 48,
+      "endLineNumber": 35,
       "endColumn": 4
      }
     },
     {
      "type": "direct_declarator",
      "range": {
-      "startLineNumber": 48,
+      "startLineNumber": 35,
       "startColumn": 5,
-      "endLineNumber": 48,
-      "endColumn": 15
+      "endLineNumber": 35,
+      "endColumn": 22
      },
      "children": [
       {
        "type": "IDENTIFIER",
-       "text": "abs",
+       "text": "mod",
        "children": null,
        "range": {
-        "startLineNumber": 48,
+        "startLineNumber": 35,
         "startColumn": 5,
-        "endLineNumber": 48,
+        "endLineNumber": 35,
         "endColumn": 8
        }
       },
@@ -3605,27 +2758,27 @@
        "text": "(",
        "children": null,
        "range": {
-        "startLineNumber": 48,
+        "startLineNumber": 35,
         "startColumn": 8,
-        "endLineNumber": 48,
+        "endLineNumber": 35,
         "endColumn": 9
        }
       },
       {
        "type": "parameter_list",
        "range": {
-        "startLineNumber": 48,
+        "startLineNumber": 35,
         "startColumn": 9,
-        "endLineNumber": 48,
-        "endColumn": 14
+        "endLineNumber": 35,
+        "endColumn": 21
        },
        "children": [
         {
          "type": "parameter_declaration",
          "range": {
-          "startLineNumber": 48,
+          "startLineNumber": 35,
           "startColumn": 9,
-          "endLineNumber": 48,
+          "endLineNumber": 35,
           "endColumn": 14
          },
          "children": [
@@ -3634,9 +2787,9 @@
            "text": "int",
            "children": null,
            "range": {
-            "startLineNumber": 48,
+            "startLineNumber": 35,
             "startColumn": 9,
-            "endLineNumber": 48,
+            "endLineNumber": 35,
             "endColumn": 12
            }
           },
@@ -3645,9 +2798,735 @@
            "text": "x",
            "children": null,
            "range": {
-            "startLineNumber": 48,
+            "startLineNumber": 35,
             "startColumn": 13,
-            "endLineNumber": 48,
+            "endLineNumber": 35,
+            "endColumn": 14
+           }
+          }
+         ]
+        },
+        {
+         "type": ",",
+         "text": ",",
+         "children": null,
+         "range": {
+          "startLineNumber": 35,
+          "startColumn": 14,
+          "endLineNumber": 35,
+          "endColumn": 15
+         }
+        },
+        {
+         "type": "parameter_declaration",
+         "range": {
+          "startLineNumber": 35,
+          "startColumn": 16,
+          "endLineNumber": 35,
+          "endColumn": 21
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 35,
+            "startColumn": 16,
+            "endLineNumber": 35,
+            "endColumn": 19
+           }
+          },
+          {
+           "type": "IDENTIFIER",
+           "text": "y",
+           "children": null,
+           "range": {
+            "startLineNumber": 35,
+            "startColumn": 20,
+            "endLineNumber": 35,
+            "endColumn": 21
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": ")",
+       "text": ")",
+       "children": null,
+       "range": {
+        "startLineNumber": 35,
+        "startColumn": 21,
+        "endLineNumber": 35,
+        "endColumn": 22
+       }
+      }
+     ]
+    },
+    {
+     "type": "compound_statement",
+     "range": {
+      "startLineNumber": 35,
+      "startColumn": 22,
+      "endLineNumber": 43,
+      "endColumn": 2
+     },
+     "children": [
+      {
+       "type": "{",
+       "text": "{",
+       "children": null,
+       "range": {
+        "startLineNumber": 35,
+        "startColumn": 22,
+        "endLineNumber": 35,
+        "endColumn": 23
+       }
+      },
+      {
+       "type": "block_item_list",
+       "range": {
+        "startLineNumber": 36,
+        "startColumn": 2,
+        "endLineNumber": 42,
+        "endColumn": 11
+       },
+       "children": [
+        {
+         "type": "declaration",
+         "range": {
+          "startLineNumber": 36,
+          "startColumn": 2,
+          "endLineNumber": 36,
+          "endColumn": 12
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 36,
+            "startColumn": 2,
+            "endLineNumber": 36,
+            "endColumn": 5
+           }
+          },
+          {
+           "type": "init_declarator",
+           "range": {
+            "startLineNumber": 36,
+            "startColumn": 6,
+            "endLineNumber": 36,
+            "endColumn": 11
+           },
+           "children": [
+            {
+             "type": "IDENTIFIER",
+             "text": "q",
+             "children": null,
+             "range": {
+              "startLineNumber": 36,
+              "startColumn": 6,
+              "endLineNumber": 36,
+              "endColumn": 7
+             }
+            },
+            {
+             "type": "=",
+             "text": "=",
+             "children": null,
+             "range": {
+              "startLineNumber": 36,
+              "startColumn": 8,
+              "endLineNumber": 36,
+              "endColumn": 9
+             }
+            },
+            {
+             "type": "CONSTANT",
+             "text": "0",
+             "children": null,
+             "range": {
+              "startLineNumber": 36,
+              "startColumn": 10,
+              "endLineNumber": 36,
+              "endColumn": 11
+             }
+            }
+           ]
+          },
+          {
+           "type": ";",
+           "text": ";",
+           "children": null,
+           "range": {
+            "startLineNumber": 36,
+            "startColumn": 11,
+            "endLineNumber": 36,
+            "endColumn": 12
+           }
+          }
+         ]
+        },
+        {
+         "type": "declaration",
+         "range": {
+          "startLineNumber": 37,
+          "startColumn": 2,
+          "endLineNumber": 37,
+          "endColumn": 20
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 37,
+            "startColumn": 2,
+            "endLineNumber": 37,
+            "endColumn": 5
+           }
+          },
+          {
+           "type": "init_declarator",
+           "range": {
+            "startLineNumber": 37,
+            "startColumn": 6,
+            "endLineNumber": 37,
+            "endColumn": 19
+           },
+           "children": [
+            {
+             "type": "IDENTIFIER",
+             "text": "r",
+             "children": null,
+             "range": {
+              "startLineNumber": 37,
+              "startColumn": 6,
+              "endLineNumber": 37,
+              "endColumn": 7
+             }
+            },
+            {
+             "type": "=",
+             "text": "=",
+             "children": null,
+             "range": {
+              "startLineNumber": 37,
+              "startColumn": 8,
+              "endLineNumber": 37,
+              "endColumn": 9
+             }
+            },
+            {
+             "type": "additive_expression",
+             "range": {
+              "startLineNumber": 37,
+              "startColumn": 10,
+              "endLineNumber": 37,
+              "endColumn": 19
+             },
+             "children": [
+              {
+               "type": "IDENTIFIER",
+               "text": "x",
+               "children": null,
+               "range": {
+                "startLineNumber": 37,
+                "startColumn": 10,
+                "endLineNumber": 37,
+                "endColumn": 11
+               }
+              },
+              {
+               "type": "-",
+               "text": "-",
+               "children": null,
+               "range": {
+                "startLineNumber": 37,
+                "startColumn": 12,
+                "endLineNumber": 37,
+                "endColumn": 13
+               }
+              },
+              {
+               "type": "multiplicative_expression",
+               "range": {
+                "startLineNumber": 37,
+                "startColumn": 14,
+                "endLineNumber": 37,
+                "endColumn": 19
+               },
+               "children": [
+                {
+                 "type": "IDENTIFIER",
+                 "text": "q",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 37,
+                  "startColumn": 14,
+                  "endLineNumber": 37,
+                  "endColumn": 15
+                 }
+                },
+                {
+                 "type": "*",
+                 "text": "*",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 37,
+                  "startColumn": 16,
+                  "endLineNumber": 37,
+                  "endColumn": 17
+                 }
+                },
+                {
+                 "type": "IDENTIFIER",
+                 "text": "y",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 37,
+                  "startColumn": 18,
+                  "endLineNumber": 37,
+                  "endColumn": 19
+                 }
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "type": ";",
+           "text": ";",
+           "children": null,
+           "range": {
+            "startLineNumber": 37,
+            "startColumn": 19,
+            "endLineNumber": 37,
+            "endColumn": 20
+           }
+          }
+         ]
+        },
+        {
+         "type": "iteration_statement",
+         "range": {
+          "startLineNumber": 38,
+          "startColumn": 2,
+          "endLineNumber": 41,
+          "endColumn": 3
+         },
+         "children": [
+          {
+           "type": "WHILE",
+           "text": "while",
+           "children": null,
+           "range": {
+            "startLineNumber": 38,
+            "startColumn": 2,
+            "endLineNumber": 38,
+            "endColumn": 7
+           }
+          },
+          {
+           "type": "(",
+           "text": "(",
+           "children": null,
+           "range": {
+            "startLineNumber": 38,
+            "startColumn": 8,
+            "endLineNumber": 38,
+            "endColumn": 9
+           }
+          },
+          {
+           "type": "relational_expression",
+           "range": {
+            "startLineNumber": 38,
+            "startColumn": 9,
+            "endLineNumber": 38,
+            "endColumn": 15
+           },
+           "children": [
+            {
+             "type": "IDENTIFIER",
+             "text": "r",
+             "children": null,
+             "range": {
+              "startLineNumber": 38,
+              "startColumn": 9,
+              "endLineNumber": 38,
+              "endColumn": 10
+             }
+            },
+            {
+             "type": "GE_OP",
+             "text": ">=",
+             "children": null,
+             "range": {
+              "startLineNumber": 38,
+              "startColumn": 11,
+              "endLineNumber": 38,
+              "endColumn": 13
+             }
+            },
+            {
+             "type": "IDENTIFIER",
+             "text": "y",
+             "children": null,
+             "range": {
+              "startLineNumber": 38,
+              "startColumn": 14,
+              "endLineNumber": 38,
+              "endColumn": 15
+             }
+            }
+           ]
+          },
+          {
+           "type": ")",
+           "text": ")",
+           "children": null,
+           "range": {
+            "startLineNumber": 38,
+            "startColumn": 15,
+            "endLineNumber": 38,
+            "endColumn": 16
+           }
+          },
+          {
+           "type": "compound_statement",
+           "range": {
+            "startLineNumber": 38,
+            "startColumn": 16,
+            "endLineNumber": 41,
+            "endColumn": 3
+           },
+           "children": [
+            {
+             "type": "{",
+             "text": "{",
+             "children": null,
+             "range": {
+              "startLineNumber": 38,
+              "startColumn": 16,
+              "endLineNumber": 38,
+              "endColumn": 17
+             }
+            },
+            {
+             "type": "block_item_list",
+             "range": {
+              "startLineNumber": 39,
+              "startColumn": 3,
+              "endLineNumber": 40,
+              "endColumn": 10
+             },
+             "children": [
+              {
+               "type": "expression_statement",
+               "range": {
+                "startLineNumber": 39,
+                "startColumn": 3,
+                "endLineNumber": 39,
+                "endColumn": 10
+               },
+               "children": [
+                {
+                 "type": "assignment_expression",
+                 "range": {
+                  "startLineNumber": 39,
+                  "startColumn": 3,
+                  "endLineNumber": 39,
+                  "endColumn": 9
+                 },
+                 "children": [
+                  {
+                   "type": "IDENTIFIER",
+                   "text": "q",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 39,
+                    "startColumn": 3,
+                    "endLineNumber": 39,
+                    "endColumn": 4
+                   }
+                  },
+                  {
+                   "type": "ADD_ASSIGN",
+                   "text": "+=",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 39,
+                    "startColumn": 5,
+                    "endLineNumber": 39,
+                    "endColumn": 7
+                   }
+                  },
+                  {
+                   "type": "CONSTANT",
+                   "text": "1",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 39,
+                    "startColumn": 8,
+                    "endLineNumber": 39,
+                    "endColumn": 9
+                   }
+                  }
+                 ]
+                },
+                {
+                 "type": ";",
+                 "text": ";",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 39,
+                  "startColumn": 9,
+                  "endLineNumber": 39,
+                  "endColumn": 10
+                 }
+                }
+               ]
+              },
+              {
+               "type": "expression_statement",
+               "range": {
+                "startLineNumber": 40,
+                "startColumn": 3,
+                "endLineNumber": 40,
+                "endColumn": 10
+               },
+               "children": [
+                {
+                 "type": "assignment_expression",
+                 "range": {
+                  "startLineNumber": 40,
+                  "startColumn": 3,
+                  "endLineNumber": 40,
+                  "endColumn": 9
+                 },
+                 "children": [
+                  {
+                   "type": "IDENTIFIER",
+                   "text": "r",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 40,
+                    "startColumn": 3,
+                    "endLineNumber": 40,
+                    "endColumn": 4
+                   }
+                  },
+                  {
+                   "type": "SUB_ASSIGN",
+                   "text": "-=",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 40,
+                    "startColumn": 5,
+                    "endLineNumber": 40,
+                    "endColumn": 7
+                   }
+                  },
+                  {
+                   "type": "IDENTIFIER",
+                   "text": "y",
+                   "children": null,
+                   "range": {
+                    "startLineNumber": 40,
+                    "startColumn": 8,
+                    "endLineNumber": 40,
+                    "endColumn": 9
+                   }
+                  }
+                 ]
+                },
+                {
+                 "type": ";",
+                 "text": ";",
+                 "children": null,
+                 "range": {
+                  "startLineNumber": 40,
+                  "startColumn": 9,
+                  "endLineNumber": 40,
+                  "endColumn": 10
+                 }
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "type": "}",
+             "text": "}",
+             "children": null,
+             "range": {
+              "startLineNumber": 41,
+              "startColumn": 2,
+              "endLineNumber": 41,
+              "endColumn": 3
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "type": "jump_statement",
+         "range": {
+          "startLineNumber": 42,
+          "startColumn": 2,
+          "endLineNumber": 42,
+          "endColumn": 11
+         },
+         "children": [
+          {
+           "type": "RETURN",
+           "text": "return",
+           "children": null,
+           "range": {
+            "startLineNumber": 42,
+            "startColumn": 2,
+            "endLineNumber": 42,
+            "endColumn": 8
+           }
+          },
+          {
+           "type": "IDENTIFIER",
+           "text": "r",
+           "children": null,
+           "range": {
+            "startLineNumber": 42,
+            "startColumn": 9,
+            "endLineNumber": 42,
+            "endColumn": 10
+           }
+          },
+          {
+           "type": ";",
+           "text": ";",
+           "children": null,
+           "range": {
+            "startLineNumber": 42,
+            "startColumn": 10,
+            "endLineNumber": 42,
+            "endColumn": 11
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "}",
+       "text": "}",
+       "children": null,
+       "range": {
+        "startLineNumber": 43,
+        "startColumn": 1,
+        "endLineNumber": 43,
+        "endColumn": 2
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "function_definition",
+   "range": {
+    "startLineNumber": 45,
+    "startColumn": 1,
+    "endLineNumber": 50,
+    "endColumn": 2
+   },
+   "children": [
+    {
+     "type": "INT",
+     "text": "int",
+     "children": null,
+     "range": {
+      "startLineNumber": 45,
+      "startColumn": 1,
+      "endLineNumber": 45,
+      "endColumn": 4
+     }
+    },
+    {
+     "type": "direct_declarator",
+     "range": {
+      "startLineNumber": 45,
+      "startColumn": 5,
+      "endLineNumber": 45,
+      "endColumn": 15
+     },
+     "children": [
+      {
+       "type": "IDENTIFIER",
+       "text": "abs",
+       "children": null,
+       "range": {
+        "startLineNumber": 45,
+        "startColumn": 5,
+        "endLineNumber": 45,
+        "endColumn": 8
+       }
+      },
+      {
+       "type": "(",
+       "text": "(",
+       "children": null,
+       "range": {
+        "startLineNumber": 45,
+        "startColumn": 8,
+        "endLineNumber": 45,
+        "endColumn": 9
+       }
+      },
+      {
+       "type": "parameter_list",
+       "range": {
+        "startLineNumber": 45,
+        "startColumn": 9,
+        "endLineNumber": 45,
+        "endColumn": 14
+       },
+       "children": [
+        {
+         "type": "parameter_declaration",
+         "range": {
+          "startLineNumber": 45,
+          "startColumn": 9,
+          "endLineNumber": 45,
+          "endColumn": 14
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 45,
+            "startColumn": 9,
+            "endLineNumber": 45,
+            "endColumn": 12
+           }
+          },
+          {
+           "type": "IDENTIFIER",
+           "text": "x",
+           "children": null,
+           "range": {
+            "startLineNumber": 45,
+            "startColumn": 13,
+            "endLineNumber": 45,
             "endColumn": 14
            }
           }
@@ -3660,9 +3539,9 @@
        "text": ")",
        "children": null,
        "range": {
-        "startLineNumber": 48,
+        "startLineNumber": 45,
         "startColumn": 14,
-        "endLineNumber": 48,
+        "endLineNumber": 45,
         "endColumn": 15
        }
       }
@@ -3671,9 +3550,9 @@
     {
      "type": "compound_statement",
      "range": {
-      "startLineNumber": 48,
+      "startLineNumber": 45,
       "startColumn": 15,
-      "endLineNumber": 53,
+      "endLineNumber": 50,
       "endColumn": 2
      },
      "children": [
@@ -3682,27 +3561,27 @@
        "text": "{",
        "children": null,
        "range": {
-        "startLineNumber": 48,
+        "startLineNumber": 45,
         "startColumn": 15,
-        "endLineNumber": 48,
+        "endLineNumber": 45,
         "endColumn": 16
        }
       },
       {
        "type": "block_item_list",
        "range": {
-        "startLineNumber": 49,
+        "startLineNumber": 46,
         "startColumn": 2,
-        "endLineNumber": 52,
+        "endLineNumber": 49,
         "endColumn": 11
        },
        "children": [
         {
          "type": "selection_statement",
          "range": {
-          "startLineNumber": 49,
+          "startLineNumber": 46,
           "startColumn": 2,
-          "endLineNumber": 51,
+          "endLineNumber": 48,
           "endColumn": 3
          },
          "children": [
@@ -3711,9 +3590,9 @@
            "text": "if",
            "children": null,
            "range": {
-            "startLineNumber": 49,
+            "startLineNumber": 46,
             "startColumn": 2,
-            "endLineNumber": 49,
+            "endLineNumber": 46,
             "endColumn": 4
            }
           },
@@ -3722,18 +3601,18 @@
            "text": "(",
            "children": null,
            "range": {
-            "startLineNumber": 49,
+            "startLineNumber": 46,
             "startColumn": 5,
-            "endLineNumber": 49,
+            "endLineNumber": 46,
             "endColumn": 6
            }
           },
           {
            "type": "relational_expression",
            "range": {
-            "startLineNumber": 49,
+            "startLineNumber": 46,
             "startColumn": 6,
-            "endLineNumber": 49,
+            "endLineNumber": 46,
             "endColumn": 11
            },
            "children": [
@@ -3742,9 +3621,9 @@
              "text": "x",
              "children": null,
              "range": {
-              "startLineNumber": 49,
+              "startLineNumber": 46,
               "startColumn": 6,
-              "endLineNumber": 49,
+              "endLineNumber": 46,
               "endColumn": 7
              }
             },
@@ -3753,9 +3632,9 @@
              "text": "<",
              "children": null,
              "range": {
-              "startLineNumber": 49,
+              "startLineNumber": 46,
               "startColumn": 8,
-              "endLineNumber": 49,
+              "endLineNumber": 46,
               "endColumn": 9
              }
             },
@@ -3764,9 +3643,9 @@
              "text": "0",
              "children": null,
              "range": {
-              "startLineNumber": 49,
+              "startLineNumber": 46,
               "startColumn": 10,
-              "endLineNumber": 49,
+              "endLineNumber": 46,
               "endColumn": 11
              }
             }
@@ -3777,18 +3656,18 @@
            "text": ")",
            "children": null,
            "range": {
-            "startLineNumber": 49,
+            "startLineNumber": 46,
             "startColumn": 11,
-            "endLineNumber": 49,
+            "endLineNumber": 46,
             "endColumn": 12
            }
           },
           {
            "type": "compound_statement",
            "range": {
-            "startLineNumber": 49,
+            "startLineNumber": 46,
             "startColumn": 12,
-            "endLineNumber": 51,
+            "endLineNumber": 48,
             "endColumn": 3
            },
            "children": [
@@ -3797,27 +3676,27 @@
              "text": "{",
              "children": null,
              "range": {
-              "startLineNumber": 49,
+              "startLineNumber": 46,
               "startColumn": 12,
-              "endLineNumber": 49,
+              "endLineNumber": 46,
               "endColumn": 13
              }
             },
             {
              "type": "block_item_list",
              "range": {
-              "startLineNumber": 50,
+              "startLineNumber": 47,
               "startColumn": 3,
-              "endLineNumber": 50,
+              "endLineNumber": 47,
               "endColumn": 13
              },
              "children": [
               {
                "type": "jump_statement",
                "range": {
-                "startLineNumber": 50,
+                "startLineNumber": 47,
                 "startColumn": 3,
-                "endLineNumber": 50,
+                "endLineNumber": 47,
                 "endColumn": 13
                },
                "children": [
@@ -3826,18 +3705,18 @@
                  "text": "return",
                  "children": null,
                  "range": {
-                  "startLineNumber": 50,
+                  "startLineNumber": 47,
                   "startColumn": 3,
-                  "endLineNumber": 50,
+                  "endLineNumber": 47,
                   "endColumn": 9
                  }
                 },
                 {
                  "type": "unary_expression",
                  "range": {
-                  "startLineNumber": 50,
+                  "startLineNumber": 47,
                   "startColumn": 10,
-                  "endLineNumber": 50,
+                  "endLineNumber": 47,
                   "endColumn": 12
                  },
                  "children": [
@@ -3846,9 +3725,9 @@
                    "text": "-",
                    "children": null,
                    "range": {
-                    "startLineNumber": 50,
+                    "startLineNumber": 47,
                     "startColumn": 10,
-                    "endLineNumber": 50,
+                    "endLineNumber": 47,
                     "endColumn": 11
                    }
                   },
@@ -3857,9 +3736,9 @@
                    "text": "x",
                    "children": null,
                    "range": {
-                    "startLineNumber": 50,
+                    "startLineNumber": 47,
                     "startColumn": 11,
-                    "endLineNumber": 50,
+                    "endLineNumber": 47,
                     "endColumn": 12
                    }
                   }
@@ -3870,9 +3749,9 @@
                  "text": ";",
                  "children": null,
                  "range": {
-                  "startLineNumber": 50,
+                  "startLineNumber": 47,
                   "startColumn": 12,
-                  "endLineNumber": 50,
+                  "endLineNumber": 47,
                   "endColumn": 13
                  }
                 }
@@ -3885,9 +3764,9 @@
              "text": "}",
              "children": null,
              "range": {
-              "startLineNumber": 51,
+              "startLineNumber": 48,
               "startColumn": 2,
-              "endLineNumber": 51,
+              "endLineNumber": 48,
               "endColumn": 3
              }
             }
@@ -3898,9 +3777,9 @@
         {
          "type": "jump_statement",
          "range": {
-          "startLineNumber": 52,
+          "startLineNumber": 49,
           "startColumn": 2,
-          "endLineNumber": 52,
+          "endLineNumber": 49,
           "endColumn": 11
          },
          "children": [
@@ -3909,9 +3788,9 @@
            "text": "return",
            "children": null,
            "range": {
-            "startLineNumber": 52,
+            "startLineNumber": 49,
             "startColumn": 2,
-            "endLineNumber": 52,
+            "endLineNumber": 49,
             "endColumn": 8
            }
           },
@@ -3920,9 +3799,9 @@
            "text": "x",
            "children": null,
            "range": {
-            "startLineNumber": 52,
+            "startLineNumber": 49,
             "startColumn": 9,
-            "endLineNumber": 52,
+            "endLineNumber": 49,
             "endColumn": 10
            }
           },
@@ -3931,9 +3810,9 @@
            "text": ";",
            "children": null,
            "range": {
-            "startLineNumber": 52,
+            "startLineNumber": 49,
             "startColumn": 10,
-            "endLineNumber": 52,
+            "endLineNumber": 49,
             "endColumn": 11
            }
           }
@@ -3946,9 +3825,9 @@
        "text": "}",
        "children": null,
        "range": {
-        "startLineNumber": 53,
+        "startLineNumber": 50,
         "startColumn": 1,
-        "endLineNumber": 53,
+        "endLineNumber": 50,
         "endColumn": 2
        }
       }
@@ -3959,9 +3838,9 @@
   {
    "type": "function_definition",
    "range": {
-    "startLineNumber": 55,
+    "startLineNumber": 52,
     "startColumn": 1,
-    "endLineNumber": 62,
+    "endLineNumber": 58,
     "endColumn": 2
    },
    "children": [
@@ -3970,19 +3849,19 @@
      "text": "int",
      "children": null,
      "range": {
-      "startLineNumber": 55,
+      "startLineNumber": 52,
       "startColumn": 1,
-      "endLineNumber": 55,
+      "endLineNumber": 52,
       "endColumn": 4
      }
     },
     {
      "type": "direct_declarator",
      "range": {
-      "startLineNumber": 55,
+      "startLineNumber": 52,
       "startColumn": 5,
-      "endLineNumber": 55,
-      "endColumn": 27
+      "endLineNumber": 52,
+      "endColumn": 48
      },
      "children": [
       {
@@ -3990,9 +3869,9 @@
        "text": "fibonacci_1000_array",
        "children": null,
        "range": {
-        "startLineNumber": 55,
+        "startLineNumber": 52,
         "startColumn": 5,
-        "endLineNumber": 55,
+        "endLineNumber": 52,
         "endColumn": 25
        }
       },
@@ -4001,21 +3880,142 @@
        "text": "(",
        "children": null,
        "range": {
-        "startLineNumber": 55,
+        "startLineNumber": 52,
         "startColumn": 25,
-        "endLineNumber": 55,
+        "endLineNumber": 52,
         "endColumn": 26
        }
+      },
+      {
+       "type": "parameter_list",
+       "range": {
+        "startLineNumber": 52,
+        "startColumn": 26,
+        "endLineNumber": 52,
+        "endColumn": 47
+       },
+       "children": [
+        {
+         "type": "parameter_declaration",
+         "range": {
+          "startLineNumber": 52,
+          "startColumn": 26,
+          "endLineNumber": 52,
+          "endColumn": 35
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 52,
+            "startColumn": 26,
+            "endLineNumber": 52,
+            "endColumn": 29
+           }
+          },
+          {
+           "type": "direct_declarator",
+           "range": {
+            "startLineNumber": 52,
+            "startColumn": 30,
+            "endLineNumber": 52,
+            "endColumn": 35
+           },
+           "children": [
+            {
+             "type": "IDENTIFIER",
+             "text": "fib",
+             "children": null,
+             "range": {
+              "startLineNumber": 52,
+              "startColumn": 30,
+              "endLineNumber": 52,
+              "endColumn": 33
+             }
+            },
+            {
+             "type": "[",
+             "text": "[",
+             "children": null,
+             "range": {
+              "startLineNumber": 52,
+              "startColumn": 33,
+              "endLineNumber": 52,
+              "endColumn": 34
+             }
+            },
+            {
+             "type": "]",
+             "text": "]",
+             "children": null,
+             "range": {
+              "startLineNumber": 52,
+              "startColumn": 34,
+              "endLineNumber": 52,
+              "endColumn": 35
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "type": ",",
+         "text": ",",
+         "children": null,
+         "range": {
+          "startLineNumber": 52,
+          "startColumn": 35,
+          "endLineNumber": 52,
+          "endColumn": 36
+         }
+        },
+        {
+         "type": "parameter_declaration",
+         "range": {
+          "startLineNumber": 52,
+          "startColumn": 37,
+          "endLineNumber": 52,
+          "endColumn": 47
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 52,
+            "startColumn": 37,
+            "endLineNumber": 52,
+            "endColumn": 40
+           }
+          },
+          {
+           "type": "IDENTIFIER",
+           "text": "length",
+           "children": null,
+           "range": {
+            "startLineNumber": 52,
+            "startColumn": 41,
+            "endLineNumber": 52,
+            "endColumn": 47
+           }
+          }
+         ]
+        }
+       ]
       },
       {
        "type": ")",
        "text": ")",
        "children": null,
        "range": {
-        "startLineNumber": 55,
-        "startColumn": 26,
-        "endLineNumber": 55,
-        "endColumn": 27
+        "startLineNumber": 52,
+        "startColumn": 47,
+        "endLineNumber": 52,
+        "endColumn": 48
        }
       }
      ]
@@ -4023,9 +4023,9 @@
     {
      "type": "compound_statement",
      "range": {
-      "startLineNumber": 55,
-      "startColumn": 27,
-      "endLineNumber": 62,
+      "startLineNumber": 52,
+      "startColumn": 48,
+      "endLineNumber": 58,
       "endColumn": 2
      },
      "children": [
@@ -4034,133 +4034,45 @@
        "text": "{",
        "children": null,
        "range": {
-        "startLineNumber": 55,
-        "startColumn": 27,
-        "endLineNumber": 55,
-        "endColumn": 28
+        "startLineNumber": 52,
+        "startColumn": 48,
+        "endLineNumber": 52,
+        "endColumn": 49
        }
       },
       {
        "type": "block_item_list",
        "range": {
-        "startLineNumber": 56,
+        "startLineNumber": 53,
         "startColumn": 2,
-        "endLineNumber": 61,
+        "endLineNumber": 57,
         "endColumn": 3
        },
        "children": [
         {
-         "type": "declaration",
-         "range": {
-          "startLineNumber": 56,
-          "startColumn": 2,
-          "endLineNumber": 56,
-          "endColumn": 16
-         },
-         "children": [
-          {
-           "type": "INT",
-           "text": "int",
-           "children": null,
-           "range": {
-            "startLineNumber": 56,
-            "startColumn": 2,
-            "endLineNumber": 56,
-            "endColumn": 5
-           }
-          },
-          {
-           "type": "direct_declarator",
-           "range": {
-            "startLineNumber": 56,
-            "startColumn": 6,
-            "endLineNumber": 56,
-            "endColumn": 15
-           },
-           "children": [
-            {
-             "type": "IDENTIFIER",
-             "text": "fib",
-             "children": null,
-             "range": {
-              "startLineNumber": 56,
-              "startColumn": 6,
-              "endLineNumber": 56,
-              "endColumn": 9
-             }
-            },
-            {
-             "type": "[",
-             "text": "[",
-             "children": null,
-             "range": {
-              "startLineNumber": 56,
-              "startColumn": 9,
-              "endLineNumber": 56,
-              "endColumn": 10
-             }
-            },
-            {
-             "type": "CONSTANT",
-             "text": "1000",
-             "children": null,
-             "range": {
-              "startLineNumber": 56,
-              "startColumn": 10,
-              "endLineNumber": 56,
-              "endColumn": 14
-             }
-            },
-            {
-             "type": "]",
-             "text": "]",
-             "children": null,
-             "range": {
-              "startLineNumber": 56,
-              "startColumn": 14,
-              "endLineNumber": 56,
-              "endColumn": 15
-             }
-            }
-           ]
-          },
-          {
-           "type": ";",
-           "text": ";",
-           "children": null,
-           "range": {
-            "startLineNumber": 56,
-            "startColumn": 15,
-            "endLineNumber": 56,
-            "endColumn": 16
-           }
-          }
-         ]
-        },
-        {
          "type": "expression_statement",
          "range": {
-          "startLineNumber": 57,
+          "startLineNumber": 53,
           "startColumn": 2,
-          "endLineNumber": 57,
+          "endLineNumber": 53,
           "endColumn": 13
          },
          "children": [
           {
            "type": "assignment_expression",
            "range": {
-            "startLineNumber": 57,
+            "startLineNumber": 53,
             "startColumn": 2,
-            "endLineNumber": 57,
+            "endLineNumber": 53,
             "endColumn": 12
            },
            "children": [
             {
              "type": "postfix_expression",
              "range": {
-              "startLineNumber": 57,
+              "startLineNumber": 53,
               "startColumn": 2,
-              "endLineNumber": 57,
+              "endLineNumber": 53,
               "endColumn": 8
              },
              "children": [
@@ -4169,9 +4081,9 @@
                "text": "fib",
                "children": null,
                "range": {
-                "startLineNumber": 57,
+                "startLineNumber": 53,
                 "startColumn": 2,
-                "endLineNumber": 57,
+                "endLineNumber": 53,
                 "endColumn": 5
                }
               },
@@ -4180,9 +4092,9 @@
                "text": "[",
                "children": null,
                "range": {
-                "startLineNumber": 57,
+                "startLineNumber": 53,
                 "startColumn": 5,
-                "endLineNumber": 57,
+                "endLineNumber": 53,
                 "endColumn": 6
                }
               },
@@ -4191,9 +4103,9 @@
                "text": "0",
                "children": null,
                "range": {
-                "startLineNumber": 57,
+                "startLineNumber": 53,
                 "startColumn": 6,
-                "endLineNumber": 57,
+                "endLineNumber": 53,
                 "endColumn": 7
                }
               },
@@ -4202,9 +4114,9 @@
                "text": "]",
                "children": null,
                "range": {
-                "startLineNumber": 57,
+                "startLineNumber": 53,
                 "startColumn": 7,
-                "endLineNumber": 57,
+                "endLineNumber": 53,
                 "endColumn": 8
                }
               }
@@ -4215,9 +4127,9 @@
              "text": "=",
              "children": null,
              "range": {
-              "startLineNumber": 57,
+              "startLineNumber": 53,
               "startColumn": 9,
-              "endLineNumber": 57,
+              "endLineNumber": 53,
               "endColumn": 10
              }
             },
@@ -4226,9 +4138,9 @@
              "text": "1",
              "children": null,
              "range": {
-              "startLineNumber": 57,
+              "startLineNumber": 53,
               "startColumn": 11,
-              "endLineNumber": 57,
+              "endLineNumber": 53,
               "endColumn": 12
              }
             }
@@ -4239,9 +4151,9 @@
            "text": ";",
            "children": null,
            "range": {
-            "startLineNumber": 57,
+            "startLineNumber": 53,
             "startColumn": 12,
-            "endLineNumber": 57,
+            "endLineNumber": 53,
             "endColumn": 13
            }
           }
@@ -4250,27 +4162,27 @@
         {
          "type": "expression_statement",
          "range": {
-          "startLineNumber": 58,
+          "startLineNumber": 54,
           "startColumn": 2,
-          "endLineNumber": 58,
+          "endLineNumber": 54,
           "endColumn": 13
          },
          "children": [
           {
            "type": "assignment_expression",
            "range": {
-            "startLineNumber": 58,
+            "startLineNumber": 54,
             "startColumn": 2,
-            "endLineNumber": 58,
+            "endLineNumber": 54,
             "endColumn": 12
            },
            "children": [
             {
              "type": "postfix_expression",
              "range": {
-              "startLineNumber": 58,
+              "startLineNumber": 54,
               "startColumn": 2,
-              "endLineNumber": 58,
+              "endLineNumber": 54,
               "endColumn": 8
              },
              "children": [
@@ -4279,9 +4191,9 @@
                "text": "fib",
                "children": null,
                "range": {
-                "startLineNumber": 58,
+                "startLineNumber": 54,
                 "startColumn": 2,
-                "endLineNumber": 58,
+                "endLineNumber": 54,
                 "endColumn": 5
                }
               },
@@ -4290,9 +4202,9 @@
                "text": "[",
                "children": null,
                "range": {
-                "startLineNumber": 58,
+                "startLineNumber": 54,
                 "startColumn": 5,
-                "endLineNumber": 58,
+                "endLineNumber": 54,
                 "endColumn": 6
                }
               },
@@ -4301,9 +4213,9 @@
                "text": "1",
                "children": null,
                "range": {
-                "startLineNumber": 58,
+                "startLineNumber": 54,
                 "startColumn": 6,
-                "endLineNumber": 58,
+                "endLineNumber": 54,
                 "endColumn": 7
                }
               },
@@ -4312,9 +4224,9 @@
                "text": "]",
                "children": null,
                "range": {
-                "startLineNumber": 58,
+                "startLineNumber": 54,
                 "startColumn": 7,
-                "endLineNumber": 58,
+                "endLineNumber": 54,
                 "endColumn": 8
                }
               }
@@ -4325,9 +4237,9 @@
              "text": "=",
              "children": null,
              "range": {
-              "startLineNumber": 58,
+              "startLineNumber": 54,
               "startColumn": 9,
-              "endLineNumber": 58,
+              "endLineNumber": 54,
               "endColumn": 10
              }
             },
@@ -4336,9 +4248,9 @@
              "text": "1",
              "children": null,
              "range": {
-              "startLineNumber": 58,
+              "startLineNumber": 54,
               "startColumn": 11,
-              "endLineNumber": 58,
+              "endLineNumber": 54,
               "endColumn": 12
              }
             }
@@ -4349,9 +4261,9 @@
            "text": ";",
            "children": null,
            "range": {
-            "startLineNumber": 58,
+            "startLineNumber": 54,
             "startColumn": 12,
-            "endLineNumber": 58,
+            "endLineNumber": 54,
             "endColumn": 13
            }
           }
@@ -4360,9 +4272,9 @@
         {
          "type": "iteration_statement",
          "range": {
-          "startLineNumber": 59,
+          "startLineNumber": 55,
           "startColumn": 2,
-          "endLineNumber": 61,
+          "endLineNumber": 57,
           "endColumn": 3
          },
          "children": [
@@ -4371,9 +4283,9 @@
            "text": "for",
            "children": null,
            "range": {
-            "startLineNumber": 59,
+            "startLineNumber": 55,
             "startColumn": 2,
-            "endLineNumber": 59,
+            "endLineNumber": 55,
             "endColumn": 5
            }
           },
@@ -4382,18 +4294,18 @@
            "text": "(",
            "children": null,
            "range": {
-            "startLineNumber": 59,
+            "startLineNumber": 55,
             "startColumn": 6,
-            "endLineNumber": 59,
+            "endLineNumber": 55,
             "endColumn": 7
            }
           },
           {
            "type": "declaration",
            "range": {
-            "startLineNumber": 59,
+            "startLineNumber": 55,
             "startColumn": 7,
-            "endLineNumber": 59,
+            "endLineNumber": 55,
             "endColumn": 17
            },
            "children": [
@@ -4402,18 +4314,18 @@
              "text": "int",
              "children": null,
              "range": {
-              "startLineNumber": 59,
+              "startLineNumber": 55,
               "startColumn": 7,
-              "endLineNumber": 59,
+              "endLineNumber": 55,
               "endColumn": 10
              }
             },
             {
              "type": "init_declarator",
              "range": {
-              "startLineNumber": 59,
+              "startLineNumber": 55,
               "startColumn": 11,
-              "endLineNumber": 59,
+              "endLineNumber": 55,
               "endColumn": 16
              },
              "children": [
@@ -4422,9 +4334,9 @@
                "text": "i",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 11,
-                "endLineNumber": 59,
+                "endLineNumber": 55,
                 "endColumn": 12
                }
               },
@@ -4433,9 +4345,9 @@
                "text": "=",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 13,
-                "endLineNumber": 59,
+                "endLineNumber": 55,
                 "endColumn": 14
                }
               },
@@ -4444,9 +4356,9 @@
                "text": "2",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 15,
-                "endLineNumber": 59,
+                "endLineNumber": 55,
                 "endColumn": 16
                }
               }
@@ -4457,9 +4369,9 @@
              "text": ";",
              "children": null,
              "range": {
-              "startLineNumber": 59,
+              "startLineNumber": 55,
               "startColumn": 16,
-              "endLineNumber": 59,
+              "endLineNumber": 55,
               "endColumn": 17
              }
             }
@@ -4468,19 +4380,19 @@
           {
            "type": "expression_statement",
            "range": {
-            "startLineNumber": 59,
+            "startLineNumber": 55,
             "startColumn": 18,
-            "endLineNumber": 59,
-            "endColumn": 27
+            "endLineNumber": 55,
+            "endColumn": 29
            },
            "children": [
             {
              "type": "relational_expression",
              "range": {
-              "startLineNumber": 59,
+              "startLineNumber": 55,
               "startColumn": 18,
-              "endLineNumber": 59,
-              "endColumn": 26
+              "endLineNumber": 55,
+              "endColumn": 28
              },
              "children": [
               {
@@ -4488,9 +4400,9 @@
                "text": "i",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 18,
-                "endLineNumber": 59,
+                "endLineNumber": 55,
                 "endColumn": 19
                }
               },
@@ -4499,21 +4411,21 @@
                "text": "<",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 20,
-                "endLineNumber": 59,
+                "endLineNumber": 55,
                 "endColumn": 21
                }
               },
               {
-               "type": "CONSTANT",
-               "text": "1000",
+               "type": "IDENTIFIER",
+               "text": "length",
                "children": null,
                "range": {
-                "startLineNumber": 59,
+                "startLineNumber": 55,
                 "startColumn": 22,
-                "endLineNumber": 59,
-                "endColumn": 26
+                "endLineNumber": 55,
+                "endColumn": 28
                }
               }
              ]
@@ -4523,10 +4435,10 @@
              "text": ";",
              "children": null,
              "range": {
-              "startLineNumber": 59,
-              "startColumn": 26,
-              "endLineNumber": 59,
-              "endColumn": 27
+              "startLineNumber": 55,
+              "startColumn": 28,
+              "endLineNumber": 55,
+              "endColumn": 29
              }
             }
            ]
@@ -4534,10 +4446,10 @@
           {
            "type": "assignment_expression",
            "range": {
-            "startLineNumber": 59,
-            "startColumn": 28,
-            "endLineNumber": 59,
-            "endColumn": 34
+            "startLineNumber": 55,
+            "startColumn": 30,
+            "endLineNumber": 55,
+            "endColumn": 36
            },
            "children": [
             {
@@ -4545,10 +4457,10 @@
              "text": "i",
              "children": null,
              "range": {
-              "startLineNumber": 59,
-              "startColumn": 28,
-              "endLineNumber": 59,
-              "endColumn": 29
+              "startLineNumber": 55,
+              "startColumn": 30,
+              "endLineNumber": 55,
+              "endColumn": 31
              }
             },
             {
@@ -4556,10 +4468,10 @@
              "text": "+=",
              "children": null,
              "range": {
-              "startLineNumber": 59,
-              "startColumn": 30,
-              "endLineNumber": 59,
-              "endColumn": 32
+              "startLineNumber": 55,
+              "startColumn": 32,
+              "endLineNumber": 55,
+              "endColumn": 34
              }
             },
             {
@@ -4567,10 +4479,10 @@
              "text": "1",
              "children": null,
              "range": {
-              "startLineNumber": 59,
-              "startColumn": 33,
-              "endLineNumber": 59,
-              "endColumn": 34
+              "startLineNumber": 55,
+              "startColumn": 35,
+              "endLineNumber": 55,
+              "endColumn": 36
              }
             }
            ]
@@ -4580,18 +4492,18 @@
            "text": ")",
            "children": null,
            "range": {
-            "startLineNumber": 59,
-            "startColumn": 34,
-            "endLineNumber": 59,
-            "endColumn": 35
+            "startLineNumber": 55,
+            "startColumn": 36,
+            "endLineNumber": 55,
+            "endColumn": 37
            }
           },
           {
            "type": "compound_statement",
            "range": {
-            "startLineNumber": 59,
-            "startColumn": 35,
-            "endLineNumber": 61,
+            "startLineNumber": 55,
+            "startColumn": 37,
+            "endLineNumber": 57,
             "endColumn": 3
            },
            "children": [
@@ -4600,45 +4512,45 @@
              "text": "{",
              "children": null,
              "range": {
-              "startLineNumber": 59,
-              "startColumn": 35,
-              "endLineNumber": 59,
-              "endColumn": 36
+              "startLineNumber": 55,
+              "startColumn": 37,
+              "endLineNumber": 55,
+              "endColumn": 38
              }
             },
             {
              "type": "block_item_list",
              "range": {
-              "startLineNumber": 60,
+              "startLineNumber": 56,
               "startColumn": 3,
-              "endLineNumber": 60,
+              "endLineNumber": 56,
               "endColumn": 32
              },
              "children": [
               {
                "type": "expression_statement",
                "range": {
-                "startLineNumber": 60,
+                "startLineNumber": 56,
                 "startColumn": 3,
-                "endLineNumber": 60,
+                "endLineNumber": 56,
                 "endColumn": 32
                },
                "children": [
                 {
                  "type": "assignment_expression",
                  "range": {
-                  "startLineNumber": 60,
+                  "startLineNumber": 56,
                   "startColumn": 3,
-                  "endLineNumber": 60,
+                  "endLineNumber": 56,
                   "endColumn": 31
                  },
                  "children": [
                   {
                    "type": "postfix_expression",
                    "range": {
-                    "startLineNumber": 60,
+                    "startLineNumber": 56,
                     "startColumn": 3,
-                    "endLineNumber": 60,
+                    "endLineNumber": 56,
                     "endColumn": 9
                    },
                    "children": [
@@ -4647,9 +4559,9 @@
                      "text": "fib",
                      "children": null,
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 3,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 6
                      }
                     },
@@ -4658,9 +4570,9 @@
                      "text": "[",
                      "children": null,
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 6,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 7
                      }
                     },
@@ -4669,9 +4581,9 @@
                      "text": "i",
                      "children": null,
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 7,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 8
                      }
                     },
@@ -4680,9 +4592,9 @@
                      "text": "]",
                      "children": null,
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 8,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 9
                      }
                     }
@@ -4693,27 +4605,27 @@
                    "text": "=",
                    "children": null,
                    "range": {
-                    "startLineNumber": 60,
+                    "startLineNumber": 56,
                     "startColumn": 10,
-                    "endLineNumber": 60,
+                    "endLineNumber": 56,
                     "endColumn": 11
                    }
                   },
                   {
                    "type": "additive_expression",
                    "range": {
-                    "startLineNumber": 60,
+                    "startLineNumber": 56,
                     "startColumn": 12,
-                    "endLineNumber": 60,
+                    "endLineNumber": 56,
                     "endColumn": 31
                    },
                    "children": [
                     {
                      "type": "postfix_expression",
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 12,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 20
                      },
                      "children": [
@@ -4722,9 +4634,9 @@
                        "text": "fib",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 12,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 15
                        }
                       },
@@ -4733,18 +4645,18 @@
                        "text": "[",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 15,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 16
                        }
                       },
                       {
                        "type": "additive_expression",
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 16,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 19
                        },
                        "children": [
@@ -4753,9 +4665,9 @@
                          "text": "i",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 16,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 17
                          }
                         },
@@ -4764,9 +4676,9 @@
                          "text": "-",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 17,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 18
                          }
                         },
@@ -4775,9 +4687,9 @@
                          "text": "2",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 18,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 19
                          }
                         }
@@ -4788,9 +4700,9 @@
                        "text": "]",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 19,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 20
                        }
                       }
@@ -4801,18 +4713,18 @@
                      "text": "+",
                      "children": null,
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 21,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 22
                      }
                     },
                     {
                      "type": "postfix_expression",
                      "range": {
-                      "startLineNumber": 60,
+                      "startLineNumber": 56,
                       "startColumn": 23,
-                      "endLineNumber": 60,
+                      "endLineNumber": 56,
                       "endColumn": 31
                      },
                      "children": [
@@ -4821,9 +4733,9 @@
                        "text": "fib",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 23,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 26
                        }
                       },
@@ -4832,18 +4744,18 @@
                        "text": "[",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 26,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 27
                        }
                       },
                       {
                        "type": "additive_expression",
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 27,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 30
                        },
                        "children": [
@@ -4852,9 +4764,9 @@
                          "text": "i",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 27,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 28
                          }
                         },
@@ -4863,9 +4775,9 @@
                          "text": "-",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 28,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 29
                          }
                         },
@@ -4874,9 +4786,9 @@
                          "text": "1",
                          "children": null,
                          "range": {
-                          "startLineNumber": 60,
+                          "startLineNumber": 56,
                           "startColumn": 29,
-                          "endLineNumber": 60,
+                          "endLineNumber": 56,
                           "endColumn": 30
                          }
                         }
@@ -4887,9 +4799,9 @@
                        "text": "]",
                        "children": null,
                        "range": {
-                        "startLineNumber": 60,
+                        "startLineNumber": 56,
                         "startColumn": 30,
-                        "endLineNumber": 60,
+                        "endLineNumber": 56,
                         "endColumn": 31
                        }
                       }
@@ -4904,9 +4816,9 @@
                  "text": ";",
                  "children": null,
                  "range": {
-                  "startLineNumber": 60,
+                  "startLineNumber": 56,
                   "startColumn": 31,
-                  "endLineNumber": 60,
+                  "endLineNumber": 56,
                   "endColumn": 32
                  }
                 }
@@ -4919,9 +4831,9 @@
              "text": "}",
              "children": null,
              "range": {
-              "startLineNumber": 61,
+              "startLineNumber": 57,
               "startColumn": 2,
-              "endLineNumber": 61,
+              "endLineNumber": 57,
               "endColumn": 3
              }
             }
@@ -4936,9 +4848,9 @@
        "text": "}",
        "children": null,
        "range": {
-        "startLineNumber": 62,
+        "startLineNumber": 58,
         "startColumn": 1,
-        "endLineNumber": 62,
+        "endLineNumber": 58,
         "endColumn": 2
        }
       }

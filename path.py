@@ -12,7 +12,6 @@ class Path:
         self.end_node = end_node
         self.action_items = action_items
         self.variables = variables
-        self.logical_variables = {}
         self.array_tmp_variables = []
         self.reachability_condition, self.state_transformation, self.array_constraint = self.calculate_t_and_r()
         self.start_invariant = None
@@ -86,15 +85,16 @@ class Path:
         Also removes all the logical variables from the variables dictionary
         :return: None
         """
+        logical_variables = []
         self.start_invariant = utils.convert_expression_to_z3(self.variables, self.start_node.invariant,
                                                               allow_not_defined_variables=True,
-                                                              logical_variables=self.logical_variables)
+                                                              logical_variables=logical_variables)
         self.mapped_end_invariant = utils.convert_expression_to_z3(self.variables, self.end_node.invariant,
                                                                    variables_mapping=self.state_transformation,
                                                                    allow_not_defined_variables=True,
-                                                                   logical_variables=self.logical_variables)
+                                                                   logical_variables=logical_variables)
         # Remove logical variables form the variables dictionary
-        utils.filter_dictionary(self.variables, self.logical_variables.keys())
+        utils.filter_dictionary(self.variables, logical_variables)
 
     def prove_path(self):
         """

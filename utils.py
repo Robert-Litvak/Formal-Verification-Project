@@ -26,6 +26,14 @@ class InvalidVerbosityLevel(Exception):
     pass
 
 
+class ExistingProgramVariableCannotBeRunning(Exception):
+    pass
+
+
+class UnknownKeyword(Exception):
+    pass
+
+
 # Logical keywords
 logical_keywords = ['implies', 'forall', 'exists']
 
@@ -43,6 +51,9 @@ operators_mapping = {'!': (lambda op: z3.Not(op)), '||': (lambda op1, op2: z3.Or
 # Program verbosity parameters
 verbosity_levels = [0, 1, 2, 3, 4]
 program_verbosity = -1
+
+
+run_variable_index = 0
 
 
 def set_verbosity(level):
@@ -213,13 +224,21 @@ def get_chain_deepest_mapping(mapping, start_key):
 
 
 def convert_variable_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
-                           logical_variables):
+                           logical_variables, run_variables, run_variable_declaration):
     """See the description of convert_expression_to_z3"""
+    global run_variable_index
     item_text = expression['text']
     if allow_not_defined_variables and (item_text not in variables_dictionary.keys()):
-        # Variable is logical - doesn't appear in the code, but appears in the q1/q2/invariants
-        variables_dictionary[item_text] = z3.Int(item_text)
-        logical_variables[item_text] = z3.Int(item_text)
+        if run_variable_declaration:
+            # Declaration of a run variable of some forall/exists statement
+            variables_dictionary[item_text] = z3.Int('RUN$VAR_' + item_text + '_' + str(run_variable_index))
+            run_variable_index += 1
+            run_variables.append(item_text)
+        else:
+            # Variable is logical - doesn't appear in the code,
+            # but appears in the q1/q2/invariants (not as part of forall/exists)
+            variables_dictionary[item_text] = z3.Int(item_text)
+            logical_variables.append(item_text)
     # Get the stored z3 object of the variable
     item_z3_object = variables_dictionary[item_text]
     # If mapping required, do so using variables_mapping dictionary
@@ -230,14 +249,14 @@ def convert_variable_to_z3(variables_dictionary, expression, variables_mapping, 
 
 
 def convert_array_to_z3(variables_dictionary, expression, variables_mapping, is_destination, place_for_index,
-                        allow_not_defined_variables, logical_variables):
+                        allow_not_defined_variables, logical_variables, run_variables):
     """See the description of convert_expression_to_z3"""
     items = expression['children']
     array_name = items[0]['text']
     # Doesn't pass "is_destination" or "place_for_index", because they are not relevant inside of the recursion
     array_index = convert_expression_to_z3(variables_dictionary, items[2], variables_mapping,
                                            allow_not_defined_variables=allow_not_defined_variables,
-                                           logical_variables=logical_variables)
+                                           logical_variables=logical_variables, run_variables=run_variables)
     array_object = variables_dictionary[array_name]
     # If array expression is on the left side of assignment statement, return the array object to user, and put into
     # "place_for_index" the index expression and subtree - z3.Store will be handled after
@@ -254,7 +273,7 @@ def convert_array_to_z3(variables_dictionary, expression, variables_mapping, is_
     return result
 
 
-def convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables):
+def convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables, run_variables):
     """See the description of convert_expression_to_z3"""
     # Name of the logical operator
     keyword = expression['children'][0]['text']
@@ -265,24 +284,41 @@ def convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapp
     # All of the logical operators we use get 2 arguments
     left_expression = arguments[0]
     right_expression = arguments[2]
+
+    is_run_var_declaration = False
+    remove_run_variables = False
+    if keyword == 'forall' or keyword == 'exists':
+        is_run_var_declaration = True
+        if run_variables is None:
+            run_variables = []
+            remove_run_variables = True
+
     left_z3 = convert_expression_to_z3(variables_dictionary, left_expression, variables_mapping,
-                                       allow_not_defined_variables=True, logical_variables=logical_variables)
+                                       allow_not_defined_variables=True, logical_variables=logical_variables,
+                                       run_variables=run_variables, run_variable_declaration=is_run_var_declaration)
     right_z3 = convert_expression_to_z3(variables_dictionary, right_expression, variables_mapping,
-                                        allow_not_defined_variables=True, logical_variables=logical_variables)
+                                        allow_not_defined_variables=True, logical_variables=logical_variables,
+                                        run_variables=run_variables)
+    if remove_run_variables:
+        # Remove run variables form the variables dictionary
+        filter_dictionary(variables_dictionary, run_variables)
+
     if keyword == 'implies':
         return z3.Implies(left_z3, right_z3)
-    if keyword == 'forall':
+    elif keyword == 'forall':
         return z3.ForAll([left_z3], right_z3)
-    if keyword == 'exists':
+    elif keyword == 'exists':
         return z3.Exists([left_z3], right_z3)
+    else:
+        raise UnknownKeyword('The only allowed logical keywords are: implies, forall, exists')
 
 
 def convert_unary_operation_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
-                                  logical_variables):
+                                  logical_variables, run_variables):
     """See the description of convert_expression_to_z3"""
     operand = convert_expression_to_z3(variables_dictionary, expression['children'][1], variables_mapping,
                                        allow_not_defined_variables=allow_not_defined_variables,
-                                       logical_variables=logical_variables)
+                                       logical_variables=logical_variables, run_variables=run_variables)
     expression_operator = expression['children'][0]['text']
     if expression_operator == '-':
         return -operand
@@ -291,14 +327,14 @@ def convert_unary_operation_to_z3(variables_dictionary, expression, variables_ma
 
 
 def convert_binary_operation_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
-                                   logical_variables):
+                                   logical_variables, run_variables):
     """See the description of convert_expression_to_z3"""
     operand_1 = convert_expression_to_z3(variables_dictionary, expression['children'][0], variables_mapping,
                                          allow_not_defined_variables=allow_not_defined_variables,
-                                         logical_variables=logical_variables)
+                                         logical_variables=logical_variables, run_variables=run_variables)
     operand_2 = convert_expression_to_z3(variables_dictionary, expression['children'][2], variables_mapping,
                                          allow_not_defined_variables=allow_not_defined_variables,
-                                         logical_variables=logical_variables)
+                                         logical_variables=logical_variables, run_variables=run_variables)
     expression_operator = expression['children'][1]['text']
     if expression['type'] == 'assignment_expression':
         assert len(expression_operator) == 2
@@ -307,7 +343,8 @@ def convert_binary_operation_to_z3(variables_dictionary, expression, variables_m
 
 
 def convert_expression_to_z3(variables_dictionary, expression, variables_mapping=None, is_destination=False,
-                             place_for_index=None, allow_not_defined_variables=False, logical_variables=None):
+                             place_for_index=None, allow_not_defined_variables=False, logical_variables=None,
+                             run_variables=None, run_variable_declaration=False):
     """
     Converts expression (represented by the root of its subtree in AST) to z3 object which represents the same
     expression
@@ -322,8 +359,11 @@ def convert_expression_to_z3(variables_dictionary, expression, variables_mapping
             and the index expression AST subtree will be stored in place_for_index[1]
     :param allow_not_defined_variables: If allow_not_defined_variables==True, then if expression contains variable that
             is not appears in variables_dictionary, no error will be caused
-    :param logical_variables: a dictionary to store logical variables (variables that didn't appear in the program, but
-            appeared in the specification
+    :param logical_variables: A dictionary to store logical variables (variables that didn't appear in the program, but
+            appeared in the specification)
+    :param run_variables: A dictionary to store forall/exists run variables
+    :param run_variable_declaration: Should be true only if the expression is a run variable declaration in some
+            forall/exists expression
     :return: z3 object that represents the given expression
     """
     if expression['type'] == 'CONSTANT':
@@ -342,35 +382,37 @@ def convert_expression_to_z3(variables_dictionary, expression, variables_mapping
     elif expression['type'] == 'IDENTIFIER':
         # Received expression is a variable name
         return convert_variable_to_z3(variables_dictionary, expression, variables_mapping, allow_not_defined_variables,
-                                      logical_variables)
+                                      logical_variables, run_variables, run_variable_declaration)
 
     elif expression['type'] == 'postfix_expression' and expression['children'][1]['text'] == '[':
         assert expression['children'][3]['text'] == ']'
         # Received expression represents access to some array
         return convert_array_to_z3(variables_dictionary, expression, variables_mapping, is_destination, place_for_index,
-                                   allow_not_defined_variables, logical_variables)
+                                   allow_not_defined_variables, logical_variables, run_variables)
 
     elif expression['type'] == 'postfix_expression' and expression['children'][1]['text'] == '(':
         # Received expression represents "implies(...)", "forall(...)" or "exists(...)"
         assert expression['children'][3]['text'] == ')'
-        return convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables)
+        return convert_complex_logic_to_z3(variables_dictionary, expression, variables_mapping, logical_variables,
+                                           run_variables)
 
     elif expression['type'] == 'primary_expression':
         # Received expression is wrapped by brackets
         expression_inside_brackets =\
             convert_expression_to_z3(variables_dictionary, expression['children'][1], variables_mapping, is_destination,
-                                     place_for_index, allow_not_defined_variables, logical_variables)
+                                     place_for_index, allow_not_defined_variables, logical_variables, run_variables,
+                                     run_variable_declaration)
         return expression_inside_brackets
 
     elif expression['type'] == 'unary_expression':
         # Received expression represents some unary operation
         return convert_unary_operation_to_z3(variables_dictionary, expression, variables_mapping,
-                                             allow_not_defined_variables, logical_variables)
+                                             allow_not_defined_variables, logical_variables, run_variables)
 
     else:
         # Received expression represents some binary operation
         return convert_binary_operation_to_z3(variables_dictionary, expression, variables_mapping,
-                                              allow_not_defined_variables, logical_variables)
+                                              allow_not_defined_variables, logical_variables, run_variables)
 
 
 def list_to_z3_and(items):
@@ -415,14 +457,20 @@ def prove(formula):
     solver = z3.Solver()
     solver.add(z3.Not(formula))
     v_print(f'Proving formula:\n{formula}', verbosity=2)
-    if solver.check() == z3.unsat:
+    solver_result = solver.check()
+    if solver_result == z3.unsat:
         v_print('PROVED', verbosity=1)
         result = True
     else:
-        v_print('FAILED TO PROVE. ASSIGNMENT:', verbosity=1)
-        model = solver.model()
-        for declaration in model.decls():
-            v_print(f'{declaration.name()} = {model[declaration]}', verbosity=1)
+        v_print('FAILED TO PROVE', verbosity=1)
+        v_print(f'Z3 returned {solver_result}', verbosity=1)
+        try:
+            model = solver.model()
+            v_print('ASSIGNMENT:', verbosity=1)
+            for declaration in model.decls():
+                v_print(f'{declaration.name()} = {model[declaration]}', verbosity=1)
+        except z3.z3types.Z3Exception as z3_error:
+            v_print(f'Z3 got an error during getting a model: {z3_error}', verbosity=1)
         result = False
     return result
 

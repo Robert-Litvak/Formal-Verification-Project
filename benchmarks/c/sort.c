@@ -1,6 +1,6 @@
-void max_sort(int array[1000]){
+void max_sort(int array[], int size){
 	int tmp;
-	for(int length = 1000; length >= 1; length = length - 1){
+	for(int length = size; length >= 1; length = length - 1){
 		int i = 0;
 		int i_max = 0;
 		for(i = 1; i < length; i = i + 1){

@@ -48,11 +48,3 @@ int abs(int x){
 	}
 	return x;
 }
-
-int fibonacci_1000_array(int fib[], int length){
-	fib[0] = 1;
-	fib[1] = 1;
-	for (int i = 2; i < length; i += 1){
-		fib[i] = fib[i-2] + fib[i-1];
-	}
-}

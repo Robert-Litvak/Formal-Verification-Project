@@ -160,7 +160,8 @@ class CFG:
         :return: The node that should be highest from now -
                 the root condition node of the loop that the method will create
         """
-        condition_subtree = utils.get_item_by_type(sub_items, ['relational_expression'], check_uniqueness=True)[0]
+        condition_subtree = utils.get_item_by_type(sub_items, ['relational_expression', 'equality_expression'],
+                                                   check_uniqueness=True)[0]
         condition_z3 = utils.convert_expression_to_z3(self.variables, condition_subtree)
         code_blocks = utils.get_item_by_type(sub_items,
                                              ['compound_statement', 'expression_statement', 'jump_statement'])
@@ -222,7 +223,8 @@ class CFG:
         :return: The node that should be highest from now - the  condition node that the method will create
         """
         sub_items = subtree['children']
-        condition_subtree = utils.get_item_by_type(sub_items, ['relational_expression'], check_uniqueness=True)[0]
+        condition_subtree = utils.get_item_by_type(sub_items, ['relational_expression',
+                                                               'equality_expression'], check_uniqueness=True)[0]
         condition_z3 = utils.convert_expression_to_z3(self.variables, condition_subtree)
         code_blocks = utils.get_item_by_type(sub_items,
                                              ['compound_statement', 'expression_statement', 'jump_statement'])

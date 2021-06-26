@@ -33,7 +33,7 @@
       "startLineNumber": 1,
       "startColumn": 6,
       "endLineNumber": 1,
-      "endColumn": 31
+      "endColumn": 37
      },
      "children": [
       {
@@ -64,7 +64,7 @@
         "startLineNumber": 1,
         "startColumn": 15,
         "endLineNumber": 1,
-        "endColumn": 30
+        "endColumn": 36
        },
        "children": [
         {
@@ -73,7 +73,7 @@
           "startLineNumber": 1,
           "startColumn": 15,
           "endLineNumber": 1,
-          "endColumn": 30
+          "endColumn": 26
          },
          "children": [
           {
@@ -93,7 +93,7 @@
             "startLineNumber": 1,
             "startColumn": 19,
             "endLineNumber": 1,
-            "endColumn": 30
+            "endColumn": 26
            },
            "children": [
             {
@@ -119,28 +119,61 @@
              }
             },
             {
-             "type": "CONSTANT",
-             "text": "1000",
-             "children": null,
-             "range": {
-              "startLineNumber": 1,
-              "startColumn": 25,
-              "endLineNumber": 1,
-              "endColumn": 29
-             }
-            },
-            {
              "type": "]",
              "text": "]",
              "children": null,
              "range": {
               "startLineNumber": 1,
-              "startColumn": 29,
+              "startColumn": 25,
               "endLineNumber": 1,
-              "endColumn": 30
+              "endColumn": 26
              }
             }
            ]
+          }
+         ]
+        },
+        {
+         "type": ",",
+         "text": ",",
+         "children": null,
+         "range": {
+          "startLineNumber": 1,
+          "startColumn": 26,
+          "endLineNumber": 1,
+          "endColumn": 27
+         }
+        },
+        {
+         "type": "parameter_declaration",
+         "range": {
+          "startLineNumber": 1,
+          "startColumn": 28,
+          "endLineNumber": 1,
+          "endColumn": 36
+         },
+         "children": [
+          {
+           "type": "INT",
+           "text": "int",
+           "children": null,
+           "range": {
+            "startLineNumber": 1,
+            "startColumn": 28,
+            "endLineNumber": 1,
+            "endColumn": 31
+           }
+          },
+          {
+           "type": "IDENTIFIER",
+           "text": "size",
+           "children": null,
+           "range": {
+            "startLineNumber": 1,
+            "startColumn": 32,
+            "endLineNumber": 1,
+            "endColumn": 36
+           }
           }
          ]
         }
@@ -152,9 +185,9 @@
        "children": null,
        "range": {
         "startLineNumber": 1,
-        "startColumn": 30,
+        "startColumn": 36,
         "endLineNumber": 1,
-        "endColumn": 31
+        "endColumn": 37
        }
       }
      ]
@@ -163,7 +196,7 @@
      "type": "compound_statement",
      "range": {
       "startLineNumber": 1,
-      "startColumn": 31,
+      "startColumn": 37,
       "endLineNumber": 15,
       "endColumn": 2
      },
@@ -174,9 +207,9 @@
        "children": null,
        "range": {
         "startLineNumber": 1,
-        "startColumn": 31,
+        "startColumn": 37,
         "endLineNumber": 1,
-        "endColumn": 32
+        "endColumn": 38
        }
       },
       {
@@ -315,8 +348,8 @@
                }
               },
               {
-               "type": "CONSTANT",
-               "text": "1000",
+               "type": "IDENTIFIER",
+               "text": "size",
                "children": null,
                "range": {
                 "startLineNumber": 3,

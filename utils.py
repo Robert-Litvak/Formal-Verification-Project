@@ -43,9 +43,9 @@ basic_types_mapping = {'int': z3.Int, 'bool': z3.Bool}
 array_types_mapping = {'int': z3.IntSort, 'bool': z3.BoolSort}
 operators_mapping = {'!': (lambda op: z3.Not(op)), '||': (lambda op1, op2: z3.Or(op1, op2)),
                      '&&': (lambda op1, op2: z3.And(op1, op2)), '/': (lambda op1, op2: op1.__div__(op2)),
-                     '+': operator.add, '-': operator.sub, '*': operator.mul, '%': operator.mod, '^': operator.xor,
-                     '<': operator.lt, '<=': operator.le, '==': operator.eq, '!=': operator.ne, '>=': operator.ge,
-                     '>': operator.gt}
+                     '^': (lambda op1, op2: z3.Xor(op1, op2)), '+': operator.add, '-': operator.sub, '*': operator.mul,
+                     '%': operator.mod, '<': operator.lt, '<=': operator.le, '==': operator.eq, '!=': operator.ne,
+                     '>=': operator.ge, '>': operator.gt}
 
 
 # Program verbosity parameters
@@ -442,7 +442,7 @@ def process_rule_string(rule_string, variables):
         result = re.sub(fr'Var\({index}\)', str(variables[index]), result)
     # Change all the "+ -1*expression" subtract representation to the regular "- expression" representation
     result = re.sub(r'\+ -1\*', '- ', result)
-    result = re.sub(r'Or\(Not\((.+)\), (.+)\)', r'\1 -> \2', result)
+    # result = re.sub(r'Or\(Not\((.+)\), (.+)\)', r'\1 -> \2', result)
     return result
 
 

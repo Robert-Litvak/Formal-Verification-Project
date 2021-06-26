@@ -9,4 +9,4 @@ Lectures/**
 *.docx
 *.pdf
 *.txt
-tests_output.txt
+tests_output*

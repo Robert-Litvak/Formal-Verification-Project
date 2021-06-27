@@ -92,7 +92,9 @@ def parse_arguments():
     parser.add_argument('-function_name', help='Name of the function that should be verified')
     parser.add_argument('-all_tests', action='store_const', const=True,
                         help='Run verifier on all the available functions from all the available files')
-    parser.add_argument('-paths',  action='store_const', const=True, help='Verify the program by paths')
+    parser.add_argument('-paths', action='store_const', const=True, help='Verify the program by paths')
+    parser.add_argument('-manual_horn_clauses', action='store_const', const=True,
+                        help='Verify the program by using manual horn clauses')
     parser.add_argument('-verbosity', type=int, choices=verbosity_levels, default=0,
                         help='The higher the verbosity level - the more information will be displayed')
     parser.add_argument('-only_horn', action='store_const', const=True,
@@ -442,7 +444,6 @@ def process_rule_string(rule_string, variables):
         result = re.sub(fr'Var\({index}\)', str(variables[index]), result)
     # Change all the "+ -1*expression" subtract representation to the regular "- expression" representation
     result = re.sub(r'\+ -1\*', '- ', result)
-    # result = re.sub(r'Or\(Not\((.+)\), (.+)\)', r'\1 -> \2', result)
     return result
 
 
@@ -504,5 +505,8 @@ def horn_prove(rules, variables=None):
     else:
         v_print('FAILED TO PROVE USING HORN CLAUSES', verbosity=0)
         v_print(f'Z3 returned {solver_result}', verbosity=0)
+        v_print('\n', verbosity=0)
+        v_print('*' * 113, verbosity=0)
+        v_print('*' * 113, verbosity=0)
         result = False
     return result

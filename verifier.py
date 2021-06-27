@@ -32,6 +32,9 @@ class Verifier:
         Goes over all the paths in CFG, and tries to prove them according to Floyd proof system
         :return: None
         """
+        utils.v_print('VERIFYING PATHS', verbosity=0)
+        utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',
+                      verbosity=0)
         utils.v_print(f'Found {len(self.paths)} paths:', verbosity=1)
         for path in self.paths:
             path.print_path()
@@ -95,8 +98,9 @@ class Verifier:
         """
         Verifies the program - generates a set of rules for the paths (according to Floyd proof system),
         and tries to find a proper invariants using horn clauses
-        :return: None
+        :return: True if the program was verified, False otherwise
         """
+        utils.v_print('VERIFYING USING SPACER WITH MANUAL HORN CLAUSES', verbosity=0)
         utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',
                       verbosity=0)
         rules = []
@@ -121,3 +125,58 @@ class Verifier:
                                                   dest_invariant)))
 
         return utils.horn_prove(rules, self.variables_list)
+
+    @staticmethod
+    def declare_variables(solver, variables, declared_variables):
+        variables_to_declare = list(filter(lambda var: str(var) not in declared_variables, variables))
+        if variables_to_declare:
+            solver.declare_var(*variables_to_declare)
+            declared_variables.update(set(map(str, variables_to_declare)))
+
+    @staticmethod
+    def declare_invariants(solver, path, declared_invariants):
+        invariants_to_declare = []
+        if isinstance(path.start_node, ConditionNode):
+            if str(path.start_node.spacer_invariant) not in declared_invariants:
+                invariants_to_declare.append(path.start_node.spacer_invariant)
+        if isinstance(path.end_node, ConditionNode):
+            if str(path.end_node.spacer_invariant) not in declared_invariants:
+                invariants_to_declare.append(path.end_node.spacer_invariant)
+
+        if invariants_to_declare:
+            solver.register_relation(*invariants_to_declare)
+            declared_invariants.update(set(map(str, invariants_to_declare)))
+
+    def verify_program_fixed_point(self):
+        utils.v_print('VERIFYING USING SPACER WITH FIXED POINT', verbosity=0)
+        if list(filter(lambda p: not (isinstance(p.start_node, ConditionNode) or isinstance(p.end_node, ConditionNode)),
+                       self.paths)):
+            utils.v_print('Cannot use fixed point for programs without loops', verbosity=0)
+            utils.v_print('\n', verbosity=0)
+            utils.v_print('*' * 113, verbosity=0)
+            utils.v_print('*' * 113, verbosity=0)
+            return False
+        utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',
+                      verbosity=0)
+        solver = z3.Fixedpoint()
+        declared_variables = set()
+        declared_invariants = set()
+        self.declare_variables(solver, self.variables_list, declared_variables)
+        for path in self.paths:
+            path.calculate_path_z3_invariants()
+            source_invariant = self.get_spacer_source_invariant(path)
+            dest_invariant, boolean_state_transformation, new_variables = self.get_spacer_destination_invariant(path)
+
+            self.declare_variables(solver, path.array_tmp_variables + new_variables, declared_variables)
+            self.declare_invariants(solver, path, declared_invariants)
+            if not (isinstance(dest_invariant, z3.BoolRef) and str(dest_invariant) == 'True'):
+                solver.rule(dest_invariant, [source_invariant, path.start_invariant, path.reachability_condition,
+                                             path.array_constraint, boolean_state_transformation])
+            else:
+                solver.query(source_invariant, path.start_invariant, path.reachability_condition, path.array_constraint,
+                             z3.Not(path.mapped_end_invariant))
+
+        utils.v_print(solver, verbosity=1)
+        result = solver.get_answer()
+        utils.v_print(result, verbosity=0)
+        return True

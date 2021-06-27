@@ -25,13 +25,21 @@ if __name__ == '__main__':
     for configuration in verifier_configurations:
         utils.v_print('*' * 113, verbosity=0)
         verifier = Verifier(configuration['json'], configuration['function'])
-        if args.paths:
-            verifier.verify_paths()
-        else:
-            program_verified = verifier.verify_program()
-            if not program_verified and not args.only_horn:
-                utils.v_print('Running non-Horn-Clauses solver with the given invariants...\n', verbosity=0)
-                utils.v_print('*' * 113, verbosity=0)
-                paths_verifier = Verifier(configuration['json'], configuration['function'])
-                paths_verifier.verify_paths()
-        utils.v_print('\n\n', verbosity=0)
+
+        need_to_verify = True
+        while need_to_verify:
+            if args.paths:
+                verifier.verify_paths()
+                need_to_verify = False
+            elif args.manual_horn_clauses:
+                verification_succeeded = verifier.verify_program()
+                need_to_verify = not verification_succeeded
+                if need_to_verify:
+                    args.manual_horn_clauses = False
+                    args.paths = True
+            else:
+                verification_succeeded = verifier.verify_program_fixed_point()
+                need_to_verify = not verification_succeeded
+                if need_to_verify:
+                    args.manual_horn_clauses = True
+        utils.v_print('', verbosity=0)

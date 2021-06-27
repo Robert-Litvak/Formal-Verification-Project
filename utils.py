@@ -542,3 +542,21 @@ def walk_expression(expression):
 def list_z3_expression_variables(expression):
     """Returns the list of variables in expression `e`"""
     return set(x for x in walk_expression(expression) if z3.is_var(x))
+
+
+def fixed_point_prove(solver, variables):
+    v_print('Proving the following:', verbosity=4)
+    v_print(solver, verbosity=4)
+    result = solver.get_answer()
+    if isinstance(result, z3.QuantifierRef):
+        v_print('PROVED', verbosity=0)
+        v_print('Solution:', verbosity=0)
+        print_fixed_point_good_solution(result, variables)
+    else:
+        v_print('NOT PROVED', verbosity=0)
+        v_print('Invariants signature:', verbosity=0)
+        v_print(f'Invariant#I({", ".join(map(str, variables))})', verbosity=0)
+        v_print('Invariants stack:', verbosity=0)
+        for sub_expression in walk_expression(result):
+            if str(sub_expression).startswith('Invariant') and list_z3_expression_variables(sub_expression) == set():
+                v_print(sub_expression, verbosity=0)

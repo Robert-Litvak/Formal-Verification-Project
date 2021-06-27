@@ -169,27 +169,16 @@ class Verifier:
 
             self.declare_variables(solver, path.array_tmp_variables + new_variables, declared_variables)
             self.declare_invariants(solver, path, declared_invariants)
-            if not (isinstance(dest_invariant, z3.BoolRef) and str(dest_invariant) == 'True'):
-                solver.rule(dest_invariant, [source_invariant, path.start_invariant, path.reachability_condition,
-                                             path.array_constraint, boolean_state_transformation])
-            else:
-                solver.query(source_invariant, path.start_invariant, path.reachability_condition, path.array_constraint,
-                             z3.Not(path.mapped_end_invariant))
+            try:
+                if not (isinstance(dest_invariant, z3.BoolRef) and str(dest_invariant) == 'True'):
+                    solver.rule(dest_invariant, [source_invariant, path.start_invariant, path.reachability_condition,
+                                                 path.array_constraint, boolean_state_transformation])
+                else:
+                    solver.query(source_invariant, path.start_invariant, path.reachability_condition,
+                                 path.array_constraint, z3.Not(path.mapped_end_invariant))
+            except z3.z3types.Z3Exception as error:
+                utils.v_print(f'Fixed Point solver failed with the following error:\n{error}', verbosity=1)
+                return False
 
-        utils.v_print('Proving the following:', verbosity=4)
-        utils.v_print(solver, verbosity=4)
-        result = solver.get_answer()
-        if isinstance(result, z3.QuantifierRef):
-            utils.v_print('PROVED', verbosity=0)
-            utils.v_print('Solution:', verbosity=0)
-            utils.print_fixed_point_good_solution(result, self.variables_list)
-        else:
-            utils.v_print('NOT PROVED', verbosity=0)
-            utils.v_print('Invariants signature:', verbosity=0)
-            utils.v_print(f'Invariant#I({", ".join(map(str, self.variables_list))})', verbosity=0)
-            utils.v_print('Invariants stack:', verbosity=0)
-            for sub_expression in utils.walk_expression(result):
-                if str(sub_expression).startswith('Invariant') and\
-                        utils.list_z3_expression_variables(sub_expression) == set():
-                    utils.v_print(sub_expression, verbosity=0)
+        utils.fixed_point_prove(solver, self.variables_list)
         return True

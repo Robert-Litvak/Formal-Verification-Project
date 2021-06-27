@@ -24,10 +24,9 @@ if __name__ == '__main__':
 
     for configuration in verifier_configurations:
         utils.v_print('*' * 113, verbosity=0)
-        verifier = Verifier(configuration['json'], configuration['function'])
-
         need_to_verify = True
         while need_to_verify:
+            verifier = Verifier(configuration['json'], configuration['function'])
             if args.paths:
                 verifier.verify_paths()
                 need_to_verify = False

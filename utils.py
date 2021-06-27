@@ -510,3 +510,35 @@ def horn_prove(rules, variables=None):
         v_print('*' * 113, verbosity=0)
         result = False
     return result
+
+
+def print_fixed_point_good_solution(solution, variables):
+    forall_variables = str(solution).split('[')[1].split(']')[0]
+    solution_variables = forall_variables.split(', ')
+    assert len(variables) == len(solution_variables)
+
+    if len(variables) <= 13 and all(map(lambda var: str(var).islower, variables)):
+        string_to_print = str(solution)
+        for index in range(len(variables)):
+            string_to_print = re.sub(r'(\W)' + solution_variables[index] + r'(\W)',
+                                     r'\1' + str(variables[index]) + r'\2',
+                                     string_to_print)
+        string_to_print = process_rule_string(string_to_print, variables)
+        v_print(string_to_print, verbosity=0)
+    else:
+        v_print('', verbosity=0)
+        v_print('Where:', verbosity=0)
+        for index in range(len(variables)):
+            v_print(f'{solution_variables[index]} == {variables[index]}', verbosity=0)
+
+
+def walk_expression(expression):
+    yield expression
+    for c in expression.children():
+        for x in walk_expression(c):
+            yield x
+
+
+def list_z3_expression_variables(expression):
+    """Returns the list of variables in expression `e`"""
+    return set(x for x in walk_expression(expression) if z3.is_var(x))

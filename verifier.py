@@ -176,7 +176,20 @@ class Verifier:
                 solver.query(source_invariant, path.start_invariant, path.reachability_condition, path.array_constraint,
                              z3.Not(path.mapped_end_invariant))
 
-        utils.v_print(solver, verbosity=1)
+        utils.v_print('Proving the following:', verbosity=4)
+        utils.v_print(solver, verbosity=4)
         result = solver.get_answer()
-        utils.v_print(result, verbosity=0)
+        if isinstance(result, z3.QuantifierRef):
+            utils.v_print('PROVED', verbosity=0)
+            utils.v_print('Solution:', verbosity=0)
+            utils.print_fixed_point_good_solution(result, self.variables_list)
+        else:
+            utils.v_print('NOT PROVED', verbosity=0)
+            utils.v_print('Invariants signature:', verbosity=0)
+            utils.v_print(f'Invariant#I({", ".join(map(str, self.variables_list))})', verbosity=0)
+            utils.v_print('Invariants stack:', verbosity=0)
+            for sub_expression in utils.walk_expression(result):
+                if str(sub_expression).startswith('Invariant') and\
+                        utils.list_z3_expression_variables(sub_expression) == set():
+                    utils.v_print(sub_expression, verbosity=0)
         return True

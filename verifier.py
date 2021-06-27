@@ -128,6 +128,13 @@ class Verifier:
 
     @staticmethod
     def declare_variables(solver, variables, declared_variables):
+        """
+        Declares the given variables in a received FixedPoint solver, if were not already declared
+        :param solver: FixedPoint solver
+        :param variables: List of variables to declare
+        :param declared_variables: Set of already declared variables
+        :return: None
+        """
         variables_to_declare = list(filter(lambda var: str(var) not in declared_variables, variables))
         if variables_to_declare:
             solver.declare_var(*variables_to_declare)
@@ -135,6 +142,13 @@ class Verifier:
 
     @staticmethod
     def declare_invariants(solver, path, declared_invariants):
+        """
+        Declares the invariants of the given path in a received FixedPoint solver, if were not already declared
+        :param solver: FixedPoint solver
+        :param path: A path whose invariants need to be declared
+        :param declared_invariants: Set of already declared invariants
+        :return: None
+        """
         invariants_to_declare = []
         if isinstance(path.start_node, ConditionNode):
             if str(path.start_node.spacer_invariant) not in declared_invariants:
@@ -148,13 +162,16 @@ class Verifier:
             declared_invariants.update(set(map(str, invariants_to_declare)))
 
     def verify_program_fixed_point(self):
+        """
+        Verifies the program - generates a set of rules and queries for the paths (according to Floyd proof system),
+        and tries to find a proper invariants using the fixed point algorithm
+        :return: True if the program was verified, False otherwise
+        """
         utils.v_print('VERIFYING USING SPACER WITH FIXED POINT', verbosity=0)
         if list(filter(lambda p: not (isinstance(p.start_node, ConditionNode) or isinstance(p.end_node, ConditionNode)),
                        self.paths)):
             utils.v_print('Cannot use fixed point for programs without loops', verbosity=0)
-            utils.v_print('\n', verbosity=0)
-            utils.v_print('*' * 113, verbosity=0)
-            utils.v_print('*' * 113, verbosity=0)
+            utils.print_separator_lines()
             return False
         utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',
                       verbosity=0)
@@ -177,7 +194,9 @@ class Verifier:
                     solver.query(source_invariant, path.start_invariant, path.reachability_condition,
                                  path.array_constraint, z3.Not(path.mapped_end_invariant))
             except z3.z3types.Z3Exception as error:
-                utils.v_print(f'Fixed Point solver failed with the following error:\n{error}', verbosity=1)
+                utils.v_print(f'Fixed Point solver failed with error', verbosity=0)
+                utils.v_print(f'The error:\n{error}', verbosity=1)
+                utils.print_separator_lines()
                 return False
 
         utils.fixed_point_prove(solver, self.variables_list)

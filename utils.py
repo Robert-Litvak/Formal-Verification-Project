@@ -57,6 +57,11 @@ run_variable_index = 0
 
 
 def set_verbosity(level):
+    """
+    Stores the program verbosity level to the global variable of the utils module
+    :param level: Verbosity level of the program
+    :return: None
+    """
     global program_verbosity
     if level not in verbosity_levels:
         raise InvalidVerbosityLevel(f'Invalid verbosity {level}. The only allowed levels: {verbosity_levels}')
@@ -67,8 +72,25 @@ def set_verbosity(level):
 
 
 def v_print(string, verbosity):
+    """
+    Prints the given string according to the program verbosity
+    (string will be printed only if its verbosity is smaller than the program verbosity)
+    :param string: String to print
+    :param verbosity: String verbosity level
+    :return: None
+    """
     if verbosity <= program_verbosity:
         print(string)
+
+
+def print_separator_lines():
+    """
+    Prints separator lines between different verifiers
+    :return: None
+    """
+    v_print('\n', verbosity=0)
+    v_print('*' * 113, verbosity=0)
+    v_print('*' * 113, verbosity=0)
 
 
 def read_json(json_file_name):
@@ -85,7 +107,7 @@ def read_json(json_file_name):
 def parse_arguments():
     """
     Parses program command line arguments
-    :return: object containing a field for each parsed argument
+    :return: Object containing a field for each parsed argument
     """
     parser = argparse.ArgumentParser(description='CFG Builder arguments', add_help=True, allow_abbrev=True)
     parser.add_argument('-json_file', required=True, help='The name of the JSON file to get an AST from')
@@ -99,6 +121,16 @@ def parse_arguments():
 
 
 def rerun_verifier_in_next_mode(args, json_file, function_name):
+    """
+    Reruns a verifier with a next verification mode.
+    If current mode is "Fixed Point" (default), the next mode is "Manual Horn Clauses".
+    If current mode is "Manual Horn Clauses", the next mode is "Paths".
+    If current mode is "Paths", there is no next mode
+    :param args: Program command line arguments
+    :param json_file: JSON file with the configuration
+    :param function_name: Name of the function to verify
+    :return: None
+    """
     assert not args.paths
     if args.manual_horn_clauses:
         next_mode = '-p'
@@ -515,14 +547,19 @@ def horn_prove(rules, variables=None):
     else:
         v_print('FAILED TO PROVE USING HORN CLAUSES', verbosity=0)
         v_print(f'Z3 returned {solver_result}', verbosity=0)
-        v_print('\n', verbosity=0)
-        v_print('*' * 113, verbosity=0)
-        v_print('*' * 113, verbosity=0)
+        print_separator_lines()
         result = False
     return result
 
 
 def print_fixed_point_good_solution(solution, variables):
+    """
+    Should be called only in "Fixed Point" mode, and only in case when the solver found an invariant.
+    Prints the solution of FixedPoint in a more readable format
+    :param solution: Solution of Z3 FixedPoint
+    :param variables: Program variables
+    :return: None
+    """
     forall_variables = str(solution).split('[')[1].split(']')[0]
     solution_variables = forall_variables.split(', ')
     assert len(variables) == len(solution_variables)
@@ -543,6 +580,11 @@ def print_fixed_point_good_solution(solution, variables):
 
 
 def walk_expression(expression):
+    """
+    Iteratively returns sub-expressions of the given expression
+    :param expression: Z3 expression
+    :return: Generator objects with all the sub-expressions of the given expression
+    """
     yield expression
     for c in expression.children():
         for x in walk_expression(c):
@@ -550,11 +592,21 @@ def walk_expression(expression):
 
 
 def list_z3_expression_variables(expression):
-    """Returns the list of variables in expression `e`"""
+    """
+    Returns the list of variables in the given expression
+    :param expression: Z3 expression
+    :return: List of variables in the given expression
+    """
     return set(x for x in walk_expression(expression) if z3.is_var(x))
 
 
 def fixed_point_prove(solver, variables):
+    """
+    Receives a FixedPoint solver with already inserted rules and queries, and tries to prove them
+    :param solver: FixedPoint solver
+    :param variables: Program variables
+    :return: None
+    """
     v_print('Proving the following:', verbosity=4)
     v_print(solver, verbosity=4)
     result = solver.get_answer()

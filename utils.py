@@ -88,18 +88,28 @@ def parse_arguments():
     :return: object containing a field for each parsed argument
     """
     parser = argparse.ArgumentParser(description='CFG Builder arguments', add_help=True, allow_abbrev=True)
-    parser.add_argument('-json_file', help='The name of the JSON file to get an AST from')
-    parser.add_argument('-function_name', help='Name of the function that should be verified')
-    parser.add_argument('-all_tests', action='store_const', const=True,
-                        help='Run verifier on all the available functions from all the available files')
+    parser.add_argument('-json_file', required=True, help='The name of the JSON file to get an AST from')
+    parser.add_argument('-function_name', required=True, help='Name of the function that should be verified')
     parser.add_argument('-paths', action='store_const', const=True, help='Verify the program by paths')
     parser.add_argument('-manual_horn_clauses', action='store_const', const=True,
                         help='Verify the program by using manual horn clauses')
     parser.add_argument('-verbosity', type=int, choices=verbosity_levels, default=0,
                         help='The higher the verbosity level - the more information will be displayed')
-    parser.add_argument('-only_horn', action='store_const', const=True,
-                        help='Do not rerun paths verifier in case of failure')
     return parser.parse_args(sys.argv[1:])
+
+
+def rerun_verifier_in_next_mode(args, json_file, function_name):
+    assert not args.paths
+    if args.manual_horn_clauses:
+        next_mode = '-p'
+    else:
+        next_mode = '-m'
+
+    current_python = os.path.relpath(sys.executable)
+    current_main = os.path.relpath('main.py')
+    command = [current_python, current_main, '-j', json_file, '-f', function_name, '-v', str(args.verbosity), next_mode]
+    process = subprocess.Popen(command)
+    process.wait()
 
 
 def filter_dictionary(dictionary, keys_to_remove):

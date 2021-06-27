@@ -170,7 +170,7 @@ class Verifier:
         utils.v_print('VERIFYING USING SPACER WITH FIXED POINT', verbosity=0)
         if list(filter(lambda p: not (isinstance(p.start_node, ConditionNode) or isinstance(p.end_node, ConditionNode)),
                        self.paths)):
-            utils.v_print('Cannot use fixed point for programs without loops', verbosity=0)
+            utils.v_print('Cannot use fixed point for programs with paths that do not pass in loops', verbosity=0)
             utils.print_separator_lines()
             return False
         utils.v_print(f'Verifying the function "{self.function_name}" from "{".".join(self.json_file.split(".")[:2])}"',

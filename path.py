@@ -15,7 +15,6 @@ class Path:
         self.array_tmp_variables = []
         self.reachability_condition, self.state_transformation, self.array_constraint = self.calculate_t_and_r()
         self.start_invariant = None
-        self.end_invariant = None
         self.mapped_end_invariant = None
         self.path_proved = None
 

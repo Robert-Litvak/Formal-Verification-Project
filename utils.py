@@ -7,6 +7,11 @@ import argparse
 import json
 import z3
 from configparser import ConfigParser
+from graphviz import Digraph
+from cfg_nodes import StartNode
+from cfg_nodes import HaltNode
+from cfg_nodes import AssignmentNode
+from cfg_nodes import ConditionNode
 
 
 # Exceptions
@@ -117,6 +122,7 @@ def parse_arguments():
                         help='Verify the program by using manual horn clauses')
     parser.add_argument('-verbosity', type=int, choices=verbosity_levels, default=0,
                         help='The higher the verbosity level - the more information will be displayed')
+    parser.add_argument('-draw_cfg', action='store_const', const=True, help='Draw the cfg of the program')
     return parser.parse_args(sys.argv[1:])
 
 
@@ -622,3 +628,85 @@ def fixed_point_prove(solver, variables):
         for sub_expression in walk_expression(result):
             if str(sub_expression).startswith('Invariant') and list_z3_expression_variables(sub_expression) == set():
                 v_print(sub_expression, verbosity=0)
+
+
+def add_visual_nodes(visual_cfg, paths):
+    """
+    Adds all the nodes in all the received paths to the visual_cfg
+    :param visual_cfg: CFG visualization object
+    :param paths: List of paths in the CFG
+    :return: None
+    """
+    all_nodes = set()
+    for path in paths:
+        current_node = path.start_node
+        all_nodes.add(current_node)
+        for action in path.action_items:
+            if action is None:
+                current_node = current_node.son
+            elif action:
+                current_node = current_node.son_true
+            else:
+                current_node = current_node.son_false
+            all_nodes.add(current_node)
+
+    for node, statement in map(lambda vertex: (vertex, str(vertex)), all_nodes):
+        if isinstance(node, AssignmentNode):
+            node_shape = 'box'
+        elif isinstance(node, ConditionNode):
+            node_shape = 'diamond'
+        else:
+            node_shape = 'ellipse'
+
+        if isinstance(node, StartNode):
+            node_label = 'START'
+        elif isinstance(node, HaltNode):
+            node_label = 'HALT'
+        else:
+            node_label = statement.split(maxsplit=1)[1]
+        visual_cfg.node(str(node.line) + '___' + statement, label=node_label, shape=node_shape)
+
+
+def add_visual_edges(visual_cfg, paths):
+    """
+    Adds all the edges in all the received paths to the visual_cfg
+    :param visual_cfg: CFG visualization object
+    :param paths: List of paths in the CFG
+    :return: None
+    """
+    colors = ['black', 'red', 'green', 'blue', 'gold', 'magenta', 'forestgreen', 'turquoise', 'chocolate', 'gray']
+    color_index = 0
+    for path in paths:
+        current_node = path.start_node
+        for action in path.action_items:
+            previous_node = current_node
+            if action is None:
+                current_node = current_node.son
+                current_label = None
+            elif action:
+                current_node = current_node.son_true
+                current_label = 'T'
+            else:
+                current_node = current_node.son_false
+                current_label = 'F'
+
+            visual_cfg.edge(str(previous_node.line) + '___' + str(previous_node),
+                            str(current_node.line) + '___' + str(current_node),
+                            label=current_label, color=colors[color_index])
+        color_index = (color_index + 1) % len(colors)
+
+
+def draw_cfg(paths, json_file, function_name):
+    """
+    Draws the CFG of a given function from a given file.
+    The result will be stored as ./CFGs/<FileName>_<FunctionName>.gv.pdf
+    :param paths: List of paths in the CFG
+    :param json_file: JSON file with the AST of the program
+    :param function_name: A name of the function whose CFG need to draw
+    :return: None
+    """
+    name = os.path.basename(json_file).split('.')[0] + '_' + function_name
+    visual_cfg = Digraph(name=name, directory=os.path.relpath('CFGs'))
+    add_visual_nodes(visual_cfg, paths)
+    add_visual_edges(visual_cfg, paths)
+    visual_cfg.render()

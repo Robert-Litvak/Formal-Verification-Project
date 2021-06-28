@@ -2,6 +2,7 @@
 class StartNode:
     """Class representing CFG start node"""
     def __init__(self, son):
+        self.line = 0
         self.son = son
         self.is_cut_point = True
         self.invariant = None
@@ -13,6 +14,7 @@ class StartNode:
 class HaltNode:
     """Class representing CFG halt node"""
     def __init__(self):
+        self.line = 999999999
         self.is_cut_point = True
         self.invariant = None
     
@@ -22,8 +24,9 @@ class HaltNode:
 
 class AssignmentNode:
     """Class representing CFG assignment node"""
-    def __init__(self, son, expression_subtree, expression_z3, target_z3, target_index_subtree=None,
+    def __init__(self, son, expression_subtree, expression_z3, target_z3, line, target_index_subtree=None,
                  target_index_z3=None):
+        self.line = line
         self.son = son
         self.expression_subtree = expression_subtree
         self.target_index_subtree = target_index_subtree
@@ -41,13 +44,13 @@ class AssignmentNode:
 
 class ConditionNode:
     """Class representing CFG condition node"""
-    def __init__(self, true_son, false_son, condition_subtree, condition_z3, is_cut_point=False, start_line=0):
+    def __init__(self, true_son, false_son, condition_subtree, condition_z3, line, is_cut_point=False):
+        self.line = line
         self.son_true = true_son
         self.son_false = false_son
         self.condition_subtree = condition_subtree
         self.condition_z3 = condition_z3
         self.is_cut_point = is_cut_point
-        self.start_line = start_line
         self.invariant = None
         self.spacer_invariant = None
 
@@ -57,7 +60,8 @@ class ConditionNode:
 
 class AssertNode:
     """Class representing special assert nodes in CFG"""
-    def __init__(self, son, expression_subtree, expression_z3):
+    def __init__(self, son, expression_subtree, expression_z3, line):
+        self.line = line
         self.son = son
         self.expression_subtree = expression_subtree
         self.expression_z3 = expression_z3

@@ -6,7 +6,7 @@ if __name__ == '__main__':
     args = utils.parse_arguments()
     utils.set_verbosity(args.verbosity)
 
-    verifier = Verifier(args.json_file, args.function_name)
+    verifier = Verifier(args.json_file, args.function_name, draw_cfg=args.draw_cfg)
     if args.paths:
         verifier.verify_paths()
         verification_succeeded = True

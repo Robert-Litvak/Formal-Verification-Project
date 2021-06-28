@@ -6,16 +6,16 @@ from path_finder import PathFinder
 
 
 class Verifier:
-    def __init__(self, json_file, function_name):
+    def __init__(self, json_file, function_name, draw_cfg):
         self.json_file = json_file
         self.function_name = function_name
         self.cfg = CFG(self.json_file, self.function_name)
         self.variables_list = None
         self.paths = None
 
-        self.build_cfg_and_paths()
+        self.build_cfg_and_paths(draw_cfg)
 
-    def build_cfg_and_paths(self):
+    def build_cfg_and_paths(self, draw_cfg):
         """
         Builds the CFG, and finds all the paths in it
         :return: None
@@ -26,6 +26,8 @@ class Verifier:
         path_finder.generate_paths()
         self.paths = path_finder.paths
         self.cfg.invariants_back_patch(self.paths)
+        if draw_cfg:
+            utils.draw_cfg(self.paths, self.json_file, self.function_name)
 
     def verify_paths(self):
         """

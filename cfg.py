@@ -115,6 +115,7 @@ class CFG:
         :param highest: The highest created node in CFG until this moment
         :return: The node that should be highest from now - the assignment node that the method will create
         """
+        start_line_number = subtree['range']['startLineNumber']
         if subtree['type'] in ['assignment_expression', 'init_declarator']:
             assignment = subtree
         else:
@@ -127,8 +128,8 @@ class CFG:
             expression_subtree = assignment
         else:
             expression_subtree = assignment['children'][2]
-        result = AssignmentNode(highest, expression_subtree, source_z3, target_z3, target_index_subtree=index_subtree,
-                                target_index_z3=index_z3)
+        result = AssignmentNode(highest, expression_subtree, source_z3, target_z3, start_line_number,
+                                target_index_subtree=index_subtree, target_index_z3=index_z3)
         return result
 
     def handle_declaration_statement(self, subtree, highest):
@@ -166,8 +167,7 @@ class CFG:
         code_blocks = utils.get_item_by_type(sub_items,
                                              ['compound_statement', 'expression_statement', 'jump_statement'])
         false_son = highest
-        result = ConditionNode(None, false_son, condition_subtree, condition_z3, is_cut_point=True,
-                               start_line=start_line)
+        result = ConditionNode(None, false_son, condition_subtree, condition_z3, start_line, is_cut_point=True)
         true_son = self.handle_scope(code_blocks[0], result)
         result.son_true = true_son
         return result
@@ -188,8 +188,7 @@ class CFG:
         incrementation = sub_items[4]
 
         false_son = highest
-        condition_node = ConditionNode(None, false_son, condition_subtree, condition_z3, is_cut_point=True,
-                                       start_line=start_line)
+        condition_node = ConditionNode(None, false_son, condition_subtree, condition_z3, start_line, is_cut_point=True)
         incrementation_node = self.handle_scope(incrementation, condition_node)
         initialization_node = self.handle_scope(initialization, condition_node)
 
@@ -222,6 +221,7 @@ class CFG:
         :param highest: The highest created node in CFG until this moment
         :return: The node that should be highest from now - the  condition node that the method will create
         """
+        start_line_number = subtree['range']['startLineNumber']
         sub_items = subtree['children']
         condition_subtree = utils.get_item_by_type(sub_items, ['relational_expression',
                                                                'equality_expression'], check_uniqueness=True)[0]
@@ -235,7 +235,7 @@ class CFG:
         else:
             false_son = highest
         true_son = self.handle_scope(code_blocks[0], highest)
-        result = ConditionNode(true_son, false_son, condition_subtree, condition_z3)
+        result = ConditionNode(true_son, false_son, condition_subtree, condition_z3, start_line_number)
         return result
 
     def handle_jump_statement(self, subtree):
@@ -246,13 +246,14 @@ class CFG:
         This method doesn't receive a highest created until this moment because all the return statements should point
         to the HALT node
         """
+        start_line_number = subtree['range']['startLineNumber']
         sub_items = subtree['children']
         assert utils.get_item_by_type(sub_items, 'RETURN', check_uniqueness=True)
         target_z3, source_z3, index_z3, index_subtree = self.handle_assignment_z3(subtree)
         assert index_z3 is None and index_subtree is None
         expression_subtree = sub_items[1]
         self.variables['ret'] = target_z3
-        result = AssignmentNode(self.halt, expression_subtree, source_z3, target_z3)
+        result = AssignmentNode(self.halt, expression_subtree, source_z3, target_z3, start_line_number)
         return result
 
     def handle_assert_statement(self, subtree, highest):
@@ -262,11 +263,12 @@ class CFG:
         :param highest: The highest created node in CFG until this moment
         :return: The node that should be highest from now - the assert node that the method will create
         """
+        start_line_number = subtree['range']['startLineNumber']
         sub_items = subtree['children']
         assert_items = utils.get_item_by_type(sub_items, ['postfix_expression'], check_uniqueness=True)[0]
         assert_expression_subtree = assert_items['children'][2]
         expression_z3 = utils.convert_expression_to_z3(self.variables, assert_expression_subtree)
-        result = AssertNode(highest, assert_expression_subtree, expression_z3)
+        result = AssertNode(highest, assert_expression_subtree, expression_z3, start_line_number)
         return result
 
     def handle_scope(self, scope, highest_created):
@@ -368,7 +370,7 @@ class CFG:
         # This performs a mapping between invariants and loops
         sorted_invariants_tuples = sorted(invariants, key=lambda tup: tup[1])
         sorted_invariants = list(map(lambda tup: tup[0], sorted_invariants_tuples))
-        sorted_loops = sorted(loops_nodes_set, key=lambda loop: loop.start_line)
+        sorted_loops = sorted(loops_nodes_set, key=lambda loop: loop.line)
         assert len(sorted_loops) == len(sorted_invariants)
         for index in range(len(sorted_loops)):
             # Assign each invariant to the related loop

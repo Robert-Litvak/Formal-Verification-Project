@@ -25,6 +25,8 @@ if __name__ == '__main__':
             current_main = os.path.relpath('main.py')
             command = [current_python, current_main, '-j', configuration['json'], '-f', configuration['function'],
                        '-v', str(verbosity_level)]
+            if verbosity_level == 0:
+                command.append('-d')
             with open(output_file_name, 'w') as output_file:
                 process = subprocess.Popen(command, stdout=output_file)
                 process.wait()

@@ -1,0 +1,1040 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "is_prime" from "benchmarks\json\advanced_math.c"
+Adding rules:
+ForAll([x, j, i, ret],
+       Implies(And(True,
+                   And(x > 0, x <= 17),
+                   Not(x == 1),
+                   True),
+               And(And(And(And(And(And(x > 0, x <= 17),
+                                   True),
+                               x >= 2),
+                           True),
+                       x >= 2),
+                   ForAll(RUN$VAR_m_0,
+                          ForAll(RUN$VAR_n_1,
+                                 Implies(And(And(And(RUN$VAR_m_0 >
+                                        1,
+                                        RUN$VAR_m_0 < 2),
+                                        RUN$VAR_n_1 > 1),
+                                        RUN$VAR_n_1 < x),
+                                        RUN$VAR_m_0*
+                                        RUN$VAR_n_1 !=
+                                        x))))))
+#################################################################################################################
+ForAll([x,
+        j,
+        i,
+        ret,
+        x$IN$Invariant#1,
+        j$IN$Invariant#1,
+        i$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(True,
+                   And(x > 0, x <= 17),
+                   Not(x == 1),
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       j$IN$Invariant#1 == 2,
+                       i$IN$Invariant#1 == 2,
+                       ret$IN$Invariant#1 == If(ret, 1, 0))),
+               Invariant#1(x$IN$Invariant#1,
+                           j$IN$Invariant#1,
+                           i$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(True, And(x > 0, x <= 17), x == 1, True),
+               Or(And(x == 1, Not(False)),
+                  And(And(And(And(And(And(x > 0, x <= 17),
+                                      True),
+                                  x >= 2),
+                              True),
+                          x >= 2),
+                      Not(Xor(False,
+                              ForAll(RUN$VAR_m_2,
+                                     ForAll(RUN$VAR_n_3,
+                                        Implies(And(And(And(RUN$VAR_m_2 >
+                                        1,
+                                        RUN$VAR_m_2 < x),
+                                        RUN$VAR_n_3 > 1),
+                                        RUN$VAR_n_3 < x),
+                                        RUN$VAR_m_2*
+                                        RUN$VAR_n_3 !=
+                                        x)))))))))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(Invariant#1(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(x > 0, x <= 17),
+                                       i >= 2),
+                                   i <= x),
+                               j >= 2),
+                           j <= x),
+                       ForAll(RUN$VAR_m_4,
+                              ForAll(RUN$VAR_n_5,
+                                     Implies(And(And(And(RUN$VAR_m_4 >
+                                        1,
+                                        RUN$VAR_m_4 < i),
+                                        RUN$VAR_n_5 > 1),
+                                        RUN$VAR_n_5 < x),
+                                        RUN$VAR_m_4*
+                                        RUN$VAR_n_5 !=
+                                        x)))),
+                   i < x,
+                   True),
+               And(And(And(And(And(And(And(x > 0, x <= 17),
+                                       i >= 2),
+                                   i < x),
+                               True),
+                           x >= 2),
+                       ForAll(RUN$VAR_m_6,
+                              ForAll(RUN$VAR_n_7,
+                                     Implies(And(And(And(RUN$VAR_m_6 >
+                                        1,
+                                        RUN$VAR_m_6 < i),
+                                        RUN$VAR_n_7 > 1),
+                                        RUN$VAR_n_7 < x),
+                                        RUN$VAR_m_6*
+                                        RUN$VAR_n_7 !=
+                                        x)))),
+                   ForAll(RUN$VAR_n_8,
+                          Implies(And(RUN$VAR_n_8 > 1,
+                                      RUN$VAR_n_8 < 2),
+                                  i*RUN$VAR_n_8 != x)))))
+#################################################################################################################
+ForAll([x,
+        j,
+        i,
+        ret,
+        x$IN$Invariant#2,
+        j$IN$Invariant#2,
+        i$IN$Invariant#2,
+        ret$IN$Invariant#2],
+       Implies(And(Invariant#1(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(x > 0, x <= 17),
+                                       i >= 2),
+                                   i <= x),
+                               j >= 2),
+                           j <= x),
+                       ForAll(RUN$VAR_m_4,
+                              ForAll(RUN$VAR_n_5,
+                                     Implies(And(And(And(RUN$VAR_m_4 >
+                                        1,
+                                        RUN$VAR_m_4 < i),
+                                        RUN$VAR_n_5 > 1),
+                                        RUN$VAR_n_5 < x),
+                                        RUN$VAR_m_4*
+                                        RUN$VAR_n_5 !=
+                                        x)))),
+                   i < x,
+                   True,
+                   And(x$IN$Invariant#2 == x,
+                       j$IN$Invariant#2 == 2,
+                       i$IN$Invariant#2 == i,
+                       ret$IN$Invariant#2 == If(ret, 1, 0))),
+               Invariant#2(x$IN$Invariant#2,
+                           j$IN$Invariant#2,
+                           i$IN$Invariant#2,
+                           ret$IN$Invariant#2)))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(Invariant#1(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(x > 0, x <= 17),
+                                       i >= 2),
+                                   i <= x),
+                               j >= 2),
+                           j <= x),
+                       ForAll(RUN$VAR_m_9,
+                              ForAll(RUN$VAR_n_10,
+                                     Implies(And(And(And(RUN$VAR_m_9 >
+                                        1,
+                                        RUN$VAR_m_9 < i),
+                                        RUN$VAR_n_10 > 1),
+                                        RUN$VAR_n_10 < x),
+                                        RUN$VAR_m_9*
+                                        RUN$VAR_n_10 !=
+                                        x)))),
+                   Not(i < x),
+                   True),
+               Or(And(x == 1, Not(True)),
+                  And(And(And(And(And(And(x > 0, x <= 17),
+                                      i >= 2),
+                                  i <= x),
+                              j >= 2),
+                          j <= x),
+                      Not(Xor(True,
+                              ForAll(RUN$VAR_m_11,
+                                     ForAll(RUN$VAR_n_12,
+                                        Implies(And(And(And(RUN$VAR_m_11 >
+                                        1,
+                                        RUN$VAR_m_11 < x),
+                                        RUN$VAR_n_12 > 1),
+                                        RUN$VAR_n_12 < x),
+                                        RUN$VAR_m_11*
+                                        RUN$VAR_n_12 !=
+                                        x)))))))))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(Invariant#2(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(And(x > 0,
+                                        x <= 17),
+                                        i >= 2),
+                                       i < x),
+                                   j >= 2),
+                               j <= x),
+                           ForAll(RUN$VAR_m_13,
+                                  ForAll(RUN$VAR_n_14,
+                                        Implies(And(And(And(RUN$VAR_m_13 >
+                                        1,
+                                        RUN$VAR_m_13 < i),
+                                        RUN$VAR_n_14 > 1),
+                                        RUN$VAR_n_14 < x),
+                                        RUN$VAR_m_13*
+                                        RUN$VAR_n_14 !=
+                                        x)))),
+                       ForAll(RUN$VAR_n_15,
+                              Implies(And(RUN$VAR_n_15 > 1,
+                                        RUN$VAR_n_15 < j),
+                                      i*RUN$VAR_n_15 != x))),
+                   And(j < x, Not(i*j == x)),
+                   True),
+               And(And(And(And(And(And(And(x > 0, x <= 17),
+                                       i >= 2),
+                                   i < x),
+                               j + 1 >= 2),
+                           j + 1 <= x),
+                       ForAll(RUN$VAR_m_16,
+                              ForAll(RUN$VAR_n_17,
+                                     Implies(And(And(And(RUN$VAR_m_16 >
+                                        1,
+                                        RUN$VAR_m_16 < i),
+                                        RUN$VAR_n_17 > 1),
+                                        RUN$VAR_n_17 < x),
+                                        RUN$VAR_m_16*
+                                        RUN$VAR_n_17 !=
+                                        x)))),
+                   ForAll(RUN$VAR_n_18,
+                          Implies(And(RUN$VAR_n_18 > 1,
+                                      RUN$VAR_n_18 < j + 1),
+                                  i*RUN$VAR_n_18 != x)))))
+#################################################################################################################
+ForAll([x,
+        j,
+        i,
+        ret,
+        x$IN$Invariant#2,
+        j$IN$Invariant#2,
+        i$IN$Invariant#2,
+        ret$IN$Invariant#2],
+       Implies(And(Invariant#2(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(And(x > 0,
+                                        x <= 17),
+                                        i >= 2),
+                                       i < x),
+                                   j >= 2),
+                               j <= x),
+                           ForAll(RUN$VAR_m_13,
+                                  ForAll(RUN$VAR_n_14,
+                                        Implies(And(And(And(RUN$VAR_m_13 >
+                                        1,
+                                        RUN$VAR_m_13 < i),
+                                        RUN$VAR_n_14 > 1),
+                                        RUN$VAR_n_14 < x),
+                                        RUN$VAR_m_13*
+                                        RUN$VAR_n_14 !=
+                                        x)))),
+                       ForAll(RUN$VAR_n_15,
+                              Implies(And(RUN$VAR_n_15 > 1,
+                                        RUN$VAR_n_15 < j),
+                                      i*RUN$VAR_n_15 != x))),
+                   And(j < x, Not(i*j == x)),
+                   True,
+                   And(x$IN$Invariant#2 == x,
+                       j$IN$Invariant#2 == j + 1,
+                       i$IN$Invariant#2 == i,
+                       ret$IN$Invariant#2 == If(ret, 1, 0))),
+               Invariant#2(x$IN$Invariant#2,
+                           j$IN$Invariant#2,
+                           i$IN$Invariant#2,
+                           ret$IN$Invariant#2)))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(Invariant#2(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(And(x > 0,
+                                        x <= 17),
+                                        i >= 2),
+                                       i < x),
+                                   j >= 2),
+                               j <= x),
+                           ForAll(RUN$VAR_m_19,
+                                  ForAll(RUN$VAR_n_20,
+                                        Implies(And(And(And(RUN$VAR_m_19 >
+                                        1,
+                                        RUN$VAR_m_19 < i),
+                                        RUN$VAR_n_20 > 1),
+                                        RUN$VAR_n_20 < x),
+                                        RUN$VAR_m_19*
+                                        RUN$VAR_n_20 !=
+                                        x)))),
+                       ForAll(RUN$VAR_n_21,
+                              Implies(And(RUN$VAR_n_21 > 1,
+                                        RUN$VAR_n_21 < j),
+                                      i*RUN$VAR_n_21 != x))),
+                   And(j < x, i*j == x),
+                   True),
+               Or(And(x == 1, Not(False)),
+                  And(And(And(And(And(And(x > 0, x <= 17),
+                                      i >= 2),
+                                  i <= x),
+                              j >= 2),
+                          j <= x),
+                      Not(Xor(False,
+                              ForAll(RUN$VAR_m_22,
+                                     ForAll(RUN$VAR_n_23,
+                                        Implies(And(And(And(RUN$VAR_m_22 >
+                                        1,
+                                        RUN$VAR_m_22 < x),
+                                        RUN$VAR_n_23 > 1),
+                                        RUN$VAR_n_23 < x),
+                                        RUN$VAR_m_22*
+                                        RUN$VAR_n_23 !=
+                                        x)))))))))
+#################################################################################################################
+ForAll([x, j, i, ret],
+       Implies(And(Invariant#2(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(And(x > 0,
+                                        x <= 17),
+                                        i >= 2),
+                                       i < x),
+                                   j >= 2),
+                               j <= x),
+                           ForAll(RUN$VAR_m_24,
+                                  ForAll(RUN$VAR_n_25,
+                                        Implies(And(And(And(RUN$VAR_m_24 >
+                                        1,
+                                        RUN$VAR_m_24 < i),
+                                        RUN$VAR_n_25 > 1),
+                                        RUN$VAR_n_25 < x),
+                                        RUN$VAR_m_24*
+                                        RUN$VAR_n_25 !=
+                                        x)))),
+                       ForAll(RUN$VAR_n_26,
+                              Implies(And(RUN$VAR_n_26 > 1,
+                                        RUN$VAR_n_26 < j),
+                                      i*RUN$VAR_n_26 != x))),
+                   Not(j < x),
+                   True),
+               And(And(And(And(And(And(x > 0, x <= 17),
+                                   i + 1 >= 2),
+                               i + 1 <= x),
+                           j >= 2),
+                       j <= x),
+                   ForAll(RUN$VAR_m_27,
+                          ForAll(RUN$VAR_n_28,
+                                 Implies(And(And(And(RUN$VAR_m_27 >
+                                        1,
+                                        RUN$VAR_m_27 < i + 1),
+                                        RUN$VAR_n_28 > 1),
+                                        RUN$VAR_n_28 < x),
+                                        RUN$VAR_m_27*
+                                        RUN$VAR_n_28 !=
+                                        x))))))
+#################################################################################################################
+ForAll([x,
+        j,
+        i,
+        ret,
+        x$IN$Invariant#1,
+        j$IN$Invariant#1,
+        i$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(Invariant#2(x, j, i, If(ret, 1, 0)),
+                   And(And(And(And(And(And(And(x > 0,
+                                        x <= 17),
+                                        i >= 2),
+                                       i < x),
+                                   j >= 2),
+                               j <= x),
+                           ForAll(RUN$VAR_m_24,
+                                  ForAll(RUN$VAR_n_25,
+                                        Implies(And(And(And(RUN$VAR_m_24 >
+                                        1,
+                                        RUN$VAR_m_24 < i),
+                                        RUN$VAR_n_25 > 1),
+                                        RUN$VAR_n_25 < x),
+                                        RUN$VAR_m_24*
+                                        RUN$VAR_n_25 !=
+                                        x)))),
+                       ForAll(RUN$VAR_n_26,
+                              Implies(And(RUN$VAR_n_26 > 1,
+                                        RUN$VAR_n_26 < j),
+                                      i*RUN$VAR_n_26 != x))),
+                   Not(j < x),
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       j$IN$Invariant#1 == j,
+                       i$IN$Invariant#1 == i + 1,
+                       ret$IN$Invariant#1 == If(ret, 1, 0))),
+               Invariant#1(x$IN$Invariant#1,
+                           j$IN$Invariant#1,
+                           i$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "is_prime" from "benchmarks\json\advanced_math.c"
+Found 7 paths:
+
+***START***
+***ASSIGNMENT***	i = 2
+***ASSIGNMENT***	j = 2
+***CONDITION***	x == 1
+False
+***ASSIGNMENT***	i = 2
+***CONDITION***	i < x
+
+R is:	Not(x == 1)
+Simplified R is:	Not(x == 1)
+T is:	{x: x, j: 2, i: 2, ret: ret}
+I_start(vars) is:	 And(x > 0, x <= 17)
+Simplified I_start(vars) is:	 And(Not(x <= 0), x <= 17)
+I_end(T(vars)) is:	 And(And(And(And(And(And(x > 0, x <= 17), True), x >= 2),
+            True),
+        x >= 2),
+    ForAll(RUN$VAR_m_0,
+           ForAll(RUN$VAR_n_1,
+                  Implies(And(And(And(RUN$VAR_m_0 > 1,
+                                      RUN$VAR_m_0 < 2),
+                                  RUN$VAR_n_1 > 1),
+                              RUN$VAR_n_1 < x),
+                          RUN$VAR_m_0*RUN$VAR_n_1 != x))))
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    x <= 17,
+    x >= 2,
+    ForAll([RUN$VAR_m_0, RUN$VAR_n_1],
+           Or(Not(RUN$VAR_n_1*RUN$VAR_m_0 == x),
+              Not(And(Not(RUN$VAR_m_0 <= 1),
+                      Not(2 <= RUN$VAR_m_0),
+                      Not(RUN$VAR_n_1 <= 1),
+                      Not(x <= RUN$VAR_n_1))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(x > 0, x <= 17), Not(x == 1), True),
+        And(And(And(And(And(And(x > 0, x <= 17), True),
+                        x >= 2),
+                    True),
+                x >= 2),
+            ForAll(RUN$VAR_m_0,
+                   ForAll(RUN$VAR_n_1,
+                          Implies(And(And(And(RUN$VAR_m_0 >
+                                        1,
+                                        RUN$VAR_m_0 < 2),
+                                        RUN$VAR_n_1 > 1),
+                                      RUN$VAR_n_1 < x),
+                                  RUN$VAR_m_0*RUN$VAR_n_1 !=
+                                  x)))))
+PROVED
+
+
+
+
+***START***
+***ASSIGNMENT***	i = 2
+***ASSIGNMENT***	j = 2
+***CONDITION***	x == 1
+True
+***ASSIGNMENT***	ret = False
+***HALT***
+
+R is:	x == 1
+Simplified R is:	x == 1
+T is:	{x: x, j: 2, i: 2, ret: False}
+I_start(vars) is:	 And(x > 0, x <= 17)
+Simplified I_start(vars) is:	 And(Not(x <= 0), x <= 17)
+I_end(T(vars)) is:	 Or(And(x == 1, Not(False)),
+   And(And(And(And(And(And(x > 0, x <= 17), True), x >= 2),
+               True),
+           x >= 2),
+       Not(Xor(False,
+               ForAll(RUN$VAR_m_2,
+                      ForAll(RUN$VAR_n_3,
+                             Implies(And(And(And(RUN$VAR_m_2 >
+                                        1,
+                                        RUN$VAR_m_2 < x),
+                                        RUN$VAR_n_3 > 1),
+                                        RUN$VAR_n_3 < x),
+                                     RUN$VAR_m_2*RUN$VAR_n_3 !=
+                                     x)))))))
+Simplified I_end(T(vars)) is:	 Or(x == 1,
+   And(Not(x <= 0),
+       x <= 17,
+       x >= 2,
+       Not(ForAll([RUN$VAR_m_2, RUN$VAR_n_3],
+                  Or(Not(And(Not(RUN$VAR_m_2 <= 1),
+                             Not(x <= RUN$VAR_m_2),
+                             Not(RUN$VAR_n_3 <= 1),
+                             Not(x <= RUN$VAR_n_3))),
+                     Not(RUN$VAR_n_3*RUN$VAR_m_2 == x))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(x > 0, x <= 17), x == 1, True),
+        Or(And(x == 1, Not(False)),
+           And(And(And(And(And(And(x > 0, x <= 17), True),
+                           x >= 2),
+                       True),
+                   x >= 2),
+               Not(Xor(False,
+                       ForAll(RUN$VAR_m_2,
+                              ForAll(RUN$VAR_n_3,
+                                     Implies(And(And(And(RUN$VAR_m_2 >
+                                        1,
+                                        RUN$VAR_m_2 < x),
+                                        RUN$VAR_n_3 > 1),
+                                        RUN$VAR_n_3 < x),
+                                        RUN$VAR_m_2*
+                                        RUN$VAR_n_3 !=
+                                        x))))))))
+PROVED
+
+
+
+
+***CONDITION***	i < x
+True
+***ASSIGNMENT***	j = 2
+***CONDITION***	j < x
+
+R is:	i < x
+Simplified R is:	Not(x <= i)
+T is:	{x: x, j: 2, i: i, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i <= x),
+            j >= 2),
+        j <= x),
+    ForAll(RUN$VAR_m_4,
+           ForAll(RUN$VAR_n_5,
+                  Implies(And(And(And(RUN$VAR_m_4 > 1,
+                                      RUN$VAR_m_4 < i),
+                                  RUN$VAR_n_5 > 1),
+                              RUN$VAR_n_5 < x),
+                          RUN$VAR_m_4*RUN$VAR_n_5 != x))))
+Simplified I_start(vars) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    i <= x,
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_4, RUN$VAR_n_5],
+           Or(Not(RUN$VAR_n_5*RUN$VAR_m_4 == x),
+              Not(And(Not(RUN$VAR_m_4 <= 1),
+                      Not(i <= RUN$VAR_m_4),
+                      Not(RUN$VAR_n_5 <= 1),
+                      Not(x <= RUN$VAR_n_5))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i < x),
+                True),
+            x >= 2),
+        ForAll(RUN$VAR_m_6,
+               ForAll(RUN$VAR_n_7,
+                      Implies(And(And(And(RUN$VAR_m_6 > 1,
+                                        RUN$VAR_m_6 < i),
+                                      RUN$VAR_n_7 > 1),
+                                  RUN$VAR_n_7 < x),
+                              RUN$VAR_m_6*RUN$VAR_n_7 != x)))),
+    ForAll(RUN$VAR_n_8,
+           Implies(And(RUN$VAR_n_8 > 1, RUN$VAR_n_8 < 2),
+                   i*RUN$VAR_n_8 != x)))
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    Not(x <= i),
+    x >= 2,
+    ForAll([RUN$VAR_m_6, RUN$VAR_n_7],
+           Or(Not(And(Not(RUN$VAR_m_6 <= 1),
+                      Not(i <= RUN$VAR_m_6),
+                      Not(RUN$VAR_n_7 <= 1),
+                      Not(x <= RUN$VAR_n_7))),
+              Not(RUN$VAR_n_7*RUN$VAR_m_6 == x))),
+    ForAll(RUN$VAR_n_8,
+           Or(Not(i*RUN$VAR_n_8 == x),
+              Not(And(Not(RUN$VAR_n_8 <= 1),
+                      Not(2 <= RUN$VAR_n_8))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                            i <= x),
+                        j >= 2),
+                    j <= x),
+                ForAll(RUN$VAR_m_4,
+                       ForAll(RUN$VAR_n_5,
+                              Implies(And(And(And(RUN$VAR_m_4 >
+                                        1,
+                                        RUN$VAR_m_4 < i),
+                                        RUN$VAR_n_5 > 1),
+                                        RUN$VAR_n_5 < x),
+                                      RUN$VAR_m_4*
+                                      RUN$VAR_n_5 !=
+                                      x)))),
+            i < x,
+            True),
+        And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                            i < x),
+                        True),
+                    x >= 2),
+                ForAll(RUN$VAR_m_6,
+                       ForAll(RUN$VAR_n_7,
+                              Implies(And(And(And(RUN$VAR_m_6 >
+                                        1,
+                                        RUN$VAR_m_6 < i),
+                                        RUN$VAR_n_7 > 1),
+                                        RUN$VAR_n_7 < x),
+                                      RUN$VAR_m_6*
+                                      RUN$VAR_n_7 !=
+                                      x)))),
+            ForAll(RUN$VAR_n_8,
+                   Implies(And(RUN$VAR_n_8 > 1,
+                               RUN$VAR_n_8 < 2),
+                           i*RUN$VAR_n_8 != x))))
+PROVED
+
+
+
+
+***CONDITION***	i < x
+False
+***ASSIGNMENT***	ret = True
+***HALT***
+
+R is:	Not(i < x)
+Simplified R is:	x <= i
+T is:	{x: x, j: j, i: i, ret: True}
+I_start(vars) is:	 And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i <= x),
+            j >= 2),
+        j <= x),
+    ForAll(RUN$VAR_m_9,
+           ForAll(RUN$VAR_n_10,
+                  Implies(And(And(And(RUN$VAR_m_9 > 1,
+                                      RUN$VAR_m_9 < i),
+                                  RUN$VAR_n_10 > 1),
+                              RUN$VAR_n_10 < x),
+                          RUN$VAR_m_9*RUN$VAR_n_10 != x))))
+Simplified I_start(vars) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    i <= x,
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_9, RUN$VAR_n_10],
+           Or(Not(RUN$VAR_n_10*RUN$VAR_m_9 == x),
+              Not(And(Not(RUN$VAR_m_9 <= 1),
+                      Not(i <= RUN$VAR_m_9),
+                      Not(RUN$VAR_n_10 <= 1),
+                      Not(x <= RUN$VAR_n_10))))))
+I_end(T(vars)) is:	 Or(And(x == 1, Not(True)),
+   And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i <= x),
+               j >= 2),
+           j <= x),
+       Not(Xor(True,
+               ForAll(RUN$VAR_m_11,
+                      ForAll(RUN$VAR_n_12,
+                             Implies(And(And(And(RUN$VAR_m_11 >
+                                        1,
+                                        RUN$VAR_m_11 < x),
+                                        RUN$VAR_n_12 > 1),
+                                        RUN$VAR_n_12 < x),
+                                     RUN$VAR_m_11*
+                                     RUN$VAR_n_12 !=
+                                     x)))))))
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    i <= x,
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_11, RUN$VAR_n_12],
+           Or(Not(RUN$VAR_n_12*RUN$VAR_m_11 == x),
+              Not(And(Not(RUN$VAR_m_11 <= 1),
+                      Not(x <= RUN$VAR_m_11),
+                      Not(RUN$VAR_n_12 <= 1),
+                      Not(x <= RUN$VAR_n_12))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                            i <= x),
+                        j >= 2),
+                    j <= x),
+                ForAll(RUN$VAR_m_9,
+                       ForAll(RUN$VAR_n_10,
+                              Implies(And(And(And(RUN$VAR_m_9 >
+                                        1,
+                                        RUN$VAR_m_9 < i),
+                                        RUN$VAR_n_10 > 1),
+                                        RUN$VAR_n_10 < x),
+                                      RUN$VAR_m_9*
+                                      RUN$VAR_n_10 !=
+                                      x)))),
+            Not(i < x),
+            True),
+        Or(And(x == 1, Not(True)),
+           And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                           i <= x),
+                       j >= 2),
+                   j <= x),
+               Not(Xor(True,
+                       ForAll(RUN$VAR_m_11,
+                              ForAll(RUN$VAR_n_12,
+                                     Implies(And(And(And(RUN$VAR_m_11 >
+                                        1,
+                                        RUN$VAR_m_11 < x),
+                                        RUN$VAR_n_12 > 1),
+                                        RUN$VAR_n_12 < x),
+                                        RUN$VAR_m_11*
+                                        RUN$VAR_n_12 !=
+                                        x))))))))
+PROVED
+
+
+
+
+***CONDITION***	j < x
+True
+***CONDITION***	i*j == x
+False
+***ASSIGNMENT***	j = j + 1
+***CONDITION***	j < x
+
+R is:	And(j < x, Not(i*j == x))
+Simplified R is:	And(Not(x <= j), Not(i*j == x))
+T is:	{x: x, j: j + 1, i: i, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i < x),
+                j >= 2),
+            j <= x),
+        ForAll(RUN$VAR_m_13,
+               ForAll(RUN$VAR_n_14,
+                      Implies(And(And(And(RUN$VAR_m_13 > 1,
+                                        RUN$VAR_m_13 < i),
+                                      RUN$VAR_n_14 > 1),
+                                  RUN$VAR_n_14 < x),
+                              RUN$VAR_m_13*RUN$VAR_n_14 != x)))),
+    ForAll(RUN$VAR_n_15,
+           Implies(And(RUN$VAR_n_15 > 1, RUN$VAR_n_15 < j),
+                   i*RUN$VAR_n_15 != x)))
+Simplified I_start(vars) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    Not(x <= i),
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_13, RUN$VAR_n_14],
+           Or(Not(And(Not(RUN$VAR_m_13 <= 1),
+                      Not(i <= RUN$VAR_m_13),
+                      Not(RUN$VAR_n_14 <= 1),
+                      Not(x <= RUN$VAR_n_14))),
+              Not(RUN$VAR_n_14*RUN$VAR_m_13 == x))),
+    ForAll(RUN$VAR_n_15,
+           Or(Not(i*RUN$VAR_n_15 == x),
+              Not(And(Not(RUN$VAR_n_15 <= 1),
+                      Not(j <= RUN$VAR_n_15))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i < x),
+                j + 1 >= 2),
+            j + 1 <= x),
+        ForAll(RUN$VAR_m_16,
+               ForAll(RUN$VAR_n_17,
+                      Implies(And(And(And(RUN$VAR_m_16 > 1,
+                                        RUN$VAR_m_16 < i),
+                                      RUN$VAR_n_17 > 1),
+                                  RUN$VAR_n_17 < x),
+                              RUN$VAR_m_16*RUN$VAR_n_17 != x)))),
+    ForAll(RUN$VAR_n_18,
+           Implies(And(RUN$VAR_n_18 > 1,
+                       RUN$VAR_n_18 < j + 1),
+                   i*RUN$VAR_n_18 != x)))
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    Not(x <= i),
+    j >= 1,
+    j <= -1 + x,
+    ForAll([RUN$VAR_m_16, RUN$VAR_n_17],
+           Or(Not(RUN$VAR_n_17*RUN$VAR_m_16 == x),
+              Not(And(Not(RUN$VAR_m_16 <= 1),
+                      Not(i <= RUN$VAR_m_16),
+                      Not(RUN$VAR_n_17 <= 1),
+                      Not(x <= RUN$VAR_n_17))))),
+    ForAll(RUN$VAR_n_18,
+           Or(Not(i*RUN$VAR_n_18 == x),
+              Not(And(Not(RUN$VAR_n_18 <= 1),
+                      Not(j <= -1 + RUN$VAR_n_18))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(x > 0, x <= 17),
+                                    i >= 2),
+                                i < x),
+                            j >= 2),
+                        j <= x),
+                    ForAll(RUN$VAR_m_13,
+                           ForAll(RUN$VAR_n_14,
+                                  Implies(And(And(And(RUN$VAR_m_13 >
+                                        1,
+                                        RUN$VAR_m_13 < i),
+                                        RUN$VAR_n_14 > 1),
+                                        RUN$VAR_n_14 < x),
+                                        RUN$VAR_m_13*
+                                        RUN$VAR_n_14 !=
+                                        x)))),
+                ForAll(RUN$VAR_n_15,
+                       Implies(And(RUN$VAR_n_15 > 1,
+                                   RUN$VAR_n_15 < j),
+                               i*RUN$VAR_n_15 != x))),
+            And(j < x, Not(i*j == x)),
+            True),
+        And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                            i < x),
+                        j + 1 >= 2),
+                    j + 1 <= x),
+                ForAll(RUN$VAR_m_16,
+                       ForAll(RUN$VAR_n_17,
+                              Implies(And(And(And(RUN$VAR_m_16 >
+                                        1,
+                                        RUN$VAR_m_16 < i),
+                                        RUN$VAR_n_17 > 1),
+                                        RUN$VAR_n_17 < x),
+                                      RUN$VAR_m_16*
+                                      RUN$VAR_n_17 !=
+                                      x)))),
+            ForAll(RUN$VAR_n_18,
+                   Implies(And(RUN$VAR_n_18 > 1,
+                               RUN$VAR_n_18 < j + 1),
+                           i*RUN$VAR_n_18 != x))))
+PROVED
+
+
+
+
+***CONDITION***	j < x
+True
+***CONDITION***	i*j == x
+True
+***ASSIGNMENT***	ret = False
+***HALT***
+
+R is:	And(j < x, i*j == x)
+Simplified R is:	And(Not(x <= j), i*j == x)
+T is:	{x: x, j: j, i: i, ret: False}
+I_start(vars) is:	 And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i < x),
+                j >= 2),
+            j <= x),
+        ForAll(RUN$VAR_m_19,
+               ForAll(RUN$VAR_n_20,
+                      Implies(And(And(And(RUN$VAR_m_19 > 1,
+                                        RUN$VAR_m_19 < i),
+                                      RUN$VAR_n_20 > 1),
+                                  RUN$VAR_n_20 < x),
+                              RUN$VAR_m_19*RUN$VAR_n_20 != x)))),
+    ForAll(RUN$VAR_n_21,
+           Implies(And(RUN$VAR_n_21 > 1, RUN$VAR_n_21 < j),
+                   i*RUN$VAR_n_21 != x)))
+Simplified I_start(vars) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    Not(x <= i),
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_19, RUN$VAR_n_20],
+           Or(Not(And(Not(RUN$VAR_m_19 <= 1),
+                      Not(i <= RUN$VAR_m_19),
+                      Not(RUN$VAR_n_20 <= 1),
+                      Not(x <= RUN$VAR_n_20))),
+              Not(RUN$VAR_n_20*RUN$VAR_m_19 == x))),
+    ForAll(RUN$VAR_n_21,
+           Or(Not(And(Not(RUN$VAR_n_21 <= 1),
+                      Not(j <= RUN$VAR_n_21))),
+              Not(i*RUN$VAR_n_21 == x))))
+I_end(T(vars)) is:	 Or(And(x == 1, Not(False)),
+   And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i <= x),
+               j >= 2),
+           j <= x),
+       Not(Xor(False,
+               ForAll(RUN$VAR_m_22,
+                      ForAll(RUN$VAR_n_23,
+                             Implies(And(And(And(RUN$VAR_m_22 >
+                                        1,
+                                        RUN$VAR_m_22 < x),
+                                        RUN$VAR_n_23 > 1),
+                                        RUN$VAR_n_23 < x),
+                                     RUN$VAR_m_22*
+                                     RUN$VAR_n_23 !=
+                                     x)))))))
+Simplified I_end(T(vars)) is:	 Or(x == 1,
+   And(Not(x <= 0),
+       x <= 17,
+       i >= 2,
+       i <= x,
+       j >= 2,
+       j <= x,
+       Not(ForAll([RUN$VAR_m_22, RUN$VAR_n_23],
+                  Or(Not(And(Not(RUN$VAR_m_22 <= 1),
+                             Not(x <= RUN$VAR_m_22),
+                             Not(RUN$VAR_n_23 <= 1),
+                             Not(x <= RUN$VAR_n_23))),
+                     Not(RUN$VAR_n_23*RUN$VAR_m_22 == x))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(x > 0, x <= 17),
+                                    i >= 2),
+                                i < x),
+                            j >= 2),
+                        j <= x),
+                    ForAll(RUN$VAR_m_19,
+                           ForAll(RUN$VAR_n_20,
+                                  Implies(And(And(And(RUN$VAR_m_19 >
+                                        1,
+                                        RUN$VAR_m_19 < i),
+                                        RUN$VAR_n_20 > 1),
+                                        RUN$VAR_n_20 < x),
+                                        RUN$VAR_m_19*
+                                        RUN$VAR_n_20 !=
+                                        x)))),
+                ForAll(RUN$VAR_n_21,
+                       Implies(And(RUN$VAR_n_21 > 1,
+                                   RUN$VAR_n_21 < j),
+                               i*RUN$VAR_n_21 != x))),
+            And(j < x, i*j == x),
+            True),
+        Or(And(x == 1, Not(False)),
+           And(And(And(And(And(And(x > 0, x <= 17), i >= 2),
+                           i <= x),
+                       j >= 2),
+                   j <= x),
+               Not(Xor(False,
+                       ForAll(RUN$VAR_m_22,
+                              ForAll(RUN$VAR_n_23,
+                                     Implies(And(And(And(RUN$VAR_m_22 >
+                                        1,
+                                        RUN$VAR_m_22 < x),
+                                        RUN$VAR_n_23 > 1),
+                                        RUN$VAR_n_23 < x),
+                                        RUN$VAR_m_22*
+                                        RUN$VAR_n_23 !=
+                                        x))))))))
+PROVED
+
+
+
+
+***CONDITION***	j < x
+False
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < x
+
+R is:	Not(j < x)
+Simplified R is:	x <= j
+T is:	{x: x, j: j, i: i + 1, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(x > 0, x <= 17), i >= 2), i < x),
+                j >= 2),
+            j <= x),
+        ForAll(RUN$VAR_m_24,
+               ForAll(RUN$VAR_n_25,
+                      Implies(And(And(And(RUN$VAR_m_24 > 1,
+                                        RUN$VAR_m_24 < i),
+                                      RUN$VAR_n_25 > 1),
+                                  RUN$VAR_n_25 < x),
+                              RUN$VAR_m_24*RUN$VAR_n_25 != x)))),
+    ForAll(RUN$VAR_n_26,
+           Implies(And(RUN$VAR_n_26 > 1, RUN$VAR_n_26 < j),
+                   i*RUN$VAR_n_26 != x)))
+Simplified I_start(vars) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 2,
+    Not(x <= i),
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_24, RUN$VAR_n_25],
+           Or(Not(And(Not(RUN$VAR_m_24 <= 1),
+                      Not(i <= RUN$VAR_m_24),
+                      Not(RUN$VAR_n_25 <= 1),
+                      Not(x <= RUN$VAR_n_25))),
+              Not(RUN$VAR_n_25*RUN$VAR_m_24 == x))),
+    ForAll(RUN$VAR_n_26,
+           Or(Not(i*RUN$VAR_n_26 == x),
+              Not(And(Not(RUN$VAR_n_26 <= 1),
+                      Not(j <= RUN$VAR_n_26))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(x > 0, x <= 17), i + 1 >= 2),
+                i + 1 <= x),
+            j >= 2),
+        j <= x),
+    ForAll(RUN$VAR_m_27,
+           ForAll(RUN$VAR_n_28,
+                  Implies(And(And(And(RUN$VAR_m_27 > 1,
+                                      RUN$VAR_m_27 < i + 1),
+                                  RUN$VAR_n_28 > 1),
+                              RUN$VAR_n_28 < x),
+                          RUN$VAR_m_27*RUN$VAR_n_28 != x))))
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    x <= 17,
+    i >= 1,
+    i <= -1 + x,
+    j >= 2,
+    j <= x,
+    ForAll([RUN$VAR_m_27, RUN$VAR_n_28],
+           Or(Not(And(Not(RUN$VAR_m_27 <= 1),
+                      Not(i <= -1 + RUN$VAR_m_27),
+                      Not(RUN$VAR_n_28 <= 1),
+                      Not(x <= RUN$VAR_n_28))),
+              Not(RUN$VAR_n_28*RUN$VAR_m_27 == x))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(x > 0, x <= 17),
+                                    i >= 2),
+                                i < x),
+                            j >= 2),
+                        j <= x),
+                    ForAll(RUN$VAR_m_24,
+                           ForAll(RUN$VAR_n_25,
+                                  Implies(And(And(And(RUN$VAR_m_24 >
+                                        1,
+                                        RUN$VAR_m_24 < i),
+                                        RUN$VAR_n_25 > 1),
+                                        RUN$VAR_n_25 < x),
+                                        RUN$VAR_m_24*
+                                        RUN$VAR_n_25 !=
+                                        x)))),
+                ForAll(RUN$VAR_n_26,
+                       Implies(And(RUN$VAR_n_26 > 1,
+                                   RUN$VAR_n_26 < j),
+                               i*RUN$VAR_n_26 != x))),
+            Not(j < x),
+            True),
+        And(And(And(And(And(And(x > 0, x <= 17), i + 1 >= 2),
+                        i + 1 <= x),
+                    j >= 2),
+                j <= x),
+            ForAll(RUN$VAR_m_27,
+                   ForAll(RUN$VAR_n_28,
+                          Implies(And(And(And(RUN$VAR_m_27 >
+                                        1,
+                                        RUN$VAR_m_27 < i + 1),
+                                        RUN$VAR_n_28 > 1),
+                                      RUN$VAR_n_28 < x),
+                                  RUN$VAR_m_27*RUN$VAR_n_28 !=
+                                  x)))))
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

@@ -1,0 +1,39 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "bad_tricky_sub" from "benchmarks\json\wrong.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(declare-var I Int)
+(declare-var J Int)
+(declare-var K Int)
+(declare-var L Int)
+(declare-var M Int)
+(declare-var N Int)
+(rule (=> (and (= E J) (= F I) (= G J) (= D 2) (= C 1) (> I 0) (= B H) (= A 1))
+    (|Invariant#1| G F E D C B A)))
+(rule (let ((a!1 (and (|Invariant#1| N M L K J I H)
+                (= D (+ K 2))
+                (= E (- (+ L J) K))
+                (= F M)
+                (= G N)
+                (= C (+ J 2))
+                (<= H M)
+                (= B I)
+                (= A (+ H 1)))))
+  (=> a!1 (|Invariant#1| G F E D C B A))))
+
+NOT PROVED
+Invariants signature:
+Invariant#I(x, iterations, result, even, odd, ret, i)
+Invariants stack:
+Invariant#1(0, 1, 0, 2, 1, 0, 1)
+Invariant#1(0, 1, -1, 4, 3, 0, 2)

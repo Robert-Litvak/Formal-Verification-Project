@@ -1,0 +1,77 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "array_index_value_id" from "benchmarks\json\other.c"
+Fixed Point solver failed with error
+The error:
+b'spacer: quantifier in a recursive rule:\n<null>:\nquery!1(#3,#2,#1,#0) :- \n Invariant#2(#2,#1,#0),\n (>= (:var 3) 0),\n (< (:var 3) 100),\n (not (< (:var 1) 100)),\n (let ((a!1 (forall ((RUN$VAR_k3_7 Int))\n             (=> (and (>= RUN$VAR_k3_7 0) (< RUN$VAR_k3_7 (:var 2)))\n                 (= (select (:var 3) RUN$VAR_k3_7) RUN$VAR_k3_7)))))\n  (= a!1 true)),\n (<= (:var 1) 100),\n (>= (:var 1) 1),\n (not (= (select (:var 2) (:var 3)) (:var 3))).\n'
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "array_index_value_id" from "benchmarks\json\other.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "array_index_value_id" from "benchmarks\json\other.c"
+Found 5 paths:
+
+***START***
+***ASSIGNMENT***	i = 0
+***CONDITION***	i < 100
+
+PROVED
+
+
+
+
+***CONDITION***	i < 100
+True
+***ASSIGNMENT***	result[i] = 0
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < 100
+
+PROVED
+
+
+
+
+***CONDITION***	i < 100
+False
+***ASSIGNMENT***	j = 1
+***CONDITION***	j < 100
+
+PROVED
+
+
+
+
+***CONDITION***	j < 100
+True
+***ASSIGNMENT***	result[j] = result[j - 1] + 1
+***ASSIGNMENT***	j = j + 1
+***CONDITION***	j < 100
+
+PROVED
+
+
+
+
+***CONDITION***	j < 100
+False
+***HALT***
+
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

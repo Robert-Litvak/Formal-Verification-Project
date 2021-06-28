@@ -1,0 +1,10 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "mul" from "benchmarks\json\basic_math.c"
+PROVED
+Solution:
+ForAll([x, y, result, ret, i],
+       Invariant#1(x, y, result, ret, i) ==
+       And(Or(Not(i <= 0), result - x*y >= 0),
+           Or(Not(i <= 0), result - x*y <= 0)))

@@ -1,0 +1,94 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+Fixed Point solver failed with error
+The error:
+b"Uninterpreted 'GCD' in <null>:\nInvariant#1(#4,#3,#2,#1,#0) :- \n (> (:var 7) 0),\n (< (:var 7) 6),\n (> (:var 6) 0),\n (< (:var 6) 6),\n (> GCD 0),\n (< GCD 6),\n (= (:var 2) (:var 6)),\n (= (:var 3) (:var 6)),\n (= (:var 4) (:var 7)),\n (let ((a!1 (exists ((RUN$VAR_a_0 Int))\n             (and (> RUN$VAR_a_0 0)\n                  (< RUN$VAR_a_0 6)\n                  (<= RUN$VAR_a_0 (:var 8))\n                  (= (* RUN$VAR_a_0 GCD) (:var 8))))))\n  (= a!1 true)),\n (let ((a!1 (exists ((RUN$VAR_a_1 Int))\n             (and (> RUN$VAR_a_1 0)\n                  (< RUN$VAR_a_1 6)\n                  (<= RUN$VAR_a_1 (:var 7))\n                  (= (* RUN$VAR_a_1 GCD) (:var 7))))))\n  (= a!1 true)),\n (let ((a!1 (not (exists ((RUN$VAR_i_2 Int))\n                  (let ((a!1 (exists ((RUN$VAR_j_3 Int))\n                               (and (and (> RUN$VAR_j_3 0) (< RUN$VAR_j_3 6))\n                                    (<= RUN$VAR_j_3 (:var 9))\n                                    (= (* RUN$VAR_j_3 RUN$VAR_i_2) (:var 9)))))\n                        (a!2 (exists ((RUN$VAR_k_4 Int))\n                               (and (and (> RUN$VAR_k_4 0) (< RUN$VAR_k_4 6))\n                                    (<= RUN$VAR_k_4 (:var 8))\n                                    (= (* RUN$VAR_k_4 RUN$VAR_i_2) (:var 8))))))\n                    (and (< GCD RUN$VAR_i_2) (< RUN$VAR_i_2 6) a!1 a!2))))))\n  (or (and (= (:var 7) (:var 6)) (= GCD (:var 7))) a!1)),\n (= (:var 1) (:var 7)),\n (= (:var 0) (:var 5)).\n"
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+Found 7 paths:
+
+***START***
+***ASSIGNMENT***	x_m = x
+***ASSIGNMENT***	y_m = y
+***CONDITION***	x_m != y_m
+
+PROVED
+
+
+
+
+***CONDITION***	x_m != y_m
+True
+***CONDITION***	x_m > y_m
+
+PROVED
+
+
+
+
+***CONDITION***	x_m != y_m
+False
+***ASSIGNMENT***	ret = x_m
+***HALT***
+
+PROVED
+
+
+
+
+***CONDITION***	x_m > y_m
+True
+***ASSIGNMENT***	x_m = x_m - y_m
+***CONDITION***	x_m > y_m
+
+PROVED
+
+
+
+
+***CONDITION***	x_m > y_m
+False
+***CONDITION***	y_m > x_m
+
+PROVED
+
+
+
+
+***CONDITION***	y_m > x_m
+True
+***ASSIGNMENT***	y_m = y_m - x_m
+***CONDITION***	y_m > x_m
+
+PROVED
+
+
+
+
+***CONDITION***	y_m > x_m
+False
+***CONDITION***	x_m != y_m
+
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

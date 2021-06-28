@@ -1,0 +1,32 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "three_digit_number_duplication" from "benchmarks\json\other.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(rule (=> (and (= D E) (= C 0) (>= E 100) (<= E 999) (= B 0) (= A 1))
+    (|Invariant#1| D C B A)))
+(rule (let ((a!1 (and (|Invariant#1| H G F E)
+                (= B (+ F (* H E)))
+                (= C G)
+                (= D H)
+                (or (= E 1) (= E 1000) (= E 1000000))
+                (< E 1000000)
+                (or (= F 0) (= F H) (= F (* 1001 H)))
+                (= A (* E 1000)))))
+  (=> a!1 (|Invariant#1| D C B A))))
+
+PROVED
+Solution:
+ForAll([x, z, y, i],
+       Invariant#1(x, z, y, i) ==
+       And(Or(Not(i >= 1000000), Not(x - y >= 0)),
+           Not(x <= 99)))

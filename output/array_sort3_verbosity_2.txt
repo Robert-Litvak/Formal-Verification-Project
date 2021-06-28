@@ -1,0 +1,172 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "sort3" from "benchmarks\json\array.c"
+Adding rules:
+ForAll([arr, i, tmp],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] > arr[i + 1]),
+                       Not(arr[i + 1] > arr[i + 2]),
+                       Not(arr[i] > arr[i + 1])),
+                   True),
+               And(arr[i] <= arr[i + 1],
+                   arr[i + 1] <= arr[i + 2])))
+#################################################################################################################
+ForAll([arr, i, tmp, TMP$ARR_0, TMP$ARR_1],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] > arr[i + 1]),
+                       Not(arr[i + 1] > arr[i + 2]),
+                       arr[i] > arr[i + 1]),
+                   And(Store(arr, i, arr[i + 1]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 1, arr[i]) ==
+                       TMP$ARR_1)),
+               And(TMP$ARR_1[i] <= TMP$ARR_1[i + 1],
+                   TMP$ARR_1[i + 1] <= TMP$ARR_1[i + 2])))
+#################################################################################################################
+ForAll([arr, i, tmp, TMP$ARR_0, TMP$ARR_1],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] > arr[i + 1]),
+                       arr[i + 1] > arr[i + 2],
+                       Not(TMP$ARR_1[i] > TMP$ARR_1[i + 1])),
+                   And(Store(arr, i + 1, arr[i + 2]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 2, arr[i + 1]) ==
+                       TMP$ARR_1)),
+               And(TMP$ARR_1[i] <= TMP$ARR_1[i + 1],
+                   TMP$ARR_1[i + 1] <= TMP$ARR_1[i + 2])))
+#################################################################################################################
+ForAll([arr,
+        i,
+        tmp,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        TMP$ARR_2,
+        TMP$ARR_3],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] > arr[i + 1]),
+                       arr[i + 1] > arr[i + 2],
+                       TMP$ARR_1[i] > TMP$ARR_1[i + 1]),
+                   And(Store(arr, i + 1, arr[i + 2]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 2, arr[i + 1]) ==
+                       TMP$ARR_1,
+                       Store(TMP$ARR_1, i, TMP$ARR_1[i + 1]) ==
+                       TMP$ARR_2,
+                       Store(TMP$ARR_2, i + 1, TMP$ARR_1[i]) ==
+                       TMP$ARR_3)),
+               And(TMP$ARR_3[i] <= TMP$ARR_3[i + 1],
+                   TMP$ARR_3[i + 1] <= TMP$ARR_3[i + 2])))
+#################################################################################################################
+ForAll([arr, i, tmp, TMP$ARR_0, TMP$ARR_1],
+       Implies(And(True,
+                   True,
+                   And(arr[i] > arr[i + 1],
+                       Not(TMP$ARR_1[i + 1] >
+                           TMP$ARR_1[i + 2]),
+                       Not(TMP$ARR_1[i] > TMP$ARR_1[i + 1])),
+                   And(Store(arr, i, arr[i + 1]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 1, arr[i]) ==
+                       TMP$ARR_1)),
+               And(TMP$ARR_1[i] <= TMP$ARR_1[i + 1],
+                   TMP$ARR_1[i + 1] <= TMP$ARR_1[i + 2])))
+#################################################################################################################
+ForAll([arr,
+        i,
+        tmp,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        TMP$ARR_2,
+        TMP$ARR_3],
+       Implies(And(True,
+                   True,
+                   And(arr[i] > arr[i + 1],
+                       Not(TMP$ARR_1[i + 1] >
+                           TMP$ARR_1[i + 2]),
+                       TMP$ARR_1[i] > TMP$ARR_1[i + 1]),
+                   And(Store(arr, i, arr[i + 1]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 1, arr[i]) ==
+                       TMP$ARR_1,
+                       Store(TMP$ARR_1, i, TMP$ARR_1[i + 1]) ==
+                       TMP$ARR_2,
+                       Store(TMP$ARR_2, i + 1, TMP$ARR_1[i]) ==
+                       TMP$ARR_3)),
+               And(TMP$ARR_3[i] <= TMP$ARR_3[i + 1],
+                   TMP$ARR_3[i + 1] <= TMP$ARR_3[i + 2])))
+#################################################################################################################
+ForAll([arr,
+        i,
+        tmp,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        TMP$ARR_2,
+        TMP$ARR_3],
+       Implies(And(True,
+                   True,
+                   And(arr[i] > arr[i + 1],
+                       TMP$ARR_1[i + 1] > TMP$ARR_1[i + 2],
+                       Not(TMP$ARR_3[i] > TMP$ARR_3[i + 1])),
+                   And(Store(arr, i, arr[i + 1]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 1, arr[i]) ==
+                       TMP$ARR_1,
+                       Store(TMP$ARR_1,
+                             i + 1,
+                             TMP$ARR_1[i + 2]) ==
+                       TMP$ARR_2,
+                       Store(TMP$ARR_2,
+                             i + 2,
+                             TMP$ARR_1[i + 1]) ==
+                       TMP$ARR_3)),
+               And(TMP$ARR_3[i] <= TMP$ARR_3[i + 1],
+                   TMP$ARR_3[i + 1] <= TMP$ARR_3[i + 2])))
+#################################################################################################################
+ForAll([arr,
+        i,
+        tmp,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        TMP$ARR_2,
+        TMP$ARR_3,
+        TMP$ARR_4,
+        TMP$ARR_5],
+       Implies(And(True,
+                   True,
+                   And(arr[i] > arr[i + 1],
+                       TMP$ARR_1[i + 1] > TMP$ARR_1[i + 2],
+                       TMP$ARR_3[i] > TMP$ARR_3[i + 1]),
+                   And(Store(arr, i, arr[i + 1]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0, i + 1, arr[i]) ==
+                       TMP$ARR_1,
+                       Store(TMP$ARR_1,
+                             i + 1,
+                             TMP$ARR_1[i + 2]) ==
+                       TMP$ARR_2,
+                       Store(TMP$ARR_2,
+                             i + 2,
+                             TMP$ARR_1[i + 1]) ==
+                       TMP$ARR_3,
+                       Store(TMP$ARR_3, i, TMP$ARR_3[i + 1]) ==
+                       TMP$ARR_4,
+                       Store(TMP$ARR_4, i + 1, TMP$ARR_3[i]) ==
+                       TMP$ARR_5)),
+               And(TMP$ARR_5[i] <= TMP$ARR_5[i + 1],
+                   TMP$ARR_5[i + 1] <= TMP$ARR_5[i + 2])))
+#################################################################################################################
+PROVED
+No invariants required

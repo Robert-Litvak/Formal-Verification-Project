@@ -1,0 +1,10 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "bad_mul" from "benchmarks\json\wrong.c"
+NOT PROVED
+Invariants signature:
+Invariant#I(x, y, result, ret, i)
+Invariants stack:
+Invariant#1(-1, 0, 0, 0, 0)
+Invariant#1(-1, 0, -1, 0, -1)

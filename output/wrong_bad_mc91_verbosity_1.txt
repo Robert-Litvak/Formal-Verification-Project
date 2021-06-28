@@ -1,0 +1,10 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "bad_mc91" from "benchmarks\json\wrong.c"
+NOT PROVED
+Invariants signature:
+Invariant#I(n, c, ret)
+Invariants stack:
+Invariant#1(10, 1, 0)
+Invariant#1(0, 0, 0)

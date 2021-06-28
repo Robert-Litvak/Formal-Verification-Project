@@ -1,0 +1,12 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "limited_factorial_with_while" from "benchmarks\json\advanced_math.c"
+PROVED
+Solution:
+ForAll([n, i, result, ret],
+       Invariant#1(n, i, result, ret) ==
+       And(Or(Not(n >= 2), n - i <= 0, Not(result <= 1)),
+           n >= 0,
+           Not(result <= 0),
+           Or(Not(result >= 2), Not(i*result <= 0))))

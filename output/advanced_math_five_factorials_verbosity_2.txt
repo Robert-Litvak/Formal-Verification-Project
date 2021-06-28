@@ -1,0 +1,41 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "five_factorials" from "benchmarks\json\advanced_math.c"
+Adding rules:
+ForAll([results,
+        i,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        TMP$ARR_2,
+        TMP$ARR_3,
+        TMP$ARR_4],
+       Implies(And(True,
+                   True,
+                   True,
+                   And(Store(results, 0, 1) == TMP$ARR_0,
+                       Store(TMP$ARR_0, 1, 2*TMP$ARR_0[0]) ==
+                       TMP$ARR_1,
+                       Store(TMP$ARR_1, 2, 3*TMP$ARR_1[1]) ==
+                       TMP$ARR_2,
+                       Store(TMP$ARR_2, 3, 4*TMP$ARR_2[2]) ==
+                       TMP$ARR_3,
+                       Store(TMP$ARR_3, 4, 5*TMP$ARR_3[3]) ==
+                       TMP$ARR_4)),
+               And(And(And(And(And(And(True, True),
+                                   TMP$ARR_4[0] == 1),
+                               TMP$ARR_4[1] == 2),
+                           TMP$ARR_4[2] == 6),
+                       TMP$ARR_4[3] == 24),
+                   TMP$ARR_4[4] == 120)))
+#################################################################################################################
+PROVED
+No invariants required

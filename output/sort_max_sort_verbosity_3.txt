@@ -1,0 +1,1260 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+Fixed Point solver failed with error
+The error:
+b'spacer: quantifier in a recursive rule:\n<null>:\nquery!1(#6,#5,#4,#3,#2,#1,#0) :- \n Invariant#1(#5,#4,#3,#2,#1,#0),\n (> (:var 6) 0),\n (< (:var 6) (:var 4)),\n (not (>= (:var 2) 1)),\n (let ((a!1 (forall ((RUN$VAR_j3_8 Int))\n             (=> (and (>= RUN$VAR_j3_8 0) (< RUN$VAR_j3_8 (:var 3)))\n                 (<= (select (:var 6) RUN$VAR_j3_8) (select (:var 6) (:var 3)))))))\n  (=> (< (:var 2) (:var 4)) a!1)),\n (let ((a!1 (forall ((RUN$VAR_j2_7 Int))\n             (=> (and (< (:var 3) RUN$VAR_j2_7) (< RUN$VAR_j2_7 (:var 5)))\n                 (<= (select (:var 6) (- RUN$VAR_j2_7 1))\n                     (select (:var 6) RUN$VAR_j2_7))))))\n  (= a!1 true)),\n (<= (:var 2) (:var 4)),\n (>= (:var 2) 0),\n (not (<= (select (:var 5) (- (:var 6) 1)) (select (:var 5) (:var 6)))).\n'
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+Adding rules:
+ForAll([array, size, tmp, length, i_max, i],
+       Implies(And(True, size > 0, True, True),
+               And(And(And(size >= 0, size <= size),
+                       ForAll(RUN$VAR_j2_0,
+                              Implies(And(size <
+                                        RUN$VAR_j2_0,
+                                        RUN$VAR_j2_0 < size),
+                                      array[RUN$VAR_j2_0 - 1] <=
+                                      array[RUN$VAR_j2_0]))),
+                   Implies(size < size,
+                           ForAll(RUN$VAR_j3_1,
+                                  Implies(And(RUN$VAR_j3_1 >=
+                                        0,
+                                        RUN$VAR_j3_1 < size),
+                                        array[RUN$VAR_j3_1] <=
+                                        array[size]))))))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        array$IN$Invariant#1,
+        size$IN$Invariant#1,
+        tmp$IN$Invariant#1,
+        length$IN$Invariant#1,
+        i_max$IN$Invariant#1,
+        i$IN$Invariant#1],
+       Implies(And(True,
+                   size > 0,
+                   True,
+                   True,
+                   And(array$IN$Invariant#1 == array,
+                       size$IN$Invariant#1 == size,
+                       tmp$IN$Invariant#1 == tmp,
+                       length$IN$Invariant#1 == size,
+                       i_max$IN$Invariant#1 == i_max,
+                       i$IN$Invariant#1 == i)),
+               Invariant#1(array$IN$Invariant#1,
+                           size$IN$Invariant#1,
+                           tmp$IN$Invariant#1,
+                           length$IN$Invariant#1,
+                           i_max$IN$Invariant#1,
+                           i$IN$Invariant#1)))
+#################################################################################################################
+ForAll([array, size, tmp, length, i_max, i],
+       Implies(And(Invariant#1(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(length >= 0, length <= size),
+                           ForAll(RUN$VAR_j2_2,
+                                  Implies(And(length <
+                                        RUN$VAR_j2_2,
+                                        RUN$VAR_j2_2 < size),
+                                        array[RUN$VAR_j2_2 -
+                                        1] <=
+                                        array[RUN$VAR_j2_2]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j3_3,
+                                      Implies(And(RUN$VAR_j3_3 >=
+                                        0,
+                                        RUN$VAR_j3_3 <
+                                        length),
+                                        array[RUN$VAR_j3_3] <=
+                                        array[length])))),
+                   length >= 1,
+                   True),
+               And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        True),
+                                       length >= 1),
+                                   True),
+                               length > 0),
+                           ForAll(RUN$VAR_j4_4,
+                                  Implies(And(RUN$VAR_j4_4 >=
+                                        0,
+                                        RUN$VAR_j4_4 < 1),
+                                        array[RUN$VAR_j4_4] <=
+                                        array[0]))),
+                       ForAll(RUN$VAR_j5_5,
+                              Implies(And(length <
+                                        RUN$VAR_j5_5,
+                                        RUN$VAR_j5_5 < size),
+                                      array[RUN$VAR_j5_5 - 1] <=
+                                      array[RUN$VAR_j5_5]))),
+                   Implies(length < size,
+                           ForAll(RUN$VAR_j6_6,
+                                  Implies(And(RUN$VAR_j6_6 >=
+                                        0,
+                                        RUN$VAR_j6_6 <
+                                        length),
+                                        array[RUN$VAR_j6_6] <=
+                                        array[length]))))))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        array$IN$Invariant#2,
+        size$IN$Invariant#2,
+        tmp$IN$Invariant#2,
+        length$IN$Invariant#2,
+        i_max$IN$Invariant#2,
+        i$IN$Invariant#2],
+       Implies(And(Invariant#1(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(length >= 0, length <= size),
+                           ForAll(RUN$VAR_j2_2,
+                                  Implies(And(length <
+                                        RUN$VAR_j2_2,
+                                        RUN$VAR_j2_2 < size),
+                                        array[RUN$VAR_j2_2 -
+                                        1] <=
+                                        array[RUN$VAR_j2_2]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j3_3,
+                                      Implies(And(RUN$VAR_j3_3 >=
+                                        0,
+                                        RUN$VAR_j3_3 <
+                                        length),
+                                        array[RUN$VAR_j3_3] <=
+                                        array[length])))),
+                   length >= 1,
+                   True,
+                   And(array$IN$Invariant#2 == array,
+                       size$IN$Invariant#2 == size,
+                       tmp$IN$Invariant#2 == tmp,
+                       length$IN$Invariant#2 == length,
+                       i_max$IN$Invariant#2 == 0,
+                       i$IN$Invariant#2 == 1)),
+               Invariant#2(array$IN$Invariant#2,
+                           size$IN$Invariant#2,
+                           tmp$IN$Invariant#2,
+                           length$IN$Invariant#2,
+                           i_max$IN$Invariant#2,
+                           i$IN$Invariant#2)))
+#################################################################################################################
+ForAll([array, size, tmp, length, i_max, i],
+       Implies(And(Invariant#1(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(length >= 0, length <= size),
+                           ForAll(RUN$VAR_j2_7,
+                                  Implies(And(length <
+                                        RUN$VAR_j2_7,
+                                        RUN$VAR_j2_7 < size),
+                                        array[RUN$VAR_j2_7 -
+                                        1] <=
+                                        array[RUN$VAR_j2_7]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j3_8,
+                                      Implies(And(RUN$VAR_j3_8 >=
+                                        0,
+                                        RUN$VAR_j3_8 <
+                                        length),
+                                        array[RUN$VAR_j3_8] <=
+                                        array[length])))),
+                   Not(length >= 1),
+                   True),
+               ForAll(RUN$VAR_j1_9,
+                      Implies(And(RUN$VAR_j1_9 > 0,
+                                  RUN$VAR_j1_9 < size),
+                              array[RUN$VAR_j1_9 - 1] <=
+                              array[RUN$VAR_j1_9]))))
+#################################################################################################################
+ForAll([array, size, tmp, length, i_max, i],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_10,
+                                      Implies(And(RUN$VAR_j4_10 >=
+                                        0,
+                                        RUN$VAR_j4_10 < i),
+                                        array[RUN$VAR_j4_10] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_11,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_11,
+                                        RUN$VAR_j5_11 < size),
+                                        array[RUN$VAR_j5_11 -
+                                        1] <=
+                                        array[RUN$VAR_j5_11]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_12,
+                                      Implies(And(RUN$VAR_j6_12 >=
+                                        0,
+                                        RUN$VAR_j6_12 <
+                                        length),
+                                        array[RUN$VAR_j6_12] <=
+                                        array[length])))),
+                   And(i < length,
+                       Not(array[i] > array[i_max])),
+                   True),
+               And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        i + 1 >= 0),
+                                       i + 1 <= length),
+                                   i_max >= 0),
+                               i_max < length),
+                           ForAll(RUN$VAR_j4_13,
+                                  Implies(And(RUN$VAR_j4_13 >=
+                                        0,
+                                        RUN$VAR_j4_13 <
+                                        i + 1),
+                                        array[RUN$VAR_j4_13] <=
+                                        array[i_max]))),
+                       ForAll(RUN$VAR_j5_14,
+                              Implies(And(length <
+                                        RUN$VAR_j5_14,
+                                        RUN$VAR_j5_14 < size),
+                                      array[RUN$VAR_j5_14 -
+                                        1] <=
+                                      array[RUN$VAR_j5_14]))),
+                   Implies(length < size,
+                           ForAll(RUN$VAR_j6_15,
+                                  Implies(And(RUN$VAR_j6_15 >=
+                                        0,
+                                        RUN$VAR_j6_15 <
+                                        length),
+                                        array[RUN$VAR_j6_15] <=
+                                        array[length]))))))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        array$IN$Invariant#2,
+        size$IN$Invariant#2,
+        tmp$IN$Invariant#2,
+        length$IN$Invariant#2,
+        i_max$IN$Invariant#2,
+        i$IN$Invariant#2],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_10,
+                                      Implies(And(RUN$VAR_j4_10 >=
+                                        0,
+                                        RUN$VAR_j4_10 < i),
+                                        array[RUN$VAR_j4_10] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_11,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_11,
+                                        RUN$VAR_j5_11 < size),
+                                        array[RUN$VAR_j5_11 -
+                                        1] <=
+                                        array[RUN$VAR_j5_11]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_12,
+                                      Implies(And(RUN$VAR_j6_12 >=
+                                        0,
+                                        RUN$VAR_j6_12 <
+                                        length),
+                                        array[RUN$VAR_j6_12] <=
+                                        array[length])))),
+                   And(i < length,
+                       Not(array[i] > array[i_max])),
+                   True,
+                   And(array$IN$Invariant#2 == array,
+                       size$IN$Invariant#2 == size,
+                       tmp$IN$Invariant#2 == tmp,
+                       length$IN$Invariant#2 == length,
+                       i_max$IN$Invariant#2 == i_max,
+                       i$IN$Invariant#2 == i + 1)),
+               Invariant#2(array$IN$Invariant#2,
+                           size$IN$Invariant#2,
+                           tmp$IN$Invariant#2,
+                           length$IN$Invariant#2,
+                           i_max$IN$Invariant#2,
+                           i$IN$Invariant#2)))
+#################################################################################################################
+ForAll([array, size, tmp, length, i_max, i],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_16,
+                                      Implies(And(RUN$VAR_j4_16 >=
+                                        0,
+                                        RUN$VAR_j4_16 < i),
+                                        array[RUN$VAR_j4_16] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_17,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_17,
+                                        RUN$VAR_j5_17 < size),
+                                        array[RUN$VAR_j5_17 -
+                                        1] <=
+                                        array[RUN$VAR_j5_17]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_18,
+                                      Implies(And(RUN$VAR_j6_18 >=
+                                        0,
+                                        RUN$VAR_j6_18 <
+                                        length),
+                                        array[RUN$VAR_j6_18] <=
+                                        array[length])))),
+                   And(i < length, array[i] > array[i_max]),
+                   True),
+               And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        i + 1 >= 0),
+                                       i + 1 <= length),
+                                   i >= 0),
+                               i < length),
+                           ForAll(RUN$VAR_j4_19,
+                                  Implies(And(RUN$VAR_j4_19 >=
+                                        0,
+                                        RUN$VAR_j4_19 <
+                                        i + 1),
+                                        array[RUN$VAR_j4_19] <=
+                                        array[i]))),
+                       ForAll(RUN$VAR_j5_20,
+                              Implies(And(length <
+                                        RUN$VAR_j5_20,
+                                        RUN$VAR_j5_20 < size),
+                                      array[RUN$VAR_j5_20 -
+                                        1] <=
+                                      array[RUN$VAR_j5_20]))),
+                   Implies(length < size,
+                           ForAll(RUN$VAR_j6_21,
+                                  Implies(And(RUN$VAR_j6_21 >=
+                                        0,
+                                        RUN$VAR_j6_21 <
+                                        length),
+                                        array[RUN$VAR_j6_21] <=
+                                        array[length]))))))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        array$IN$Invariant#2,
+        size$IN$Invariant#2,
+        tmp$IN$Invariant#2,
+        length$IN$Invariant#2,
+        i_max$IN$Invariant#2,
+        i$IN$Invariant#2],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_16,
+                                      Implies(And(RUN$VAR_j4_16 >=
+                                        0,
+                                        RUN$VAR_j4_16 < i),
+                                        array[RUN$VAR_j4_16] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_17,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_17,
+                                        RUN$VAR_j5_17 < size),
+                                        array[RUN$VAR_j5_17 -
+                                        1] <=
+                                        array[RUN$VAR_j5_17]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_18,
+                                      Implies(And(RUN$VAR_j6_18 >=
+                                        0,
+                                        RUN$VAR_j6_18 <
+                                        length),
+                                        array[RUN$VAR_j6_18] <=
+                                        array[length])))),
+                   And(i < length, array[i] > array[i_max]),
+                   True,
+                   And(array$IN$Invariant#2 == array,
+                       size$IN$Invariant#2 == size,
+                       tmp$IN$Invariant#2 == tmp,
+                       length$IN$Invariant#2 == length,
+                       i_max$IN$Invariant#2 == i,
+                       i$IN$Invariant#2 == i + 1)),
+               Invariant#2(array$IN$Invariant#2,
+                           size$IN$Invariant#2,
+                           tmp$IN$Invariant#2,
+                           length$IN$Invariant#2,
+                           i_max$IN$Invariant#2,
+                           i$IN$Invariant#2)))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        TMP$ARR_0,
+        TMP$ARR_1],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_22,
+                                      Implies(And(RUN$VAR_j4_22 >=
+                                        0,
+                                        RUN$VAR_j4_22 < i),
+                                        array[RUN$VAR_j4_22] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_23,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_23,
+                                        RUN$VAR_j5_23 < size),
+                                        array[RUN$VAR_j5_23 -
+                                        1] <=
+                                        array[RUN$VAR_j5_23]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_24,
+                                      Implies(And(RUN$VAR_j6_24 >=
+                                        0,
+                                        RUN$VAR_j6_24 <
+                                        length),
+                                        array[RUN$VAR_j6_24] <=
+                                        array[length])))),
+                   Not(i < length),
+                   And(Store(array,
+                             length - 1,
+                             array[i_max]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0,
+                             i_max,
+                             array[length - 1]) ==
+                       TMP$ARR_1)),
+               And(And(And(length - 1 >= 0,
+                           length - 1 <= size),
+                       ForAll(RUN$VAR_j2_25,
+                              Implies(And(length - 1 <
+                                        RUN$VAR_j2_25,
+                                        RUN$VAR_j2_25 < size),
+                                      TMP$ARR_1[RUN$VAR_j2_25 -
+                                        1] <=
+                                      TMP$ARR_1[RUN$VAR_j2_25]))),
+                   Implies(length - 1 < size,
+                           ForAll(RUN$VAR_j3_26,
+                                  Implies(And(RUN$VAR_j3_26 >=
+                                        0,
+                                        RUN$VAR_j3_26 <
+                                        length - 1),
+                                        TMP$ARR_1[RUN$VAR_j3_26] <=
+                                        TMP$ARR_1[length - 1]))))))
+#################################################################################################################
+ForAll([array,
+        size,
+        tmp,
+        length,
+        i_max,
+        i,
+        TMP$ARR_0,
+        TMP$ARR_1,
+        array$IN$Invariant#1,
+        size$IN$Invariant#1,
+        tmp$IN$Invariant#1,
+        length$IN$Invariant#1,
+        i_max$IN$Invariant#1,
+        i$IN$Invariant#1],
+       Implies(And(Invariant#2(array,
+                               size,
+                               tmp,
+                               length,
+                               i_max,
+                               i),
+                   And(And(And(And(And(And(And(And(length >
+                                        0,
+                                        length <= size),
+                                        i >= 0),
+                                        i <= length),
+                                       i_max >= 0),
+                                   i_max < length),
+                               ForAll(RUN$VAR_j4_22,
+                                      Implies(And(RUN$VAR_j4_22 >=
+                                        0,
+                                        RUN$VAR_j4_22 < i),
+                                        array[RUN$VAR_j4_22] <=
+                                        array[i_max]))),
+                           ForAll(RUN$VAR_j5_23,
+                                  Implies(And(length <
+                                        RUN$VAR_j5_23,
+                                        RUN$VAR_j5_23 < size),
+                                        array[RUN$VAR_j5_23 -
+                                        1] <=
+                                        array[RUN$VAR_j5_23]))),
+                       Implies(length < size,
+                               ForAll(RUN$VAR_j6_24,
+                                      Implies(And(RUN$VAR_j6_24 >=
+                                        0,
+                                        RUN$VAR_j6_24 <
+                                        length),
+                                        array[RUN$VAR_j6_24] <=
+                                        array[length])))),
+                   Not(i < length),
+                   And(Store(array,
+                             length - 1,
+                             array[i_max]) ==
+                       TMP$ARR_0,
+                       Store(TMP$ARR_0,
+                             i_max,
+                             array[length - 1]) ==
+                       TMP$ARR_1),
+                   And(array$IN$Invariant#1 == TMP$ARR_0,
+                       size$IN$Invariant#1 == size,
+                       tmp$IN$Invariant#1 ==
+                       array[length - 1],
+                       length$IN$Invariant#1 == length - 1,
+                       i_max$IN$Invariant#1 == i_max,
+                       i$IN$Invariant#1 == i)),
+               Invariant#1(array$IN$Invariant#1,
+                           size$IN$Invariant#1,
+                           tmp$IN$Invariant#1,
+                           length$IN$Invariant#1,
+                           i_max$IN$Invariant#1,
+                           i$IN$Invariant#1)))
+#################################################################################################################
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+Found 6 paths:
+
+***START***
+***ASSIGNMENT***	length = size
+***CONDITION***	length >= 1
+
+R is:	True
+Simplified R is:	True
+T is:	{array: array, size: size, tmp: tmp, length: size, i_max: i_max, i: i}
+I_start(vars) is:	 size > 0
+Simplified I_start(vars) is:	 Not(size <= 0)
+I_end(T(vars)) is:	 And(And(And(size >= 0, size <= size),
+        ForAll(RUN$VAR_j2_0,
+               Implies(And(size < RUN$VAR_j2_0,
+                           RUN$VAR_j2_0 < size),
+                       array[RUN$VAR_j2_0 - 1] <=
+                       array[RUN$VAR_j2_0]))),
+    Implies(size < size,
+            ForAll(RUN$VAR_j3_1,
+                   Implies(And(RUN$VAR_j3_1 >= 0,
+                               RUN$VAR_j3_1 < size),
+                           array[RUN$VAR_j3_1] <=
+                           array[size]))))
+Simplified I_end(T(vars)) is:	 And(size >= 0,
+    ForAll(RUN$VAR_j2_0,
+           Or(Not(And(Not(RUN$VAR_j2_0 <= size),
+                      Not(size <= RUN$VAR_j2_0))),
+              array[-1 + RUN$VAR_j2_0] <=
+              array[RUN$VAR_j2_0])))
+Array constraints: True
+Proving formula:
+Implies(And(size > 0, True, True),
+        And(And(And(size >= 0, size <= size),
+                ForAll(RUN$VAR_j2_0,
+                       Implies(And(size < RUN$VAR_j2_0,
+                                   RUN$VAR_j2_0 < size),
+                               array[RUN$VAR_j2_0 - 1] <=
+                               array[RUN$VAR_j2_0]))),
+            Implies(size < size,
+                    ForAll(RUN$VAR_j3_1,
+                           Implies(And(RUN$VAR_j3_1 >= 0,
+                                       RUN$VAR_j3_1 < size),
+                                   array[RUN$VAR_j3_1] <=
+                                   array[size])))))
+PROVED
+
+
+
+
+***CONDITION***	length >= 1
+True
+***ASSIGNMENT***	i = 0
+***ASSIGNMENT***	i_max = 0
+***ASSIGNMENT***	i = 1
+***CONDITION***	i < length
+
+R is:	length >= 1
+Simplified R is:	length >= 1
+T is:	{array: array, size: size, tmp: tmp, length: length, i_max: 0, i: 1}
+I_start(vars) is:	 And(And(And(length >= 0, length <= size),
+        ForAll(RUN$VAR_j2_2,
+               Implies(And(length < RUN$VAR_j2_2,
+                           RUN$VAR_j2_2 < size),
+                       array[RUN$VAR_j2_2 - 1] <=
+                       array[RUN$VAR_j2_2]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j3_3,
+                   Implies(And(RUN$VAR_j3_3 >= 0,
+                               RUN$VAR_j3_3 < length),
+                           array[RUN$VAR_j3_3] <=
+                           array[length]))))
+Simplified I_start(vars) is:	 And(length >= 0,
+    length <= size,
+    ForAll(RUN$VAR_j2_2,
+           Or(Not(And(Not(RUN$VAR_j2_2 <= length),
+                      Not(size <= RUN$VAR_j2_2))),
+              array[-1 + RUN$VAR_j2_2] <=
+              array[RUN$VAR_j2_2])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j3_3,
+              Or(Not(And(RUN$VAR_j3_3 >= 0,
+                         Not(length <= RUN$VAR_j3_3))),
+                 array[RUN$VAR_j3_3] <= array[length]))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            True),
+                        length >= 1),
+                    True),
+                length > 0),
+            ForAll(RUN$VAR_j4_4,
+                   Implies(And(RUN$VAR_j4_4 >= 0,
+                               RUN$VAR_j4_4 < 1),
+                           array[RUN$VAR_j4_4] <= array[0]))),
+        ForAll(RUN$VAR_j5_5,
+               Implies(And(length < RUN$VAR_j5_5,
+                           RUN$VAR_j5_5 < size),
+                       array[RUN$VAR_j5_5 - 1] <=
+                       array[RUN$VAR_j5_5]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_6,
+                   Implies(And(RUN$VAR_j6_6 >= 0,
+                               RUN$VAR_j6_6 < length),
+                           array[RUN$VAR_j6_6] <=
+                           array[length]))))
+Simplified I_end(T(vars)) is:	 And(Not(length <= 0),
+    length <= size,
+    length >= 1,
+    ForAll(RUN$VAR_j4_4,
+           Or(Not(And(RUN$VAR_j4_4 >= 0,
+                      Not(1 <= RUN$VAR_j4_4))),
+              array[RUN$VAR_j4_4] <= array[0])),
+    ForAll(RUN$VAR_j5_5,
+           Or(Not(And(Not(RUN$VAR_j5_5 <= length),
+                      Not(size <= RUN$VAR_j5_5))),
+              array[-1 + RUN$VAR_j5_5] <=
+              array[RUN$VAR_j5_5])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_6,
+              Or(Not(And(RUN$VAR_j6_6 >= 0,
+                         Not(length <= RUN$VAR_j6_6))),
+                 array[RUN$VAR_j6_6] <= array[length]))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(length >= 0, length <= size),
+                    ForAll(RUN$VAR_j2_2,
+                           Implies(And(length < RUN$VAR_j2_2,
+                                       RUN$VAR_j2_2 < size),
+                                   array[RUN$VAR_j2_2 - 1] <=
+                                   array[RUN$VAR_j2_2]))),
+                Implies(length < size,
+                        ForAll(RUN$VAR_j3_3,
+                               Implies(And(RUN$VAR_j3_3 >= 0,
+                                        RUN$VAR_j3_3 <
+                                        length),
+                                       array[RUN$VAR_j3_3] <=
+                                       array[length])))),
+            length >= 1,
+            True),
+        And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                    True),
+                                length >= 1),
+                            True),
+                        length > 0),
+                    ForAll(RUN$VAR_j4_4,
+                           Implies(And(RUN$VAR_j4_4 >= 0,
+                                       RUN$VAR_j4_4 < 1),
+                                   array[RUN$VAR_j4_4] <=
+                                   array[0]))),
+                ForAll(RUN$VAR_j5_5,
+                       Implies(And(length < RUN$VAR_j5_5,
+                                   RUN$VAR_j5_5 < size),
+                               array[RUN$VAR_j5_5 - 1] <=
+                               array[RUN$VAR_j5_5]))),
+            Implies(length < size,
+                    ForAll(RUN$VAR_j6_6,
+                           Implies(And(RUN$VAR_j6_6 >= 0,
+                                       RUN$VAR_j6_6 < length),
+                                   array[RUN$VAR_j6_6] <=
+                                   array[length])))))
+PROVED
+
+
+
+
+***CONDITION***	length >= 1
+False
+***HALT***
+
+R is:	Not(length >= 1)
+Simplified R is:	Not(length >= 1)
+T is:	{array: array, size: size, tmp: tmp, length: length, i_max: i_max, i: i}
+I_start(vars) is:	 And(And(And(length >= 0, length <= size),
+        ForAll(RUN$VAR_j2_7,
+               Implies(And(length < RUN$VAR_j2_7,
+                           RUN$VAR_j2_7 < size),
+                       array[RUN$VAR_j2_7 - 1] <=
+                       array[RUN$VAR_j2_7]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j3_8,
+                   Implies(And(RUN$VAR_j3_8 >= 0,
+                               RUN$VAR_j3_8 < length),
+                           array[RUN$VAR_j3_8] <=
+                           array[length]))))
+Simplified I_start(vars) is:	 And(length >= 0,
+    length <= size,
+    ForAll(RUN$VAR_j2_7,
+           Or(Not(And(Not(RUN$VAR_j2_7 <= length),
+                      Not(size <= RUN$VAR_j2_7))),
+              array[-1 + RUN$VAR_j2_7] <=
+              array[RUN$VAR_j2_7])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j3_8,
+              Or(Not(And(RUN$VAR_j3_8 >= 0,
+                         Not(length <= RUN$VAR_j3_8))),
+                 array[RUN$VAR_j3_8] <= array[length]))))
+I_end(T(vars)) is:	 ForAll(RUN$VAR_j1_9,
+       Implies(And(RUN$VAR_j1_9 > 0, RUN$VAR_j1_9 < size),
+               array[RUN$VAR_j1_9 - 1] <=
+               array[RUN$VAR_j1_9]))
+Simplified I_end(T(vars)) is:	 ForAll(RUN$VAR_j1_9,
+       Or(Not(And(Not(RUN$VAR_j1_9 <= 0),
+                  Not(size <= RUN$VAR_j1_9))),
+          array[-1 + RUN$VAR_j1_9] <= array[RUN$VAR_j1_9]))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(length >= 0, length <= size),
+                    ForAll(RUN$VAR_j2_7,
+                           Implies(And(length < RUN$VAR_j2_7,
+                                       RUN$VAR_j2_7 < size),
+                                   array[RUN$VAR_j2_7 - 1] <=
+                                   array[RUN$VAR_j2_7]))),
+                Implies(length < size,
+                        ForAll(RUN$VAR_j3_8,
+                               Implies(And(RUN$VAR_j3_8 >= 0,
+                                        RUN$VAR_j3_8 <
+                                        length),
+                                       array[RUN$VAR_j3_8] <=
+                                       array[length])))),
+            Not(length >= 1),
+            True),
+        ForAll(RUN$VAR_j1_9,
+               Implies(And(RUN$VAR_j1_9 > 0,
+                           RUN$VAR_j1_9 < size),
+                       array[RUN$VAR_j1_9 - 1] <=
+                       array[RUN$VAR_j1_9])))
+PROVED
+
+
+
+
+***CONDITION***	i < length
+True
+***CONDITION***	array[i] > array[i_max]
+False
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < length
+
+R is:	And(i < length, Not(array[i] > array[i_max]))
+Simplified R is:	And(Not(length <= i), array[i] <= array[i_max])
+T is:	{array: array, size: size, tmp: tmp, length: length, i_max: i_max, i: i + 1}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            i >= 0),
+                        i <= length),
+                    i_max >= 0),
+                i_max < length),
+            ForAll(RUN$VAR_j4_10,
+                   Implies(And(RUN$VAR_j4_10 >= 0,
+                               RUN$VAR_j4_10 < i),
+                           array[RUN$VAR_j4_10] <=
+                           array[i_max]))),
+        ForAll(RUN$VAR_j5_11,
+               Implies(And(length < RUN$VAR_j5_11,
+                           RUN$VAR_j5_11 < size),
+                       array[RUN$VAR_j5_11 - 1] <=
+                       array[RUN$VAR_j5_11]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_12,
+                   Implies(And(RUN$VAR_j6_12 >= 0,
+                               RUN$VAR_j6_12 < length),
+                           array[RUN$VAR_j6_12] <=
+                           array[length]))))
+Simplified I_start(vars) is:	 And(Not(length <= 0),
+    length <= size,
+    i >= 0,
+    i <= length,
+    i_max >= 0,
+    Not(length <= i_max),
+    ForAll(RUN$VAR_j4_10,
+           Or(Not(And(RUN$VAR_j4_10 >= 0,
+                      Not(i <= RUN$VAR_j4_10))),
+              array[RUN$VAR_j4_10] <= array[i_max])),
+    ForAll(RUN$VAR_j5_11,
+           Or(Not(And(Not(RUN$VAR_j5_11 <= length),
+                      Not(size <= RUN$VAR_j5_11))),
+              array[-1 + RUN$VAR_j5_11] <=
+              array[RUN$VAR_j5_11])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_12,
+              Or(Not(And(RUN$VAR_j6_12 >= 0,
+                         Not(length <= RUN$VAR_j6_12))),
+                 array[RUN$VAR_j6_12] <= array[length]))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            i + 1 >= 0),
+                        i + 1 <= length),
+                    i_max >= 0),
+                i_max < length),
+            ForAll(RUN$VAR_j4_13,
+                   Implies(And(RUN$VAR_j4_13 >= 0,
+                               RUN$VAR_j4_13 < i + 1),
+                           array[RUN$VAR_j4_13] <=
+                           array[i_max]))),
+        ForAll(RUN$VAR_j5_14,
+               Implies(And(length < RUN$VAR_j5_14,
+                           RUN$VAR_j5_14 < size),
+                       array[RUN$VAR_j5_14 - 1] <=
+                       array[RUN$VAR_j5_14]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_15,
+                   Implies(And(RUN$VAR_j6_15 >= 0,
+                               RUN$VAR_j6_15 < length),
+                           array[RUN$VAR_j6_15] <=
+                           array[length]))))
+Simplified I_end(T(vars)) is:	 And(Not(length <= 0),
+    length <= size,
+    i >= -1,
+    i <= -1 + length,
+    i_max >= 0,
+    Not(length <= i_max),
+    ForAll(RUN$VAR_j4_13,
+           Or(Not(And(RUN$VAR_j4_13 >= 0,
+                      Not(i <= -1 + RUN$VAR_j4_13))),
+              array[RUN$VAR_j4_13] <= array[i_max])),
+    ForAll(RUN$VAR_j5_14,
+           Or(Not(And(Not(RUN$VAR_j5_14 <= length),
+                      Not(size <= RUN$VAR_j5_14))),
+              array[-1 + RUN$VAR_j5_14] <=
+              array[RUN$VAR_j5_14])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_15,
+              Or(Not(And(RUN$VAR_j6_15 >= 0,
+                         Not(length <= RUN$VAR_j6_15))),
+                 array[RUN$VAR_j6_15] <= array[length]))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        i >= 0),
+                                    i <= length),
+                                i_max >= 0),
+                            i_max < length),
+                        ForAll(RUN$VAR_j4_10,
+                               Implies(And(RUN$VAR_j4_10 >=
+                                        0,
+                                        RUN$VAR_j4_10 < i),
+                                       array[RUN$VAR_j4_10] <=
+                                       array[i_max]))),
+                    ForAll(RUN$VAR_j5_11,
+                           Implies(And(length <
+                                       RUN$VAR_j5_11,
+                                       RUN$VAR_j5_11 < size),
+                                   array[RUN$VAR_j5_11 - 1] <=
+                                   array[RUN$VAR_j5_11]))),
+                Implies(length < size,
+                        ForAll(RUN$VAR_j6_12,
+                               Implies(And(RUN$VAR_j6_12 >=
+                                        0,
+                                        RUN$VAR_j6_12 <
+                                        length),
+                                       array[RUN$VAR_j6_12] <=
+                                       array[length])))),
+            And(i < length, Not(array[i] > array[i_max])),
+            True),
+        And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                    i + 1 >= 0),
+                                i + 1 <= length),
+                            i_max >= 0),
+                        i_max < length),
+                    ForAll(RUN$VAR_j4_13,
+                           Implies(And(RUN$VAR_j4_13 >= 0,
+                                       RUN$VAR_j4_13 < i + 1),
+                                   array[RUN$VAR_j4_13] <=
+                                   array[i_max]))),
+                ForAll(RUN$VAR_j5_14,
+                       Implies(And(length < RUN$VAR_j5_14,
+                                   RUN$VAR_j5_14 < size),
+                               array[RUN$VAR_j5_14 - 1] <=
+                               array[RUN$VAR_j5_14]))),
+            Implies(length < size,
+                    ForAll(RUN$VAR_j6_15,
+                           Implies(And(RUN$VAR_j6_15 >= 0,
+                                       RUN$VAR_j6_15 <
+                                       length),
+                                   array[RUN$VAR_j6_15] <=
+                                   array[length])))))
+PROVED
+
+
+
+
+***CONDITION***	i < length
+True
+***CONDITION***	array[i] > array[i_max]
+True
+***ASSIGNMENT***	i_max = i
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < length
+
+R is:	And(i < length, array[i] > array[i_max])
+Simplified R is:	And(Not(length <= i), Not(array[i] <= array[i_max]))
+T is:	{array: array, size: size, tmp: tmp, length: length, i_max: i, i: i + 1}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            i >= 0),
+                        i <= length),
+                    i_max >= 0),
+                i_max < length),
+            ForAll(RUN$VAR_j4_16,
+                   Implies(And(RUN$VAR_j4_16 >= 0,
+                               RUN$VAR_j4_16 < i),
+                           array[RUN$VAR_j4_16] <=
+                           array[i_max]))),
+        ForAll(RUN$VAR_j5_17,
+               Implies(And(length < RUN$VAR_j5_17,
+                           RUN$VAR_j5_17 < size),
+                       array[RUN$VAR_j5_17 - 1] <=
+                       array[RUN$VAR_j5_17]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_18,
+                   Implies(And(RUN$VAR_j6_18 >= 0,
+                               RUN$VAR_j6_18 < length),
+                           array[RUN$VAR_j6_18] <=
+                           array[length]))))
+Simplified I_start(vars) is:	 And(Not(length <= 0),
+    length <= size,
+    i >= 0,
+    i <= length,
+    i_max >= 0,
+    Not(length <= i_max),
+    ForAll(RUN$VAR_j4_16,
+           Or(Not(And(RUN$VAR_j4_16 >= 0,
+                      Not(i <= RUN$VAR_j4_16))),
+              array[RUN$VAR_j4_16] <= array[i_max])),
+    ForAll(RUN$VAR_j5_17,
+           Or(Not(And(Not(RUN$VAR_j5_17 <= length),
+                      Not(size <= RUN$VAR_j5_17))),
+              array[-1 + RUN$VAR_j5_17] <=
+              array[RUN$VAR_j5_17])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_18,
+              Or(Not(And(RUN$VAR_j6_18 >= 0,
+                         Not(length <= RUN$VAR_j6_18))),
+                 array[RUN$VAR_j6_18] <= array[length]))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            i + 1 >= 0),
+                        i + 1 <= length),
+                    i >= 0),
+                i < length),
+            ForAll(RUN$VAR_j4_19,
+                   Implies(And(RUN$VAR_j4_19 >= 0,
+                               RUN$VAR_j4_19 < i + 1),
+                           array[RUN$VAR_j4_19] <= array[i]))),
+        ForAll(RUN$VAR_j5_20,
+               Implies(And(length < RUN$VAR_j5_20,
+                           RUN$VAR_j5_20 < size),
+                       array[RUN$VAR_j5_20 - 1] <=
+                       array[RUN$VAR_j5_20]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_21,
+                   Implies(And(RUN$VAR_j6_21 >= 0,
+                               RUN$VAR_j6_21 < length),
+                           array[RUN$VAR_j6_21] <=
+                           array[length]))))
+Simplified I_end(T(vars)) is:	 And(Not(length <= 0),
+    length <= size,
+    i >= -1,
+    i <= -1 + length,
+    i >= 0,
+    Not(length <= i),
+    ForAll(RUN$VAR_j4_19,
+           Or(Not(And(RUN$VAR_j4_19 >= 0,
+                      Not(i <= -1 + RUN$VAR_j4_19))),
+              array[RUN$VAR_j4_19] <= array[i])),
+    ForAll(RUN$VAR_j5_20,
+           Or(Not(And(Not(RUN$VAR_j5_20 <= length),
+                      Not(size <= RUN$VAR_j5_20))),
+              array[-1 + RUN$VAR_j5_20] <=
+              array[RUN$VAR_j5_20])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_21,
+              Or(Not(And(RUN$VAR_j6_21 >= 0,
+                         Not(length <= RUN$VAR_j6_21))),
+                 array[RUN$VAR_j6_21] <= array[length]))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        i >= 0),
+                                    i <= length),
+                                i_max >= 0),
+                            i_max < length),
+                        ForAll(RUN$VAR_j4_16,
+                               Implies(And(RUN$VAR_j4_16 >=
+                                        0,
+                                        RUN$VAR_j4_16 < i),
+                                       array[RUN$VAR_j4_16] <=
+                                       array[i_max]))),
+                    ForAll(RUN$VAR_j5_17,
+                           Implies(And(length <
+                                       RUN$VAR_j5_17,
+                                       RUN$VAR_j5_17 < size),
+                                   array[RUN$VAR_j5_17 - 1] <=
+                                   array[RUN$VAR_j5_17]))),
+                Implies(length < size,
+                        ForAll(RUN$VAR_j6_18,
+                               Implies(And(RUN$VAR_j6_18 >=
+                                        0,
+                                        RUN$VAR_j6_18 <
+                                        length),
+                                       array[RUN$VAR_j6_18] <=
+                                       array[length])))),
+            And(i < length, array[i] > array[i_max]),
+            True),
+        And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                    i + 1 >= 0),
+                                i + 1 <= length),
+                            i >= 0),
+                        i < length),
+                    ForAll(RUN$VAR_j4_19,
+                           Implies(And(RUN$VAR_j4_19 >= 0,
+                                       RUN$VAR_j4_19 < i + 1),
+                                   array[RUN$VAR_j4_19] <=
+                                   array[i]))),
+                ForAll(RUN$VAR_j5_20,
+                       Implies(And(length < RUN$VAR_j5_20,
+                                   RUN$VAR_j5_20 < size),
+                               array[RUN$VAR_j5_20 - 1] <=
+                               array[RUN$VAR_j5_20]))),
+            Implies(length < size,
+                    ForAll(RUN$VAR_j6_21,
+                           Implies(And(RUN$VAR_j6_21 >= 0,
+                                       RUN$VAR_j6_21 <
+                                       length),
+                                   array[RUN$VAR_j6_21] <=
+                                   array[length])))))
+PROVED
+
+
+
+
+***CONDITION***	i < length
+False
+***ASSIGNMENT***	tmp = array[length - 1]
+***ASSIGNMENT***	array[length - 1] = array[i_max]
+***ASSIGNMENT***	array[i_max] = tmp
+***ASSIGNMENT***	length = length - 1
+***CONDITION***	length >= 1
+
+R is:	Not(i < length)
+Simplified R is:	length <= i
+T is:	{array: TMP$ARR_0, size: size, tmp: array[length - 1], length: length - 1, i_max: i_max, i: i, TMP$ARR_0: TMP$ARR_1}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(length > 0, length <= size),
+                            i >= 0),
+                        i <= length),
+                    i_max >= 0),
+                i_max < length),
+            ForAll(RUN$VAR_j4_22,
+                   Implies(And(RUN$VAR_j4_22 >= 0,
+                               RUN$VAR_j4_22 < i),
+                           array[RUN$VAR_j4_22] <=
+                           array[i_max]))),
+        ForAll(RUN$VAR_j5_23,
+               Implies(And(length < RUN$VAR_j5_23,
+                           RUN$VAR_j5_23 < size),
+                       array[RUN$VAR_j5_23 - 1] <=
+                       array[RUN$VAR_j5_23]))),
+    Implies(length < size,
+            ForAll(RUN$VAR_j6_24,
+                   Implies(And(RUN$VAR_j6_24 >= 0,
+                               RUN$VAR_j6_24 < length),
+                           array[RUN$VAR_j6_24] <=
+                           array[length]))))
+Simplified I_start(vars) is:	 And(Not(length <= 0),
+    length <= size,
+    i >= 0,
+    i <= length,
+    i_max >= 0,
+    Not(length <= i_max),
+    ForAll(RUN$VAR_j4_22,
+           Or(Not(And(RUN$VAR_j4_22 >= 0,
+                      Not(i <= RUN$VAR_j4_22))),
+              array[RUN$VAR_j4_22] <= array[i_max])),
+    ForAll(RUN$VAR_j5_23,
+           Or(Not(And(Not(RUN$VAR_j5_23 <= length),
+                      Not(size <= RUN$VAR_j5_23))),
+              array[-1 + RUN$VAR_j5_23] <=
+              array[RUN$VAR_j5_23])),
+    Or(size <= length,
+       ForAll(RUN$VAR_j6_24,
+              Or(Not(And(RUN$VAR_j6_24 >= 0,
+                         Not(length <= RUN$VAR_j6_24))),
+                 array[RUN$VAR_j6_24] <= array[length]))))
+I_end(T(vars)) is:	 And(And(And(length - 1 >= 0, length - 1 <= size),
+        ForAll(RUN$VAR_j2_25,
+               Implies(And(length - 1 < RUN$VAR_j2_25,
+                           RUN$VAR_j2_25 < size),
+                       TMP$ARR_1[RUN$VAR_j2_25 - 1] <=
+                       TMP$ARR_1[RUN$VAR_j2_25]))),
+    Implies(length - 1 < size,
+            ForAll(RUN$VAR_j3_26,
+                   Implies(And(RUN$VAR_j3_26 >= 0,
+                               RUN$VAR_j3_26 < length - 1),
+                           TMP$ARR_1[RUN$VAR_j3_26] <=
+                           TMP$ARR_1[length - 1]))))
+Simplified I_end(T(vars)) is:	 And(length >= 1,
+    length <= 1 + size,
+    ForAll(RUN$VAR_j2_25,
+           Or(Not(And(Not(RUN$VAR_j2_25 <= -1 + length),
+                      Not(size <= RUN$VAR_j2_25))),
+              TMP$ARR_1[-1 + RUN$VAR_j2_25] <=
+              TMP$ARR_1[RUN$VAR_j2_25])),
+    Or(size <= -1 + length,
+       ForAll(RUN$VAR_j3_26,
+              Or(Not(And(RUN$VAR_j3_26 >= 0,
+                         Not(length <= 1 + RUN$VAR_j3_26))),
+                 TMP$ARR_1[RUN$VAR_j3_26] <=
+                 TMP$ARR_1[-1 + length]))))
+Array constraints: And(Store(array, length - 1, array[i_max]) == TMP$ARR_0,
+    Store(TMP$ARR_0, i_max, array[length - 1]) == TMP$ARR_1)
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(length > 0,
+                                        length <= size),
+                                        i >= 0),
+                                    i <= length),
+                                i_max >= 0),
+                            i_max < length),
+                        ForAll(RUN$VAR_j4_22,
+                               Implies(And(RUN$VAR_j4_22 >=
+                                        0,
+                                        RUN$VAR_j4_22 < i),
+                                       array[RUN$VAR_j4_22] <=
+                                       array[i_max]))),
+                    ForAll(RUN$VAR_j5_23,
+                           Implies(And(length <
+                                       RUN$VAR_j5_23,
+                                       RUN$VAR_j5_23 < size),
+                                   array[RUN$VAR_j5_23 - 1] <=
+                                   array[RUN$VAR_j5_23]))),
+                Implies(length < size,
+                        ForAll(RUN$VAR_j6_24,
+                               Implies(And(RUN$VAR_j6_24 >=
+                                        0,
+                                        RUN$VAR_j6_24 <
+                                        length),
+                                       array[RUN$VAR_j6_24] <=
+                                       array[length])))),
+            Not(i < length),
+            And(Store(array, length - 1, array[i_max]) ==
+                TMP$ARR_0,
+                Store(TMP$ARR_0, i_max, array[length - 1]) ==
+                TMP$ARR_1)),
+        And(And(And(length - 1 >= 0, length - 1 <= size),
+                ForAll(RUN$VAR_j2_25,
+                       Implies(And(length - 1 <
+                                   RUN$VAR_j2_25,
+                                   RUN$VAR_j2_25 < size),
+                               TMP$ARR_1[RUN$VAR_j2_25 - 1] <=
+                               TMP$ARR_1[RUN$VAR_j2_25]))),
+            Implies(length - 1 < size,
+                    ForAll(RUN$VAR_j3_26,
+                           Implies(And(RUN$VAR_j3_26 >= 0,
+                                       RUN$VAR_j3_26 <
+                                       length - 1),
+                                   TMP$ARR_1[RUN$VAR_j3_26] <=
+                                   TMP$ARR_1[length - 1])))))
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

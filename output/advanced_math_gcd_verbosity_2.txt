@@ -1,0 +1,1965 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+Fixed Point solver failed with error
+The error:
+b"Uninterpreted 'GCD' in <null>:\nInvariant#1(#4,#3,#2,#1,#0) :- \n (> (:var 7) 0),\n (< (:var 7) 6),\n (> (:var 6) 0),\n (< (:var 6) 6),\n (> GCD 0),\n (< GCD 6),\n (= (:var 2) (:var 6)),\n (= (:var 3) (:var 6)),\n (= (:var 4) (:var 7)),\n (let ((a!1 (exists ((RUN$VAR_a_0 Int))\n             (and (> RUN$VAR_a_0 0)\n                  (< RUN$VAR_a_0 6)\n                  (<= RUN$VAR_a_0 (:var 8))\n                  (= (* RUN$VAR_a_0 GCD) (:var 8))))))\n  (= a!1 true)),\n (let ((a!1 (exists ((RUN$VAR_a_1 Int))\n             (and (> RUN$VAR_a_1 0)\n                  (< RUN$VAR_a_1 6)\n                  (<= RUN$VAR_a_1 (:var 7))\n                  (= (* RUN$VAR_a_1 GCD) (:var 7))))))\n  (= a!1 true)),\n (let ((a!1 (not (exists ((RUN$VAR_i_2 Int))\n                  (let ((a!1 (exists ((RUN$VAR_j_3 Int))\n                               (and (and (> RUN$VAR_j_3 0) (< RUN$VAR_j_3 6))\n                                    (<= RUN$VAR_j_3 (:var 9))\n                                    (= (* RUN$VAR_j_3 RUN$VAR_i_2) (:var 9)))))\n                        (a!2 (exists ((RUN$VAR_k_4 Int))\n                               (and (and (> RUN$VAR_k_4 0) (< RUN$VAR_k_4 6))\n                                    (<= RUN$VAR_k_4 (:var 8))\n                                    (= (* RUN$VAR_k_4 RUN$VAR_i_2) (:var 8))))))\n                    (and (< GCD RUN$VAR_i_2) (< RUN$VAR_i_2 6) a!1 a!2))))))\n  (or (and (= (:var 7) (:var 6)) (= GCD (:var 7))) a!1)),\n (= (:var 1) (:var 7)),\n (= (:var 0) (:var 5)).\n"
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+Adding rules:
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(True,
+                   And(And(And(And(And(And(And(And(x > 0,
+                                        x < 6),
+                                        y > 0),
+                                        y < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_0,
+                                      And(And(And(RUN$VAR_a_0 >
+                                        0,
+                                        RUN$VAR_a_0 < 6),
+                                        RUN$VAR_a_0 <= x),
+                                        RUN$VAR_a_0*GCD == x))),
+                           Exists(RUN$VAR_a_1,
+                                  And(And(And(RUN$VAR_a_1 >
+                                        0,
+                                        RUN$VAR_a_1 < 6),
+                                        RUN$VAR_a_1 <= y),
+                                      RUN$VAR_a_1*GCD == y))),
+                       Or(And(x == y, GCD == x),
+                          Not(Exists(RUN$VAR_i_2,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_2,
+                                        RUN$VAR_i_2 < 6),
+                                        Exists(RUN$VAR_j_3,
+                                        And(And(And(RUN$VAR_j_3 >
+                                        0,
+                                        RUN$VAR_j_3 < 6),
+                                        RUN$VAR_j_3 <= x),
+                                        RUN$VAR_j_3*
+                                        RUN$VAR_i_2 ==
+                                        x))),
+                                        Exists(RUN$VAR_k_4,
+                                        And(And(And(RUN$VAR_k_4 >
+                                        0,
+                                        RUN$VAR_k_4 < 6),
+                                        RUN$VAR_k_4 <= y),
+                                        RUN$VAR_k_4*
+                                        RUN$VAR_i_2 ==
+                                        y))))))),
+                   True,
+                   True),
+               And(And(And(And(And(And(And(And(x > 0, x < 6),
+                                        y > 0),
+                                       y < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_5,
+                                  And(And(And(RUN$VAR_a_5 >
+                                        0,
+                                        RUN$VAR_a_5 < 6),
+                                        RUN$VAR_a_5 <= x),
+                                      RUN$VAR_a_5*GCD == x))),
+                       Exists(RUN$VAR_a_6,
+                              And(And(And(RUN$VAR_a_6 > 0,
+                                        RUN$VAR_a_6 < 6),
+                                      RUN$VAR_a_6 <= y),
+                                  RUN$VAR_a_6*GCD == y))),
+                   Or(And(x == y, GCD == x),
+                      Not(Exists(RUN$VAR_i_7,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_7,
+                                        RUN$VAR_i_7 < 6),
+                                        Exists(RUN$VAR_j_8,
+                                        And(And(And(RUN$VAR_j_8 >
+                                        0,
+                                        RUN$VAR_j_8 < 6),
+                                        RUN$VAR_j_8 <= x),
+                                        RUN$VAR_j_8*
+                                        RUN$VAR_i_7 ==
+                                        x))),
+                                     Exists(RUN$VAR_k_9,
+                                        And(And(And(RUN$VAR_k_9 >
+                                        0,
+                                        RUN$VAR_k_9 < 6),
+                                        RUN$VAR_k_9 <= y),
+                                        RUN$VAR_k_9*
+                                        RUN$VAR_i_7 ==
+                                        y)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#1,
+        y$IN$Invariant#1,
+        y_m$IN$Invariant#1,
+        x_m$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(True,
+                   And(And(And(And(And(And(And(And(x > 0,
+                                        x < 6),
+                                        y > 0),
+                                        y < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_0,
+                                      And(And(And(RUN$VAR_a_0 >
+                                        0,
+                                        RUN$VAR_a_0 < 6),
+                                        RUN$VAR_a_0 <= x),
+                                        RUN$VAR_a_0*GCD == x))),
+                           Exists(RUN$VAR_a_1,
+                                  And(And(And(RUN$VAR_a_1 >
+                                        0,
+                                        RUN$VAR_a_1 < 6),
+                                        RUN$VAR_a_1 <= y),
+                                      RUN$VAR_a_1*GCD == y))),
+                       Or(And(x == y, GCD == x),
+                          Not(Exists(RUN$VAR_i_2,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_2,
+                                        RUN$VAR_i_2 < 6),
+                                        Exists(RUN$VAR_j_3,
+                                        And(And(And(RUN$VAR_j_3 >
+                                        0,
+                                        RUN$VAR_j_3 < 6),
+                                        RUN$VAR_j_3 <= x),
+                                        RUN$VAR_j_3*
+                                        RUN$VAR_i_2 ==
+                                        x))),
+                                        Exists(RUN$VAR_k_4,
+                                        And(And(And(RUN$VAR_k_4 >
+                                        0,
+                                        RUN$VAR_k_4 < 6),
+                                        RUN$VAR_k_4 <= y),
+                                        RUN$VAR_k_4*
+                                        RUN$VAR_i_2 ==
+                                        y))))))),
+                   True,
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       y$IN$Invariant#1 == y,
+                       y_m$IN$Invariant#1 == y,
+                       x_m$IN$Invariant#1 == x,
+                       ret$IN$Invariant#1 == ret)),
+               Invariant#1(x$IN$Invariant#1,
+                           y$IN$Invariant#1,
+                           y_m$IN$Invariant#1,
+                           x_m$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#1(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_10,
+                                      And(And(And(RUN$VAR_a_10 >
+                                        0,
+                                        RUN$VAR_a_10 < 6),
+                                        RUN$VAR_a_10 <= x_m),
+                                        RUN$VAR_a_10*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_11,
+                                  And(And(And(RUN$VAR_a_11 >
+                                        0,
+                                        RUN$VAR_a_11 < 6),
+                                        RUN$VAR_a_11 <= y_m),
+                                      RUN$VAR_a_11*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_12,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_12,
+                                        RUN$VAR_i_12 < 6),
+                                        Exists(RUN$VAR_j_13,
+                                        And(And(And(RUN$VAR_j_13 >
+                                        0,
+                                        RUN$VAR_j_13 < 6),
+                                        RUN$VAR_j_13 <= x_m),
+                                        RUN$VAR_j_13*
+                                        RUN$VAR_i_12 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_14,
+                                        And(And(And(RUN$VAR_k_14 >
+                                        0,
+                                        RUN$VAR_k_14 < 6),
+                                        RUN$VAR_k_14 <= y_m),
+                                        RUN$VAR_k_14*
+                                        RUN$VAR_i_12 ==
+                                        y_m))))))),
+                   x_m != y_m,
+                   True),
+               And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                       y_m < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_15,
+                                  And(And(And(RUN$VAR_a_15 >
+                                        0,
+                                        RUN$VAR_a_15 < 6),
+                                        RUN$VAR_a_15 <= x_m),
+                                      RUN$VAR_a_15*GCD ==
+                                      x_m))),
+                       Exists(RUN$VAR_a_16,
+                              And(And(And(RUN$VAR_a_16 > 0,
+                                        RUN$VAR_a_16 < 6),
+                                      RUN$VAR_a_16 <= y_m),
+                                  RUN$VAR_a_16*GCD == y_m))),
+                   Or(And(x_m == y_m, GCD == x_m),
+                      Not(Exists(RUN$VAR_i_17,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_17,
+                                        RUN$VAR_i_17 < 6),
+                                        Exists(RUN$VAR_j_18,
+                                        And(And(And(RUN$VAR_j_18 >
+                                        0,
+                                        RUN$VAR_j_18 < 6),
+                                        RUN$VAR_j_18 <= x_m),
+                                        RUN$VAR_j_18*
+                                        RUN$VAR_i_17 ==
+                                        x_m))),
+                                     Exists(RUN$VAR_k_19,
+                                        And(And(And(RUN$VAR_k_19 >
+                                        0,
+                                        RUN$VAR_k_19 < 6),
+                                        RUN$VAR_k_19 <= y_m),
+                                        RUN$VAR_k_19*
+                                        RUN$VAR_i_17 ==
+                                        y_m)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#2,
+        y$IN$Invariant#2,
+        y_m$IN$Invariant#2,
+        x_m$IN$Invariant#2,
+        ret$IN$Invariant#2],
+       Implies(And(Invariant#1(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_10,
+                                      And(And(And(RUN$VAR_a_10 >
+                                        0,
+                                        RUN$VAR_a_10 < 6),
+                                        RUN$VAR_a_10 <= x_m),
+                                        RUN$VAR_a_10*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_11,
+                                  And(And(And(RUN$VAR_a_11 >
+                                        0,
+                                        RUN$VAR_a_11 < 6),
+                                        RUN$VAR_a_11 <= y_m),
+                                      RUN$VAR_a_11*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_12,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_12,
+                                        RUN$VAR_i_12 < 6),
+                                        Exists(RUN$VAR_j_13,
+                                        And(And(And(RUN$VAR_j_13 >
+                                        0,
+                                        RUN$VAR_j_13 < 6),
+                                        RUN$VAR_j_13 <= x_m),
+                                        RUN$VAR_j_13*
+                                        RUN$VAR_i_12 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_14,
+                                        And(And(And(RUN$VAR_k_14 >
+                                        0,
+                                        RUN$VAR_k_14 < 6),
+                                        RUN$VAR_k_14 <= y_m),
+                                        RUN$VAR_k_14*
+                                        RUN$VAR_i_12 ==
+                                        y_m))))))),
+                   x_m != y_m,
+                   True,
+                   And(x$IN$Invariant#2 == x,
+                       y$IN$Invariant#2 == y,
+                       y_m$IN$Invariant#2 == y_m,
+                       x_m$IN$Invariant#2 == x_m,
+                       ret$IN$Invariant#2 == ret)),
+               Invariant#2(x$IN$Invariant#2,
+                           y$IN$Invariant#2,
+                           y_m$IN$Invariant#2,
+                           x_m$IN$Invariant#2,
+                           ret$IN$Invariant#2)))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#1(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_20,
+                                      And(And(And(RUN$VAR_a_20 >
+                                        0,
+                                        RUN$VAR_a_20 < 6),
+                                        RUN$VAR_a_20 <= x_m),
+                                        RUN$VAR_a_20*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_21,
+                                  And(And(And(RUN$VAR_a_21 >
+                                        0,
+                                        RUN$VAR_a_21 < 6),
+                                        RUN$VAR_a_21 <= y_m),
+                                      RUN$VAR_a_21*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_22,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_22,
+                                        RUN$VAR_i_22 < 6),
+                                        Exists(RUN$VAR_j_23,
+                                        And(And(And(RUN$VAR_j_23 >
+                                        0,
+                                        RUN$VAR_j_23 < 6),
+                                        RUN$VAR_j_23 <= x_m),
+                                        RUN$VAR_j_23*
+                                        RUN$VAR_i_22 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_24,
+                                        And(And(And(RUN$VAR_k_24 >
+                                        0,
+                                        RUN$VAR_k_24 < 6),
+                                        RUN$VAR_k_24 <= y_m),
+                                        RUN$VAR_k_24*
+                                        RUN$VAR_i_22 ==
+                                        y_m))))))),
+                   Not(x_m != y_m),
+                   True),
+               x_m == GCD))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#2(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_25,
+                                      And(And(And(RUN$VAR_a_25 >
+                                        0,
+                                        RUN$VAR_a_25 < 6),
+                                        RUN$VAR_a_25 <= x_m),
+                                        RUN$VAR_a_25*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_26,
+                                  And(And(And(RUN$VAR_a_26 >
+                                        0,
+                                        RUN$VAR_a_26 < 6),
+                                        RUN$VAR_a_26 <= y_m),
+                                      RUN$VAR_a_26*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_27,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_27,
+                                        RUN$VAR_i_27 < 6),
+                                        Exists(RUN$VAR_j_28,
+                                        And(And(And(RUN$VAR_j_28 >
+                                        0,
+                                        RUN$VAR_j_28 < 6),
+                                        RUN$VAR_j_28 <= x_m),
+                                        RUN$VAR_j_28*
+                                        RUN$VAR_i_27 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_29,
+                                        And(And(And(RUN$VAR_k_29 >
+                                        0,
+                                        RUN$VAR_k_29 < 6),
+                                        RUN$VAR_k_29 <= y_m),
+                                        RUN$VAR_k_29*
+                                        RUN$VAR_i_27 ==
+                                        y_m))))))),
+                   x_m > y_m,
+                   True),
+               And(And(And(And(And(And(And(And(x_m - y_m > 0,
+                                        x_m - y_m < 6),
+                                        y_m > 0),
+                                       y_m < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_30,
+                                  And(And(And(RUN$VAR_a_30 >
+                                        0,
+                                        RUN$VAR_a_30 < 6),
+                                        RUN$VAR_a_30 <=
+                                        x_m - y_m),
+                                      RUN$VAR_a_30*GCD ==
+                                      x_m - y_m))),
+                       Exists(RUN$VAR_a_31,
+                              And(And(And(RUN$VAR_a_31 > 0,
+                                        RUN$VAR_a_31 < 6),
+                                      RUN$VAR_a_31 <= y_m),
+                                  RUN$VAR_a_31*GCD == y_m))),
+                   Or(And(x_m - y_m == y_m,
+                          GCD == x_m - y_m),
+                      Not(Exists(RUN$VAR_i_32,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_32,
+                                        RUN$VAR_i_32 < 6),
+                                        Exists(RUN$VAR_j_33,
+                                        And(And(And(RUN$VAR_j_33 >
+                                        0,
+                                        RUN$VAR_j_33 < 6),
+                                        RUN$VAR_j_33 <=
+                                        x_m - y_m),
+                                        RUN$VAR_j_33*
+                                        RUN$VAR_i_32 ==
+                                        x_m - y_m))),
+                                     Exists(RUN$VAR_k_34,
+                                        And(And(And(RUN$VAR_k_34 >
+                                        0,
+                                        RUN$VAR_k_34 < 6),
+                                        RUN$VAR_k_34 <= y_m),
+                                        RUN$VAR_k_34*
+                                        RUN$VAR_i_32 ==
+                                        y_m)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#2,
+        y$IN$Invariant#2,
+        y_m$IN$Invariant#2,
+        x_m$IN$Invariant#2,
+        ret$IN$Invariant#2],
+       Implies(And(Invariant#2(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_25,
+                                      And(And(And(RUN$VAR_a_25 >
+                                        0,
+                                        RUN$VAR_a_25 < 6),
+                                        RUN$VAR_a_25 <= x_m),
+                                        RUN$VAR_a_25*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_26,
+                                  And(And(And(RUN$VAR_a_26 >
+                                        0,
+                                        RUN$VAR_a_26 < 6),
+                                        RUN$VAR_a_26 <= y_m),
+                                      RUN$VAR_a_26*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_27,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_27,
+                                        RUN$VAR_i_27 < 6),
+                                        Exists(RUN$VAR_j_28,
+                                        And(And(And(RUN$VAR_j_28 >
+                                        0,
+                                        RUN$VAR_j_28 < 6),
+                                        RUN$VAR_j_28 <= x_m),
+                                        RUN$VAR_j_28*
+                                        RUN$VAR_i_27 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_29,
+                                        And(And(And(RUN$VAR_k_29 >
+                                        0,
+                                        RUN$VAR_k_29 < 6),
+                                        RUN$VAR_k_29 <= y_m),
+                                        RUN$VAR_k_29*
+                                        RUN$VAR_i_27 ==
+                                        y_m))))))),
+                   x_m > y_m,
+                   True,
+                   And(x$IN$Invariant#2 == x,
+                       y$IN$Invariant#2 == y,
+                       y_m$IN$Invariant#2 == y_m,
+                       x_m$IN$Invariant#2 == x_m - y_m,
+                       ret$IN$Invariant#2 == ret)),
+               Invariant#2(x$IN$Invariant#2,
+                           y$IN$Invariant#2,
+                           y_m$IN$Invariant#2,
+                           x_m$IN$Invariant#2,
+                           ret$IN$Invariant#2)))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#2(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_35,
+                                      And(And(And(RUN$VAR_a_35 >
+                                        0,
+                                        RUN$VAR_a_35 < 6),
+                                        RUN$VAR_a_35 <= x_m),
+                                        RUN$VAR_a_35*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_36,
+                                  And(And(And(RUN$VAR_a_36 >
+                                        0,
+                                        RUN$VAR_a_36 < 6),
+                                        RUN$VAR_a_36 <= y_m),
+                                      RUN$VAR_a_36*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_37,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_37,
+                                        RUN$VAR_i_37 < 6),
+                                        Exists(RUN$VAR_j_38,
+                                        And(And(And(RUN$VAR_j_38 >
+                                        0,
+                                        RUN$VAR_j_38 < 6),
+                                        RUN$VAR_j_38 <= x_m),
+                                        RUN$VAR_j_38*
+                                        RUN$VAR_i_37 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_39,
+                                        And(And(And(RUN$VAR_k_39 >
+                                        0,
+                                        RUN$VAR_k_39 < 6),
+                                        RUN$VAR_k_39 <= y_m),
+                                        RUN$VAR_k_39*
+                                        RUN$VAR_i_37 ==
+                                        y_m))))))),
+                   Not(x_m > y_m),
+                   True),
+               And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                       y_m < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_40,
+                                  And(And(And(RUN$VAR_a_40 >
+                                        0,
+                                        RUN$VAR_a_40 < 6),
+                                        RUN$VAR_a_40 <= x_m),
+                                      RUN$VAR_a_40*GCD ==
+                                      x_m))),
+                       Exists(RUN$VAR_a_41,
+                              And(And(And(RUN$VAR_a_41 > 0,
+                                        RUN$VAR_a_41 < 6),
+                                      RUN$VAR_a_41 <= y_m),
+                                  RUN$VAR_a_41*GCD == y_m))),
+                   Or(And(x_m == y_m, GCD == x_m),
+                      Not(Exists(RUN$VAR_i_42,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_42,
+                                        RUN$VAR_i_42 < 6),
+                                        Exists(RUN$VAR_j_43,
+                                        And(And(And(RUN$VAR_j_43 >
+                                        0,
+                                        RUN$VAR_j_43 < 6),
+                                        RUN$VAR_j_43 <= x_m),
+                                        RUN$VAR_j_43*
+                                        RUN$VAR_i_42 ==
+                                        x_m))),
+                                     Exists(RUN$VAR_k_44,
+                                        And(And(And(RUN$VAR_k_44 >
+                                        0,
+                                        RUN$VAR_k_44 < 6),
+                                        RUN$VAR_k_44 <= y_m),
+                                        RUN$VAR_k_44*
+                                        RUN$VAR_i_42 ==
+                                        y_m)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#3,
+        y$IN$Invariant#3,
+        y_m$IN$Invariant#3,
+        x_m$IN$Invariant#3,
+        ret$IN$Invariant#3],
+       Implies(And(Invariant#2(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_35,
+                                      And(And(And(RUN$VAR_a_35 >
+                                        0,
+                                        RUN$VAR_a_35 < 6),
+                                        RUN$VAR_a_35 <= x_m),
+                                        RUN$VAR_a_35*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_36,
+                                  And(And(And(RUN$VAR_a_36 >
+                                        0,
+                                        RUN$VAR_a_36 < 6),
+                                        RUN$VAR_a_36 <= y_m),
+                                      RUN$VAR_a_36*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_37,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_37,
+                                        RUN$VAR_i_37 < 6),
+                                        Exists(RUN$VAR_j_38,
+                                        And(And(And(RUN$VAR_j_38 >
+                                        0,
+                                        RUN$VAR_j_38 < 6),
+                                        RUN$VAR_j_38 <= x_m),
+                                        RUN$VAR_j_38*
+                                        RUN$VAR_i_37 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_39,
+                                        And(And(And(RUN$VAR_k_39 >
+                                        0,
+                                        RUN$VAR_k_39 < 6),
+                                        RUN$VAR_k_39 <= y_m),
+                                        RUN$VAR_k_39*
+                                        RUN$VAR_i_37 ==
+                                        y_m))))))),
+                   Not(x_m > y_m),
+                   True,
+                   And(x$IN$Invariant#3 == x,
+                       y$IN$Invariant#3 == y,
+                       y_m$IN$Invariant#3 == y_m,
+                       x_m$IN$Invariant#3 == x_m,
+                       ret$IN$Invariant#3 == ret)),
+               Invariant#3(x$IN$Invariant#3,
+                           y$IN$Invariant#3,
+                           y_m$IN$Invariant#3,
+                           x_m$IN$Invariant#3,
+                           ret$IN$Invariant#3)))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#3(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_45,
+                                      And(And(And(RUN$VAR_a_45 >
+                                        0,
+                                        RUN$VAR_a_45 < 6),
+                                        RUN$VAR_a_45 <= x_m),
+                                        RUN$VAR_a_45*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_46,
+                                  And(And(And(RUN$VAR_a_46 >
+                                        0,
+                                        RUN$VAR_a_46 < 6),
+                                        RUN$VAR_a_46 <= y_m),
+                                      RUN$VAR_a_46*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_47,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_47,
+                                        RUN$VAR_i_47 < 6),
+                                        Exists(RUN$VAR_j_48,
+                                        And(And(And(RUN$VAR_j_48 >
+                                        0,
+                                        RUN$VAR_j_48 < 6),
+                                        RUN$VAR_j_48 <= x_m),
+                                        RUN$VAR_j_48*
+                                        RUN$VAR_i_47 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_49,
+                                        And(And(And(RUN$VAR_k_49 >
+                                        0,
+                                        RUN$VAR_k_49 < 6),
+                                        RUN$VAR_k_49 <= y_m),
+                                        RUN$VAR_k_49*
+                                        RUN$VAR_i_47 ==
+                                        y_m))))))),
+                   y_m > x_m,
+                   True),
+               And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m - x_m > 0),
+                                       y_m - x_m < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_50,
+                                  And(And(And(RUN$VAR_a_50 >
+                                        0,
+                                        RUN$VAR_a_50 < 6),
+                                        RUN$VAR_a_50 <= x_m),
+                                      RUN$VAR_a_50*GCD ==
+                                      x_m))),
+                       Exists(RUN$VAR_a_51,
+                              And(And(And(RUN$VAR_a_51 > 0,
+                                        RUN$VAR_a_51 < 6),
+                                      RUN$VAR_a_51 <=
+                                      y_m - x_m),
+                                  RUN$VAR_a_51*GCD ==
+                                  y_m - x_m))),
+                   Or(And(x_m == y_m - x_m, GCD == x_m),
+                      Not(Exists(RUN$VAR_i_52,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_52,
+                                        RUN$VAR_i_52 < 6),
+                                        Exists(RUN$VAR_j_53,
+                                        And(And(And(RUN$VAR_j_53 >
+                                        0,
+                                        RUN$VAR_j_53 < 6),
+                                        RUN$VAR_j_53 <= x_m),
+                                        RUN$VAR_j_53*
+                                        RUN$VAR_i_52 ==
+                                        x_m))),
+                                     Exists(RUN$VAR_k_54,
+                                        And(And(And(RUN$VAR_k_54 >
+                                        0,
+                                        RUN$VAR_k_54 < 6),
+                                        RUN$VAR_k_54 <=
+                                        y_m - x_m),
+                                        RUN$VAR_k_54*
+                                        RUN$VAR_i_52 ==
+                                        y_m - x_m)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#3,
+        y$IN$Invariant#3,
+        y_m$IN$Invariant#3,
+        x_m$IN$Invariant#3,
+        ret$IN$Invariant#3],
+       Implies(And(Invariant#3(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_45,
+                                      And(And(And(RUN$VAR_a_45 >
+                                        0,
+                                        RUN$VAR_a_45 < 6),
+                                        RUN$VAR_a_45 <= x_m),
+                                        RUN$VAR_a_45*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_46,
+                                  And(And(And(RUN$VAR_a_46 >
+                                        0,
+                                        RUN$VAR_a_46 < 6),
+                                        RUN$VAR_a_46 <= y_m),
+                                      RUN$VAR_a_46*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_47,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_47,
+                                        RUN$VAR_i_47 < 6),
+                                        Exists(RUN$VAR_j_48,
+                                        And(And(And(RUN$VAR_j_48 >
+                                        0,
+                                        RUN$VAR_j_48 < 6),
+                                        RUN$VAR_j_48 <= x_m),
+                                        RUN$VAR_j_48*
+                                        RUN$VAR_i_47 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_49,
+                                        And(And(And(RUN$VAR_k_49 >
+                                        0,
+                                        RUN$VAR_k_49 < 6),
+                                        RUN$VAR_k_49 <= y_m),
+                                        RUN$VAR_k_49*
+                                        RUN$VAR_i_47 ==
+                                        y_m))))))),
+                   y_m > x_m,
+                   True,
+                   And(x$IN$Invariant#3 == x,
+                       y$IN$Invariant#3 == y,
+                       y_m$IN$Invariant#3 == y_m - x_m,
+                       x_m$IN$Invariant#3 == x_m,
+                       ret$IN$Invariant#3 == ret)),
+               Invariant#3(x$IN$Invariant#3,
+                           y$IN$Invariant#3,
+                           y_m$IN$Invariant#3,
+                           x_m$IN$Invariant#3,
+                           ret$IN$Invariant#3)))
+#################################################################################################################
+ForAll([x, y, y_m, x_m, ret],
+       Implies(And(Invariant#3(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_55,
+                                      And(And(And(RUN$VAR_a_55 >
+                                        0,
+                                        RUN$VAR_a_55 < 6),
+                                        RUN$VAR_a_55 <= x_m),
+                                        RUN$VAR_a_55*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_56,
+                                  And(And(And(RUN$VAR_a_56 >
+                                        0,
+                                        RUN$VAR_a_56 < 6),
+                                        RUN$VAR_a_56 <= y_m),
+                                      RUN$VAR_a_56*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_57,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_57,
+                                        RUN$VAR_i_57 < 6),
+                                        Exists(RUN$VAR_j_58,
+                                        And(And(And(RUN$VAR_j_58 >
+                                        0,
+                                        RUN$VAR_j_58 < 6),
+                                        RUN$VAR_j_58 <= x_m),
+                                        RUN$VAR_j_58*
+                                        RUN$VAR_i_57 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_59,
+                                        And(And(And(RUN$VAR_k_59 >
+                                        0,
+                                        RUN$VAR_k_59 < 6),
+                                        RUN$VAR_k_59 <= y_m),
+                                        RUN$VAR_k_59*
+                                        RUN$VAR_i_57 ==
+                                        y_m))))))),
+                   Not(y_m > x_m),
+                   True),
+               And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                       y_m < 6),
+                                   GCD > 0),
+                               GCD < 6),
+                           Exists(RUN$VAR_a_60,
+                                  And(And(And(RUN$VAR_a_60 >
+                                        0,
+                                        RUN$VAR_a_60 < 6),
+                                        RUN$VAR_a_60 <= x_m),
+                                      RUN$VAR_a_60*GCD ==
+                                      x_m))),
+                       Exists(RUN$VAR_a_61,
+                              And(And(And(RUN$VAR_a_61 > 0,
+                                        RUN$VAR_a_61 < 6),
+                                      RUN$VAR_a_61 <= y_m),
+                                  RUN$VAR_a_61*GCD == y_m))),
+                   Or(And(x_m == y_m, GCD == x_m),
+                      Not(Exists(RUN$VAR_i_62,
+                                 And(And(And(GCD <
+                                        RUN$VAR_i_62,
+                                        RUN$VAR_i_62 < 6),
+                                        Exists(RUN$VAR_j_63,
+                                        And(And(And(RUN$VAR_j_63 >
+                                        0,
+                                        RUN$VAR_j_63 < 6),
+                                        RUN$VAR_j_63 <= x_m),
+                                        RUN$VAR_j_63*
+                                        RUN$VAR_i_62 ==
+                                        x_m))),
+                                     Exists(RUN$VAR_k_64,
+                                        And(And(And(RUN$VAR_k_64 >
+                                        0,
+                                        RUN$VAR_k_64 < 6),
+                                        RUN$VAR_k_64 <= y_m),
+                                        RUN$VAR_k_64*
+                                        RUN$VAR_i_62 ==
+                                        y_m)))))))))
+#################################################################################################################
+ForAll([x,
+        y,
+        y_m,
+        x_m,
+        ret,
+        x$IN$Invariant#1,
+        y$IN$Invariant#1,
+        y_m$IN$Invariant#1,
+        x_m$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(Invariant#3(x, y, y_m, x_m, ret),
+                   And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                        y_m < 6),
+                                       GCD > 0),
+                                   GCD < 6),
+                               Exists(RUN$VAR_a_55,
+                                      And(And(And(RUN$VAR_a_55 >
+                                        0,
+                                        RUN$VAR_a_55 < 6),
+                                        RUN$VAR_a_55 <= x_m),
+                                        RUN$VAR_a_55*GCD ==
+                                        x_m))),
+                           Exists(RUN$VAR_a_56,
+                                  And(And(And(RUN$VAR_a_56 >
+                                        0,
+                                        RUN$VAR_a_56 < 6),
+                                        RUN$VAR_a_56 <= y_m),
+                                      RUN$VAR_a_56*GCD ==
+                                      y_m))),
+                       Or(And(x_m == y_m, GCD == x_m),
+                          Not(Exists(RUN$VAR_i_57,
+                                     And(And(And(GCD <
+                                        RUN$VAR_i_57,
+                                        RUN$VAR_i_57 < 6),
+                                        Exists(RUN$VAR_j_58,
+                                        And(And(And(RUN$VAR_j_58 >
+                                        0,
+                                        RUN$VAR_j_58 < 6),
+                                        RUN$VAR_j_58 <= x_m),
+                                        RUN$VAR_j_58*
+                                        RUN$VAR_i_57 ==
+                                        x_m))),
+                                        Exists(RUN$VAR_k_59,
+                                        And(And(And(RUN$VAR_k_59 >
+                                        0,
+                                        RUN$VAR_k_59 < 6),
+                                        RUN$VAR_k_59 <= y_m),
+                                        RUN$VAR_k_59*
+                                        RUN$VAR_i_57 ==
+                                        y_m))))))),
+                   Not(y_m > x_m),
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       y$IN$Invariant#1 == y,
+                       y_m$IN$Invariant#1 == y_m,
+                       x_m$IN$Invariant#1 == x_m,
+                       ret$IN$Invariant#1 == ret)),
+               Invariant#1(x$IN$Invariant#1,
+                           y$IN$Invariant#1,
+                           y_m$IN$Invariant#1,
+                           x_m$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "gcd" from "benchmarks\json\advanced_math.c"
+Found 7 paths:
+
+***START***
+***ASSIGNMENT***	x_m = x
+***ASSIGNMENT***	y_m = y
+***CONDITION***	x_m != y_m
+
+R is:	True
+T is:	{x: x, y: y, y_m: y, x_m: x, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x > 0, x < 6), y > 0),
+                        y < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_0,
+                   And(And(And(RUN$VAR_a_0 > 0,
+                               RUN$VAR_a_0 < 6),
+                           RUN$VAR_a_0 <= x),
+                       RUN$VAR_a_0*GCD == x))),
+        Exists(RUN$VAR_a_1,
+               And(And(And(RUN$VAR_a_1 > 0, RUN$VAR_a_1 < 6),
+                       RUN$VAR_a_1 <= y),
+                   RUN$VAR_a_1*GCD == y))),
+    Or(And(x == y, GCD == x),
+       Not(Exists(RUN$VAR_i_2,
+                  And(And(And(GCD < RUN$VAR_i_2,
+                              RUN$VAR_i_2 < 6),
+                          Exists(RUN$VAR_j_3,
+                                 And(And(And(RUN$VAR_j_3 > 0,
+                                        RUN$VAR_j_3 < 6),
+                                        RUN$VAR_j_3 <= x),
+                                     RUN$VAR_j_3*RUN$VAR_i_2 ==
+                                     x))),
+                      Exists(RUN$VAR_k_4,
+                             And(And(And(RUN$VAR_k_4 > 0,
+                                        RUN$VAR_k_4 < 6),
+                                     RUN$VAR_k_4 <= y),
+                                 RUN$VAR_k_4*RUN$VAR_i_2 ==
+                                 y)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x > 0, x < 6), y > 0),
+                        y < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_5,
+                   And(And(And(RUN$VAR_a_5 > 0,
+                               RUN$VAR_a_5 < 6),
+                           RUN$VAR_a_5 <= x),
+                       RUN$VAR_a_5*GCD == x))),
+        Exists(RUN$VAR_a_6,
+               And(And(And(RUN$VAR_a_6 > 0, RUN$VAR_a_6 < 6),
+                       RUN$VAR_a_6 <= y),
+                   RUN$VAR_a_6*GCD == y))),
+    Or(And(x == y, GCD == x),
+       Not(Exists(RUN$VAR_i_7,
+                  And(And(And(GCD < RUN$VAR_i_7,
+                              RUN$VAR_i_7 < 6),
+                          Exists(RUN$VAR_j_8,
+                                 And(And(And(RUN$VAR_j_8 > 0,
+                                        RUN$VAR_j_8 < 6),
+                                        RUN$VAR_j_8 <= x),
+                                     RUN$VAR_j_8*RUN$VAR_i_7 ==
+                                     x))),
+                      Exists(RUN$VAR_k_9,
+                             And(And(And(RUN$VAR_k_9 > 0,
+                                        RUN$VAR_k_9 < 6),
+                                     RUN$VAR_k_9 <= y),
+                                 RUN$VAR_k_9*RUN$VAR_i_7 ==
+                                 y)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x > 0, x < 6),
+                                        y > 0),
+                                    y < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_0,
+                               And(And(And(RUN$VAR_a_0 > 0,
+                                        RUN$VAR_a_0 < 6),
+                                       RUN$VAR_a_0 <= x),
+                                   RUN$VAR_a_0*GCD == x))),
+                    Exists(RUN$VAR_a_1,
+                           And(And(And(RUN$VAR_a_1 > 0,
+                                       RUN$VAR_a_1 < 6),
+                                   RUN$VAR_a_1 <= y),
+                               RUN$VAR_a_1*GCD == y))),
+                Or(And(x == y, GCD == x),
+                   Not(Exists(RUN$VAR_i_2,
+                              And(And(And(GCD < RUN$VAR_i_2,
+                                        RUN$VAR_i_2 < 6),
+                                      Exists(RUN$VAR_j_3,
+                                        And(And(And(RUN$VAR_j_3 >
+                                        0,
+                                        RUN$VAR_j_3 < 6),
+                                        RUN$VAR_j_3 <= x),
+                                        RUN$VAR_j_3*
+                                        RUN$VAR_i_2 ==
+                                        x))),
+                                  Exists(RUN$VAR_k_4,
+                                        And(And(And(RUN$VAR_k_4 >
+                                        0,
+                                        RUN$VAR_k_4 < 6),
+                                        RUN$VAR_k_4 <= y),
+                                        RUN$VAR_k_4*
+                                        RUN$VAR_i_2 ==
+                                        y))))))),
+            True,
+            True),
+        And(And(And(And(And(And(And(And(x > 0, x < 6),
+                                    y > 0),
+                                y < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_5,
+                           And(And(And(RUN$VAR_a_5 > 0,
+                                       RUN$VAR_a_5 < 6),
+                                   RUN$VAR_a_5 <= x),
+                               RUN$VAR_a_5*GCD == x))),
+                Exists(RUN$VAR_a_6,
+                       And(And(And(RUN$VAR_a_6 > 0,
+                                   RUN$VAR_a_6 < 6),
+                               RUN$VAR_a_6 <= y),
+                           RUN$VAR_a_6*GCD == y))),
+            Or(And(x == y, GCD == x),
+               Not(Exists(RUN$VAR_i_7,
+                          And(And(And(GCD < RUN$VAR_i_7,
+                                      RUN$VAR_i_7 < 6),
+                                  Exists(RUN$VAR_j_8,
+                                        And(And(And(RUN$VAR_j_8 >
+                                        0,
+                                        RUN$VAR_j_8 < 6),
+                                        RUN$VAR_j_8 <= x),
+                                        RUN$VAR_j_8*
+                                        RUN$VAR_i_7 ==
+                                        x))),
+                              Exists(RUN$VAR_k_9,
+                                     And(And(And(RUN$VAR_k_9 >
+                                        0,
+                                        RUN$VAR_k_9 < 6),
+                                        RUN$VAR_k_9 <= y),
+                                        RUN$VAR_k_9*
+                                        RUN$VAR_i_7 ==
+                                        y))))))))
+PROVED
+
+
+
+
+***CONDITION***	x_m != y_m
+True
+***CONDITION***	x_m > y_m
+
+R is:	x_m != y_m
+T is:	{x: x, y: y, y_m: y_m, x_m: x_m, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_10,
+                   And(And(And(RUN$VAR_a_10 > 0,
+                               RUN$VAR_a_10 < 6),
+                           RUN$VAR_a_10 <= x_m),
+                       RUN$VAR_a_10*GCD == x_m))),
+        Exists(RUN$VAR_a_11,
+               And(And(And(RUN$VAR_a_11 > 0,
+                           RUN$VAR_a_11 < 6),
+                       RUN$VAR_a_11 <= y_m),
+                   RUN$VAR_a_11*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_12,
+                  And(And(And(GCD < RUN$VAR_i_12,
+                              RUN$VAR_i_12 < 6),
+                          Exists(RUN$VAR_j_13,
+                                 And(And(And(RUN$VAR_j_13 >
+                                        0,
+                                        RUN$VAR_j_13 < 6),
+                                        RUN$VAR_j_13 <= x_m),
+                                     RUN$VAR_j_13*
+                                     RUN$VAR_i_12 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_14,
+                             And(And(And(RUN$VAR_k_14 > 0,
+                                        RUN$VAR_k_14 < 6),
+                                     RUN$VAR_k_14 <= y_m),
+                                 RUN$VAR_k_14*RUN$VAR_i_12 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_15,
+                   And(And(And(RUN$VAR_a_15 > 0,
+                               RUN$VAR_a_15 < 6),
+                           RUN$VAR_a_15 <= x_m),
+                       RUN$VAR_a_15*GCD == x_m))),
+        Exists(RUN$VAR_a_16,
+               And(And(And(RUN$VAR_a_16 > 0,
+                           RUN$VAR_a_16 < 6),
+                       RUN$VAR_a_16 <= y_m),
+                   RUN$VAR_a_16*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_17,
+                  And(And(And(GCD < RUN$VAR_i_17,
+                              RUN$VAR_i_17 < 6),
+                          Exists(RUN$VAR_j_18,
+                                 And(And(And(RUN$VAR_j_18 >
+                                        0,
+                                        RUN$VAR_j_18 < 6),
+                                        RUN$VAR_j_18 <= x_m),
+                                     RUN$VAR_j_18*
+                                     RUN$VAR_i_17 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_19,
+                             And(And(And(RUN$VAR_k_19 > 0,
+                                        RUN$VAR_k_19 < 6),
+                                     RUN$VAR_k_19 <= y_m),
+                                 RUN$VAR_k_19*RUN$VAR_i_17 ==
+                                 y_m)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_10,
+                               And(And(And(RUN$VAR_a_10 > 0,
+                                        RUN$VAR_a_10 < 6),
+                                       RUN$VAR_a_10 <= x_m),
+                                   RUN$VAR_a_10*GCD == x_m))),
+                    Exists(RUN$VAR_a_11,
+                           And(And(And(RUN$VAR_a_11 > 0,
+                                       RUN$VAR_a_11 < 6),
+                                   RUN$VAR_a_11 <= y_m),
+                               RUN$VAR_a_11*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_12,
+                              And(And(And(GCD < RUN$VAR_i_12,
+                                        RUN$VAR_i_12 < 6),
+                                      Exists(RUN$VAR_j_13,
+                                        And(And(And(RUN$VAR_j_13 >
+                                        0,
+                                        RUN$VAR_j_13 < 6),
+                                        RUN$VAR_j_13 <= x_m),
+                                        RUN$VAR_j_13*
+                                        RUN$VAR_i_12 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_14,
+                                        And(And(And(RUN$VAR_k_14 >
+                                        0,
+                                        RUN$VAR_k_14 < 6),
+                                        RUN$VAR_k_14 <= y_m),
+                                        RUN$VAR_k_14*
+                                        RUN$VAR_i_12 ==
+                                        y_m))))))),
+            x_m != y_m,
+            True),
+        And(And(And(And(And(And(And(And(x_m > 0, x_m < 6),
+                                    y_m > 0),
+                                y_m < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_15,
+                           And(And(And(RUN$VAR_a_15 > 0,
+                                       RUN$VAR_a_15 < 6),
+                                   RUN$VAR_a_15 <= x_m),
+                               RUN$VAR_a_15*GCD == x_m))),
+                Exists(RUN$VAR_a_16,
+                       And(And(And(RUN$VAR_a_16 > 0,
+                                   RUN$VAR_a_16 < 6),
+                               RUN$VAR_a_16 <= y_m),
+                           RUN$VAR_a_16*GCD == y_m))),
+            Or(And(x_m == y_m, GCD == x_m),
+               Not(Exists(RUN$VAR_i_17,
+                          And(And(And(GCD < RUN$VAR_i_17,
+                                      RUN$VAR_i_17 < 6),
+                                  Exists(RUN$VAR_j_18,
+                                        And(And(And(RUN$VAR_j_18 >
+                                        0,
+                                        RUN$VAR_j_18 < 6),
+                                        RUN$VAR_j_18 <= x_m),
+                                        RUN$VAR_j_18*
+                                        RUN$VAR_i_17 ==
+                                        x_m))),
+                              Exists(RUN$VAR_k_19,
+                                     And(And(And(RUN$VAR_k_19 >
+                                        0,
+                                        RUN$VAR_k_19 < 6),
+                                        RUN$VAR_k_19 <= y_m),
+                                        RUN$VAR_k_19*
+                                        RUN$VAR_i_17 ==
+                                        y_m))))))))
+PROVED
+
+
+
+
+***CONDITION***	x_m != y_m
+False
+***ASSIGNMENT***	ret = x_m
+***HALT***
+
+R is:	Not(x_m != y_m)
+T is:	{x: x, y: y, y_m: y_m, x_m: x_m, ret: x_m}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_20,
+                   And(And(And(RUN$VAR_a_20 > 0,
+                               RUN$VAR_a_20 < 6),
+                           RUN$VAR_a_20 <= x_m),
+                       RUN$VAR_a_20*GCD == x_m))),
+        Exists(RUN$VAR_a_21,
+               And(And(And(RUN$VAR_a_21 > 0,
+                           RUN$VAR_a_21 < 6),
+                       RUN$VAR_a_21 <= y_m),
+                   RUN$VAR_a_21*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_22,
+                  And(And(And(GCD < RUN$VAR_i_22,
+                              RUN$VAR_i_22 < 6),
+                          Exists(RUN$VAR_j_23,
+                                 And(And(And(RUN$VAR_j_23 >
+                                        0,
+                                        RUN$VAR_j_23 < 6),
+                                        RUN$VAR_j_23 <= x_m),
+                                     RUN$VAR_j_23*
+                                     RUN$VAR_i_22 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_24,
+                             And(And(And(RUN$VAR_k_24 > 0,
+                                        RUN$VAR_k_24 < 6),
+                                     RUN$VAR_k_24 <= y_m),
+                                 RUN$VAR_k_24*RUN$VAR_i_22 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 x_m == GCD
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_20,
+                               And(And(And(RUN$VAR_a_20 > 0,
+                                        RUN$VAR_a_20 < 6),
+                                       RUN$VAR_a_20 <= x_m),
+                                   RUN$VAR_a_20*GCD == x_m))),
+                    Exists(RUN$VAR_a_21,
+                           And(And(And(RUN$VAR_a_21 > 0,
+                                       RUN$VAR_a_21 < 6),
+                                   RUN$VAR_a_21 <= y_m),
+                               RUN$VAR_a_21*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_22,
+                              And(And(And(GCD < RUN$VAR_i_22,
+                                        RUN$VAR_i_22 < 6),
+                                      Exists(RUN$VAR_j_23,
+                                        And(And(And(RUN$VAR_j_23 >
+                                        0,
+                                        RUN$VAR_j_23 < 6),
+                                        RUN$VAR_j_23 <= x_m),
+                                        RUN$VAR_j_23*
+                                        RUN$VAR_i_22 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_24,
+                                        And(And(And(RUN$VAR_k_24 >
+                                        0,
+                                        RUN$VAR_k_24 < 6),
+                                        RUN$VAR_k_24 <= y_m),
+                                        RUN$VAR_k_24*
+                                        RUN$VAR_i_22 ==
+                                        y_m))))))),
+            Not(x_m != y_m),
+            True),
+        x_m == GCD)
+PROVED
+
+
+
+
+***CONDITION***	x_m > y_m
+True
+***ASSIGNMENT***	x_m = x_m - y_m
+***CONDITION***	x_m > y_m
+
+R is:	x_m > y_m
+T is:	{x: x, y: y, y_m: y_m, x_m: x_m - y_m, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_25,
+                   And(And(And(RUN$VAR_a_25 > 0,
+                               RUN$VAR_a_25 < 6),
+                           RUN$VAR_a_25 <= x_m),
+                       RUN$VAR_a_25*GCD == x_m))),
+        Exists(RUN$VAR_a_26,
+               And(And(And(RUN$VAR_a_26 > 0,
+                           RUN$VAR_a_26 < 6),
+                       RUN$VAR_a_26 <= y_m),
+                   RUN$VAR_a_26*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_27,
+                  And(And(And(GCD < RUN$VAR_i_27,
+                              RUN$VAR_i_27 < 6),
+                          Exists(RUN$VAR_j_28,
+                                 And(And(And(RUN$VAR_j_28 >
+                                        0,
+                                        RUN$VAR_j_28 < 6),
+                                        RUN$VAR_j_28 <= x_m),
+                                     RUN$VAR_j_28*
+                                     RUN$VAR_i_27 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_29,
+                             And(And(And(RUN$VAR_k_29 > 0,
+                                        RUN$VAR_k_29 < 6),
+                                     RUN$VAR_k_29 <= y_m),
+                                 RUN$VAR_k_29*RUN$VAR_i_27 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x_m - y_m > 0,
+                                x_m - y_m < 6),
+                            y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_30,
+                   And(And(And(RUN$VAR_a_30 > 0,
+                               RUN$VAR_a_30 < 6),
+                           RUN$VAR_a_30 <= x_m - y_m),
+                       RUN$VAR_a_30*GCD == x_m - y_m))),
+        Exists(RUN$VAR_a_31,
+               And(And(And(RUN$VAR_a_31 > 0,
+                           RUN$VAR_a_31 < 6),
+                       RUN$VAR_a_31 <= y_m),
+                   RUN$VAR_a_31*GCD == y_m))),
+    Or(And(x_m - y_m == y_m, GCD == x_m - y_m),
+       Not(Exists(RUN$VAR_i_32,
+                  And(And(And(GCD < RUN$VAR_i_32,
+                              RUN$VAR_i_32 < 6),
+                          Exists(RUN$VAR_j_33,
+                                 And(And(And(RUN$VAR_j_33 >
+                                        0,
+                                        RUN$VAR_j_33 < 6),
+                                        RUN$VAR_j_33 <=
+                                        x_m - y_m),
+                                     RUN$VAR_j_33*
+                                     RUN$VAR_i_32 ==
+                                     x_m - y_m))),
+                      Exists(RUN$VAR_k_34,
+                             And(And(And(RUN$VAR_k_34 > 0,
+                                        RUN$VAR_k_34 < 6),
+                                     RUN$VAR_k_34 <= y_m),
+                                 RUN$VAR_k_34*RUN$VAR_i_32 ==
+                                 y_m)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_25,
+                               And(And(And(RUN$VAR_a_25 > 0,
+                                        RUN$VAR_a_25 < 6),
+                                       RUN$VAR_a_25 <= x_m),
+                                   RUN$VAR_a_25*GCD == x_m))),
+                    Exists(RUN$VAR_a_26,
+                           And(And(And(RUN$VAR_a_26 > 0,
+                                       RUN$VAR_a_26 < 6),
+                                   RUN$VAR_a_26 <= y_m),
+                               RUN$VAR_a_26*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_27,
+                              And(And(And(GCD < RUN$VAR_i_27,
+                                        RUN$VAR_i_27 < 6),
+                                      Exists(RUN$VAR_j_28,
+                                        And(And(And(RUN$VAR_j_28 >
+                                        0,
+                                        RUN$VAR_j_28 < 6),
+                                        RUN$VAR_j_28 <= x_m),
+                                        RUN$VAR_j_28*
+                                        RUN$VAR_i_27 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_29,
+                                        And(And(And(RUN$VAR_k_29 >
+                                        0,
+                                        RUN$VAR_k_29 < 6),
+                                        RUN$VAR_k_29 <= y_m),
+                                        RUN$VAR_k_29*
+                                        RUN$VAR_i_27 ==
+                                        y_m))))))),
+            x_m > y_m,
+            True),
+        And(And(And(And(And(And(And(And(x_m - y_m > 0,
+                                        x_m - y_m < 6),
+                                    y_m > 0),
+                                y_m < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_30,
+                           And(And(And(RUN$VAR_a_30 > 0,
+                                       RUN$VAR_a_30 < 6),
+                                   RUN$VAR_a_30 <= x_m - y_m),
+                               RUN$VAR_a_30*GCD == x_m - y_m))),
+                Exists(RUN$VAR_a_31,
+                       And(And(And(RUN$VAR_a_31 > 0,
+                                   RUN$VAR_a_31 < 6),
+                               RUN$VAR_a_31 <= y_m),
+                           RUN$VAR_a_31*GCD == y_m))),
+            Or(And(x_m - y_m == y_m, GCD == x_m - y_m),
+               Not(Exists(RUN$VAR_i_32,
+                          And(And(And(GCD < RUN$VAR_i_32,
+                                      RUN$VAR_i_32 < 6),
+                                  Exists(RUN$VAR_j_33,
+                                        And(And(And(RUN$VAR_j_33 >
+                                        0,
+                                        RUN$VAR_j_33 < 6),
+                                        RUN$VAR_j_33 <=
+                                        x_m - y_m),
+                                        RUN$VAR_j_33*
+                                        RUN$VAR_i_32 ==
+                                        x_m - y_m))),
+                              Exists(RUN$VAR_k_34,
+                                     And(And(And(RUN$VAR_k_34 >
+                                        0,
+                                        RUN$VAR_k_34 < 6),
+                                        RUN$VAR_k_34 <= y_m),
+                                        RUN$VAR_k_34*
+                                        RUN$VAR_i_32 ==
+                                        y_m))))))))
+PROVED
+
+
+
+
+***CONDITION***	x_m > y_m
+False
+***CONDITION***	y_m > x_m
+
+R is:	Not(x_m > y_m)
+T is:	{x: x, y: y, y_m: y_m, x_m: x_m, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_35,
+                   And(And(And(RUN$VAR_a_35 > 0,
+                               RUN$VAR_a_35 < 6),
+                           RUN$VAR_a_35 <= x_m),
+                       RUN$VAR_a_35*GCD == x_m))),
+        Exists(RUN$VAR_a_36,
+               And(And(And(RUN$VAR_a_36 > 0,
+                           RUN$VAR_a_36 < 6),
+                       RUN$VAR_a_36 <= y_m),
+                   RUN$VAR_a_36*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_37,
+                  And(And(And(GCD < RUN$VAR_i_37,
+                              RUN$VAR_i_37 < 6),
+                          Exists(RUN$VAR_j_38,
+                                 And(And(And(RUN$VAR_j_38 >
+                                        0,
+                                        RUN$VAR_j_38 < 6),
+                                        RUN$VAR_j_38 <= x_m),
+                                     RUN$VAR_j_38*
+                                     RUN$VAR_i_37 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_39,
+                             And(And(And(RUN$VAR_k_39 > 0,
+                                        RUN$VAR_k_39 < 6),
+                                     RUN$VAR_k_39 <= y_m),
+                                 RUN$VAR_k_39*RUN$VAR_i_37 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_40,
+                   And(And(And(RUN$VAR_a_40 > 0,
+                               RUN$VAR_a_40 < 6),
+                           RUN$VAR_a_40 <= x_m),
+                       RUN$VAR_a_40*GCD == x_m))),
+        Exists(RUN$VAR_a_41,
+               And(And(And(RUN$VAR_a_41 > 0,
+                           RUN$VAR_a_41 < 6),
+                       RUN$VAR_a_41 <= y_m),
+                   RUN$VAR_a_41*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_42,
+                  And(And(And(GCD < RUN$VAR_i_42,
+                              RUN$VAR_i_42 < 6),
+                          Exists(RUN$VAR_j_43,
+                                 And(And(And(RUN$VAR_j_43 >
+                                        0,
+                                        RUN$VAR_j_43 < 6),
+                                        RUN$VAR_j_43 <= x_m),
+                                     RUN$VAR_j_43*
+                                     RUN$VAR_i_42 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_44,
+                             And(And(And(RUN$VAR_k_44 > 0,
+                                        RUN$VAR_k_44 < 6),
+                                     RUN$VAR_k_44 <= y_m),
+                                 RUN$VAR_k_44*RUN$VAR_i_42 ==
+                                 y_m)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_35,
+                               And(And(And(RUN$VAR_a_35 > 0,
+                                        RUN$VAR_a_35 < 6),
+                                       RUN$VAR_a_35 <= x_m),
+                                   RUN$VAR_a_35*GCD == x_m))),
+                    Exists(RUN$VAR_a_36,
+                           And(And(And(RUN$VAR_a_36 > 0,
+                                       RUN$VAR_a_36 < 6),
+                                   RUN$VAR_a_36 <= y_m),
+                               RUN$VAR_a_36*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_37,
+                              And(And(And(GCD < RUN$VAR_i_37,
+                                        RUN$VAR_i_37 < 6),
+                                      Exists(RUN$VAR_j_38,
+                                        And(And(And(RUN$VAR_j_38 >
+                                        0,
+                                        RUN$VAR_j_38 < 6),
+                                        RUN$VAR_j_38 <= x_m),
+                                        RUN$VAR_j_38*
+                                        RUN$VAR_i_37 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_39,
+                                        And(And(And(RUN$VAR_k_39 >
+                                        0,
+                                        RUN$VAR_k_39 < 6),
+                                        RUN$VAR_k_39 <= y_m),
+                                        RUN$VAR_k_39*
+                                        RUN$VAR_i_37 ==
+                                        y_m))))))),
+            Not(x_m > y_m),
+            True),
+        And(And(And(And(And(And(And(And(x_m > 0, x_m < 6),
+                                    y_m > 0),
+                                y_m < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_40,
+                           And(And(And(RUN$VAR_a_40 > 0,
+                                       RUN$VAR_a_40 < 6),
+                                   RUN$VAR_a_40 <= x_m),
+                               RUN$VAR_a_40*GCD == x_m))),
+                Exists(RUN$VAR_a_41,
+                       And(And(And(RUN$VAR_a_41 > 0,
+                                   RUN$VAR_a_41 < 6),
+                               RUN$VAR_a_41 <= y_m),
+                           RUN$VAR_a_41*GCD == y_m))),
+            Or(And(x_m == y_m, GCD == x_m),
+               Not(Exists(RUN$VAR_i_42,
+                          And(And(And(GCD < RUN$VAR_i_42,
+                                      RUN$VAR_i_42 < 6),
+                                  Exists(RUN$VAR_j_43,
+                                        And(And(And(RUN$VAR_j_43 >
+                                        0,
+                                        RUN$VAR_j_43 < 6),
+                                        RUN$VAR_j_43 <= x_m),
+                                        RUN$VAR_j_43*
+                                        RUN$VAR_i_42 ==
+                                        x_m))),
+                              Exists(RUN$VAR_k_44,
+                                     And(And(And(RUN$VAR_k_44 >
+                                        0,
+                                        RUN$VAR_k_44 < 6),
+                                        RUN$VAR_k_44 <= y_m),
+                                        RUN$VAR_k_44*
+                                        RUN$VAR_i_42 ==
+                                        y_m))))))))
+PROVED
+
+
+
+
+***CONDITION***	y_m > x_m
+True
+***ASSIGNMENT***	y_m = y_m - x_m
+***CONDITION***	y_m > x_m
+
+R is:	y_m > x_m
+T is:	{x: x, y: y, y_m: y_m - x_m, x_m: x_m, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_45,
+                   And(And(And(RUN$VAR_a_45 > 0,
+                               RUN$VAR_a_45 < 6),
+                           RUN$VAR_a_45 <= x_m),
+                       RUN$VAR_a_45*GCD == x_m))),
+        Exists(RUN$VAR_a_46,
+               And(And(And(RUN$VAR_a_46 > 0,
+                           RUN$VAR_a_46 < 6),
+                       RUN$VAR_a_46 <= y_m),
+                   RUN$VAR_a_46*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_47,
+                  And(And(And(GCD < RUN$VAR_i_47,
+                              RUN$VAR_i_47 < 6),
+                          Exists(RUN$VAR_j_48,
+                                 And(And(And(RUN$VAR_j_48 >
+                                        0,
+                                        RUN$VAR_j_48 < 6),
+                                        RUN$VAR_j_48 <= x_m),
+                                     RUN$VAR_j_48*
+                                     RUN$VAR_i_47 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_49,
+                             And(And(And(RUN$VAR_k_49 > 0,
+                                        RUN$VAR_k_49 < 6),
+                                     RUN$VAR_k_49 <= y_m),
+                                 RUN$VAR_k_49*RUN$VAR_i_47 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6),
+                            y_m - x_m > 0),
+                        y_m - x_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_50,
+                   And(And(And(RUN$VAR_a_50 > 0,
+                               RUN$VAR_a_50 < 6),
+                           RUN$VAR_a_50 <= x_m),
+                       RUN$VAR_a_50*GCD == x_m))),
+        Exists(RUN$VAR_a_51,
+               And(And(And(RUN$VAR_a_51 > 0,
+                           RUN$VAR_a_51 < 6),
+                       RUN$VAR_a_51 <= y_m - x_m),
+                   RUN$VAR_a_51*GCD == y_m - x_m))),
+    Or(And(x_m == y_m - x_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_52,
+                  And(And(And(GCD < RUN$VAR_i_52,
+                              RUN$VAR_i_52 < 6),
+                          Exists(RUN$VAR_j_53,
+                                 And(And(And(RUN$VAR_j_53 >
+                                        0,
+                                        RUN$VAR_j_53 < 6),
+                                        RUN$VAR_j_53 <= x_m),
+                                     RUN$VAR_j_53*
+                                     RUN$VAR_i_52 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_54,
+                             And(And(And(RUN$VAR_k_54 > 0,
+                                        RUN$VAR_k_54 < 6),
+                                     RUN$VAR_k_54 <=
+                                     y_m - x_m),
+                                 RUN$VAR_k_54*RUN$VAR_i_52 ==
+                                 y_m - x_m)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_45,
+                               And(And(And(RUN$VAR_a_45 > 0,
+                                        RUN$VAR_a_45 < 6),
+                                       RUN$VAR_a_45 <= x_m),
+                                   RUN$VAR_a_45*GCD == x_m))),
+                    Exists(RUN$VAR_a_46,
+                           And(And(And(RUN$VAR_a_46 > 0,
+                                       RUN$VAR_a_46 < 6),
+                                   RUN$VAR_a_46 <= y_m),
+                               RUN$VAR_a_46*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_47,
+                              And(And(And(GCD < RUN$VAR_i_47,
+                                        RUN$VAR_i_47 < 6),
+                                      Exists(RUN$VAR_j_48,
+                                        And(And(And(RUN$VAR_j_48 >
+                                        0,
+                                        RUN$VAR_j_48 < 6),
+                                        RUN$VAR_j_48 <= x_m),
+                                        RUN$VAR_j_48*
+                                        RUN$VAR_i_47 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_49,
+                                        And(And(And(RUN$VAR_k_49 >
+                                        0,
+                                        RUN$VAR_k_49 < 6),
+                                        RUN$VAR_k_49 <= y_m),
+                                        RUN$VAR_k_49*
+                                        RUN$VAR_i_47 ==
+                                        y_m))))))),
+            y_m > x_m,
+            True),
+        And(And(And(And(And(And(And(And(x_m > 0, x_m < 6),
+                                    y_m - x_m > 0),
+                                y_m - x_m < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_50,
+                           And(And(And(RUN$VAR_a_50 > 0,
+                                       RUN$VAR_a_50 < 6),
+                                   RUN$VAR_a_50 <= x_m),
+                               RUN$VAR_a_50*GCD == x_m))),
+                Exists(RUN$VAR_a_51,
+                       And(And(And(RUN$VAR_a_51 > 0,
+                                   RUN$VAR_a_51 < 6),
+                               RUN$VAR_a_51 <= y_m - x_m),
+                           RUN$VAR_a_51*GCD == y_m - x_m))),
+            Or(And(x_m == y_m - x_m, GCD == x_m),
+               Not(Exists(RUN$VAR_i_52,
+                          And(And(And(GCD < RUN$VAR_i_52,
+                                      RUN$VAR_i_52 < 6),
+                                  Exists(RUN$VAR_j_53,
+                                        And(And(And(RUN$VAR_j_53 >
+                                        0,
+                                        RUN$VAR_j_53 < 6),
+                                        RUN$VAR_j_53 <= x_m),
+                                        RUN$VAR_j_53*
+                                        RUN$VAR_i_52 ==
+                                        x_m))),
+                              Exists(RUN$VAR_k_54,
+                                     And(And(And(RUN$VAR_k_54 >
+                                        0,
+                                        RUN$VAR_k_54 < 6),
+                                        RUN$VAR_k_54 <=
+                                        y_m - x_m),
+                                        RUN$VAR_k_54*
+                                        RUN$VAR_i_52 ==
+                                        y_m - x_m))))))))
+PROVED
+
+
+
+
+***CONDITION***	y_m > x_m
+False
+***CONDITION***	x_m != y_m
+
+R is:	Not(y_m > x_m)
+T is:	{x: x, y: y, y_m: y_m, x_m: x_m, ret: ret}
+I_start(vars) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_55,
+                   And(And(And(RUN$VAR_a_55 > 0,
+                               RUN$VAR_a_55 < 6),
+                           RUN$VAR_a_55 <= x_m),
+                       RUN$VAR_a_55*GCD == x_m))),
+        Exists(RUN$VAR_a_56,
+               And(And(And(RUN$VAR_a_56 > 0,
+                           RUN$VAR_a_56 < 6),
+                       RUN$VAR_a_56 <= y_m),
+                   RUN$VAR_a_56*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_57,
+                  And(And(And(GCD < RUN$VAR_i_57,
+                              RUN$VAR_i_57 < 6),
+                          Exists(RUN$VAR_j_58,
+                                 And(And(And(RUN$VAR_j_58 >
+                                        0,
+                                        RUN$VAR_j_58 < 6),
+                                        RUN$VAR_j_58 <= x_m),
+                                     RUN$VAR_j_58*
+                                     RUN$VAR_i_57 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_59,
+                             And(And(And(RUN$VAR_k_59 > 0,
+                                        RUN$VAR_k_59 < 6),
+                                     RUN$VAR_k_59 <= y_m),
+                                 RUN$VAR_k_59*RUN$VAR_i_57 ==
+                                 y_m)))))))
+I_end(T(vars)) is:	 And(And(And(And(And(And(And(And(x_m > 0, x_m < 6), y_m > 0),
+                        y_m < 6),
+                    GCD > 0),
+                GCD < 6),
+            Exists(RUN$VAR_a_60,
+                   And(And(And(RUN$VAR_a_60 > 0,
+                               RUN$VAR_a_60 < 6),
+                           RUN$VAR_a_60 <= x_m),
+                       RUN$VAR_a_60*GCD == x_m))),
+        Exists(RUN$VAR_a_61,
+               And(And(And(RUN$VAR_a_61 > 0,
+                           RUN$VAR_a_61 < 6),
+                       RUN$VAR_a_61 <= y_m),
+                   RUN$VAR_a_61*GCD == y_m))),
+    Or(And(x_m == y_m, GCD == x_m),
+       Not(Exists(RUN$VAR_i_62,
+                  And(And(And(GCD < RUN$VAR_i_62,
+                              RUN$VAR_i_62 < 6),
+                          Exists(RUN$VAR_j_63,
+                                 And(And(And(RUN$VAR_j_63 >
+                                        0,
+                                        RUN$VAR_j_63 < 6),
+                                        RUN$VAR_j_63 <= x_m),
+                                     RUN$VAR_j_63*
+                                     RUN$VAR_i_62 ==
+                                     x_m))),
+                      Exists(RUN$VAR_k_64,
+                             And(And(And(RUN$VAR_k_64 > 0,
+                                        RUN$VAR_k_64 < 6),
+                                     RUN$VAR_k_64 <= y_m),
+                                 RUN$VAR_k_64*RUN$VAR_i_62 ==
+                                 y_m)))))))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(And(And(And(And(x_m > 0,
+                                        x_m < 6),
+                                        y_m > 0),
+                                    y_m < 6),
+                                GCD > 0),
+                            GCD < 6),
+                        Exists(RUN$VAR_a_55,
+                               And(And(And(RUN$VAR_a_55 > 0,
+                                        RUN$VAR_a_55 < 6),
+                                       RUN$VAR_a_55 <= x_m),
+                                   RUN$VAR_a_55*GCD == x_m))),
+                    Exists(RUN$VAR_a_56,
+                           And(And(And(RUN$VAR_a_56 > 0,
+                                       RUN$VAR_a_56 < 6),
+                                   RUN$VAR_a_56 <= y_m),
+                               RUN$VAR_a_56*GCD == y_m))),
+                Or(And(x_m == y_m, GCD == x_m),
+                   Not(Exists(RUN$VAR_i_57,
+                              And(And(And(GCD < RUN$VAR_i_57,
+                                        RUN$VAR_i_57 < 6),
+                                      Exists(RUN$VAR_j_58,
+                                        And(And(And(RUN$VAR_j_58 >
+                                        0,
+                                        RUN$VAR_j_58 < 6),
+                                        RUN$VAR_j_58 <= x_m),
+                                        RUN$VAR_j_58*
+                                        RUN$VAR_i_57 ==
+                                        x_m))),
+                                  Exists(RUN$VAR_k_59,
+                                        And(And(And(RUN$VAR_k_59 >
+                                        0,
+                                        RUN$VAR_k_59 < 6),
+                                        RUN$VAR_k_59 <= y_m),
+                                        RUN$VAR_k_59*
+                                        RUN$VAR_i_57 ==
+                                        y_m))))))),
+            Not(y_m > x_m),
+            True),
+        And(And(And(And(And(And(And(And(x_m > 0, x_m < 6),
+                                    y_m > 0),
+                                y_m < 6),
+                            GCD > 0),
+                        GCD < 6),
+                    Exists(RUN$VAR_a_60,
+                           And(And(And(RUN$VAR_a_60 > 0,
+                                       RUN$VAR_a_60 < 6),
+                                   RUN$VAR_a_60 <= x_m),
+                               RUN$VAR_a_60*GCD == x_m))),
+                Exists(RUN$VAR_a_61,
+                       And(And(And(RUN$VAR_a_61 > 0,
+                                   RUN$VAR_a_61 < 6),
+                               RUN$VAR_a_61 <= y_m),
+                           RUN$VAR_a_61*GCD == y_m))),
+            Or(And(x_m == y_m, GCD == x_m),
+               Not(Exists(RUN$VAR_i_62,
+                          And(And(And(GCD < RUN$VAR_i_62,
+                                      RUN$VAR_i_62 < 6),
+                                  Exists(RUN$VAR_j_63,
+                                        And(And(And(RUN$VAR_j_63 >
+                                        0,
+                                        RUN$VAR_j_63 < 6),
+                                        RUN$VAR_j_63 <= x_m),
+                                        RUN$VAR_j_63*
+                                        RUN$VAR_i_62 ==
+                                        x_m))),
+                              Exists(RUN$VAR_k_64,
+                                     And(And(And(RUN$VAR_k_64 >
+                                        0,
+                                        RUN$VAR_k_64 < 6),
+                                        RUN$VAR_k_64 <= y_m),
+                                        RUN$VAR_k_64*
+                                        RUN$VAR_i_62 ==
+                                        y_m))))))))
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

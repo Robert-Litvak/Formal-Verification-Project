@@ -1,0 +1,43 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "power_of_two" from "benchmarks\json\advanced_math.c"
+PROVED
+Solution:
+ForAll([exp, result, ret, i],
+       Invariant#1(exp, result, ret, i) ==
+       And(Or(Not(result >= 513), exp - i <= 0),
+           exp >= 0,
+           Not(result <= 0),
+           i >= 0,
+           Or(Not(exp <= 0), Not(result >= 2)),
+           Or(Not(result <= 1), i <= 0),
+           Or(Not(result <= 3), Not(i >= 2)),
+           Or(Not(i <= 0), Not(result >= 2)),
+           Or(Not(exp <= 1), Not(result >= 3)),
+           Or(Not(result <= 7), Not(i >= 3)),
+           Or(Not(i <= 1), Not(result >= 3)),
+           Or(Not(exp <= 2), Not(result >= 5)),
+           Not(exp >= 11),
+           Or(Not(i <= 2), Not(result >= 5)),
+           Or(Not(exp <= 3), Not(result >= 9)),
+           Or(Not(result <= 15), Not(i >= 4)),
+           Or(Not(result <= 31), Not(i >= 5)),
+           Or(Not(i <= 3), Not(result >= 9)),
+           Or(Not(exp <= 4), Not(result >= 17)),
+           Or(Not(i <= 4), Not(result >= 17)),
+           Or(Not(exp <= 5), Not(result >= 33)),
+           Or(Not(result <= 63), Not(i >= 6)),
+           Or(Not(result <= 127), Not(i >= 7)),
+           Or(Not(i <= 5), Not(result >= 33)),
+           Or(Not(exp <= 6), Not(result >= 65)),
+           Or(Not(result <= 255), Not(i >= 8)),
+           Or(Not(i <= 6), Not(result >= 65)),
+           Or(Not(exp <= 7), Not(result >= 129)),
+           Or(Not(result <= 511), Not(i >= 9)),
+           Not(result >= 1025),
+           Or(Not(exp <= 8), Not(result >= 257)),
+           Or(Not(result <= 1023), Not(i >= 10)),
+           Or(Not(i <= 7), Not(result >= 129)),
+           Or(Not(i <= 8), Not(result >= 257)),
+           Or(Not(exp <= 9), Not(result >= 513))))

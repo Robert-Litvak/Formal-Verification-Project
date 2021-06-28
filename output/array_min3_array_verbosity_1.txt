@@ -1,0 +1,14 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "min3_array" from "benchmarks\json\array.c"
+PROVED
+No invariants required

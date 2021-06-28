@@ -1,0 +1,66 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "min3_array" from "benchmarks\json\array.c"
+Adding rules:
+ForAll([arr, i, j, k, ret],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] < arr[j]),
+                       Not(arr[j] < arr[k])),
+                   True),
+               And(And(And(Or(Or(arr[k] == arr[i],
+                                 arr[k] == arr[j]),
+                              arr[k] == arr[k]),
+                           arr[k] <= arr[i]),
+                       arr[k] <= arr[j]),
+                   arr[k] <= arr[k])))
+#################################################################################################################
+ForAll([arr, i, j, k, ret],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[i] < arr[j]),
+                       arr[j] < arr[k]),
+                   True),
+               And(And(And(Or(Or(arr[j] == arr[i],
+                                 arr[j] == arr[j]),
+                              arr[j] == arr[k]),
+                           arr[j] <= arr[i]),
+                       arr[j] <= arr[j]),
+                   arr[j] <= arr[k])))
+#################################################################################################################
+ForAll([arr, i, j, k, ret],
+       Implies(And(True,
+                   True,
+                   And(arr[i] < arr[j],
+                       Not(arr[i] < arr[k])),
+                   True),
+               And(And(And(Or(Or(arr[k] == arr[i],
+                                 arr[k] == arr[j]),
+                              arr[k] == arr[k]),
+                           arr[k] <= arr[i]),
+                       arr[k] <= arr[j]),
+                   arr[k] <= arr[k])))
+#################################################################################################################
+ForAll([arr, i, j, k, ret],
+       Implies(And(True,
+                   True,
+                   And(arr[i] < arr[j], arr[i] < arr[k]),
+                   True),
+               And(And(And(Or(Or(arr[i] == arr[i],
+                                 arr[i] == arr[j]),
+                              arr[i] == arr[k]),
+                           arr[i] <= arr[i]),
+                       arr[i] <= arr[j]),
+                   arr[i] <= arr[k])))
+#################################################################################################################
+PROVED
+No invariants required

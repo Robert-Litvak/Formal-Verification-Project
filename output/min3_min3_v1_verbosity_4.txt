@@ -1,0 +1,46 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "min3_v1" from "benchmarks\json\min3.c"
+Adding rules:
+ForAll([x, y, z, ret],
+       Implies(And(True,
+                   True,
+                   And(Not(x < y), Not(y < z)),
+                   True),
+               And(And(And(Or(Or(z == x, z == y), z == z),
+                           z <= x),
+                       z <= y),
+                   z <= z)))
+#################################################################################################################
+ForAll([x, y, z, ret],
+       Implies(And(True, True, And(Not(x < y), y < z), True),
+               And(And(And(Or(Or(y == x, y == y), y == z),
+                           y <= x),
+                       y <= y),
+                   y <= z)))
+#################################################################################################################
+ForAll([x, y, z, ret],
+       Implies(And(True, True, And(x < y, Not(x < z)), True),
+               And(And(And(Or(Or(z == x, z == y), z == z),
+                           z <= x),
+                       z <= y),
+                   z <= z)))
+#################################################################################################################
+ForAll([x, y, z, ret],
+       Implies(And(True, True, And(x < y, x < z), True),
+               And(And(And(Or(Or(x == x, x == y), x == z),
+                           x <= x),
+                       x <= y),
+                   x <= z)))
+#################################################################################################################
+PROVED
+No invariants required

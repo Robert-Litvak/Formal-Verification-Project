@@ -1,0 +1,32 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "limited_factorial_with_while" from "benchmarks\json\advanced_math.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(rule (=> (and (= D F) (= C F) (>= F 0) (<= F 10) (= B 1) (= A E))
+    (|Invariant#1| D C B A)))
+(rule (=> (and (|Invariant#1| H G F E)
+         (= D H)
+         (= C (- G 1))
+         (> G 0)
+         (= B (* F G))
+         (= A E))
+    (|Invariant#1| D C B A)))
+
+PROVED
+Solution:
+ForAll([n, i, result, ret],
+       Invariant#1(n, i, result, ret) ==
+       And(Or(Not(n >= 2), n - i <= 0, Not(result <= 1)),
+           n >= 0,
+           Not(result <= 0),
+           Or(Not(result >= 2), Not(i*result <= 0))))

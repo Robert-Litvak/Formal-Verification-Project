@@ -1,0 +1,36 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "mc91" from "benchmarks\json\other.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(rule (=> (and (= C E) (<= E 101) (= B 1) (= A D)) (|Invariant#1| C B A)))
+(rule (let ((a!1 (and (|Invariant#1| F E D)
+                (= C (+ F 11))
+                (> E 0)
+                (not (> F 100))
+                (= B (+ (- E 1) 2))
+                (= A D))))
+  (=> a!1 (|Invariant#1| C B A))))
+(rule (=> (and (|Invariant#1| F E D)
+         (= C (- F 10))
+         (> E 0)
+         (> F 100)
+         (= B (- E 1))
+         (= A D))
+    (|Invariant#1| C B A)))
+
+PROVED
+Solution:
+ForAll([n, c, ret],
+       Invariant#1(n, c, ret) ==
+       And(Not(n >= 112),
+           Or(Not(c <= 0), Not(n >= 92)),
+           Or(Not(n <= 90), Not(c <= 0)),
+           Or(Not(c <= 1), Not(n >= 102))))

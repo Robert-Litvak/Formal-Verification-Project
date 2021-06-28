@@ -1,0 +1,10 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "three_same_digits" from "benchmarks\json\other.c"
+PROVED
+Solution:
+ForAll([d, digits_sum, number, i],
+       Invariant#1(d, digits_sum, number, i) ==
+       And(Or(Not(i >= 11), Not(number + -11*digits_sum == 0)),
+           Not(i >= 991)))

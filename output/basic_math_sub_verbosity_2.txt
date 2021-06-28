@@ -1,0 +1,11 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "sub" from "benchmarks\json\basic_math.c"
+PROVED
+Solution:
+ForAll([x, y, result, ret, i],
+       Invariant#1(x, y, result, ret, i) ==
+       And(x + i - y - result <= 0,
+           y + result - x - i <= 0,
+           x - y - result <= 0))

@@ -1,0 +1,12 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "mc91" from "benchmarks\json\other.c"
+PROVED
+Solution:
+ForAll([n, c, ret],
+       Invariant#1(n, c, ret) ==
+       And(Not(n >= 112),
+           Or(Not(c <= 0), Not(n >= 92)),
+           Or(Not(n <= 90), Not(c <= 0)),
+           Or(Not(c <= 1), Not(n >= 102))))

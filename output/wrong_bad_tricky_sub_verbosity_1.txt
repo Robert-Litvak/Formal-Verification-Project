@@ -1,0 +1,10 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "bad_tricky_sub" from "benchmarks\json\wrong.c"
+NOT PROVED
+Invariants signature:
+Invariant#I(x, iterations, result, even, odd, ret, i)
+Invariants stack:
+Invariant#1(0, 1, 0, 2, 1, 0, 1)
+Invariant#1(0, 1, -1, 4, 3, 0, 2)

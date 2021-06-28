@@ -1,0 +1,12 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "tricky_sub" from "benchmarks\json\other.c"
+PROVED
+Solution:
+ForAll([x, iterations, result, even, odd, ret, i],
+       Invariant#1(x, iterations, result, even, odd, ret, i) ==
+       And(x + even - result - odd - i <= 0,
+           Not(result + i - x >= 2),
+           x - iterations - result <= 0,
+           Not(result + i + -2*even - x + 2*odd >= 0)))

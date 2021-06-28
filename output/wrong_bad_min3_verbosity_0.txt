@@ -1,0 +1,23 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "bad_min3" from "benchmarks\json\wrong.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unsat
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "bad_min3" from "benchmarks\json\wrong.c"
+FAILED TO PROVE THE PROGRAM

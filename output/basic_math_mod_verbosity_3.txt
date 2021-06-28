@@ -1,0 +1,193 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "mod" from "benchmarks\json\basic_math.c"
+Fixed Point solver failed with error
+The error:
+b'cannot process EXISTS quantifier in rule <null>:\nquery!0(#4,#3,#2,#1,#0) :- \n Invariant#1(#4,#3,#2,#1,#0),\n (> (:var 4) 0),\n (> (:var 3) 0),\n (>= (:var 1) 0),\n (not (>= (:var 2) (:var 3))),\n (= (:var 4) (+ (* (:var 1) (:var 3)) (:var 2))),\n (>= (:var 2) 0),\n (let ((a!1 (exists ((RUN$VAR_i_0 Int))\n             (= (:var 5) (+ (* RUN$VAR_i_0 (:var 4)) (:var 3))))))\n  (not (and (>= (:var 2) 0) (< (:var 2) (:var 3)) a!1))).\n'
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "mod" from "benchmarks\json\basic_math.c"
+Adding rules:
+ForAll([x, y, r, q, ret],
+       Implies(And(True, And(x > 0, y > 0), True, True),
+               And(And(And(And(x > 0, y > 0), True),
+                       x - 0*y >= 0),
+                   x == 0*y + x - 0*y)))
+#################################################################################################################
+ForAll([x,
+        y,
+        r,
+        q,
+        ret,
+        x$IN$Invariant#1,
+        y$IN$Invariant#1,
+        r$IN$Invariant#1,
+        q$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(True,
+                   And(x > 0, y > 0),
+                   True,
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       y$IN$Invariant#1 == y,
+                       r$IN$Invariant#1 == x - 0*y,
+                       q$IN$Invariant#1 == 0,
+                       ret$IN$Invariant#1 == ret)),
+               Invariant#1(x$IN$Invariant#1,
+                           y$IN$Invariant#1,
+                           r$IN$Invariant#1,
+                           q$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+ForAll([x, y, r, q, ret],
+       Implies(And(Invariant#1(x, y, r, q, ret),
+                   And(And(And(And(x > 0, y > 0), q >= 0),
+                           r >= 0),
+                       x == q*y + r),
+                   r >= y,
+                   True),
+               And(And(And(And(x > 0, y > 0), q + 1 >= 0),
+                       r - y >= 0),
+                   x == (q + 1)*y + r - y)))
+#################################################################################################################
+ForAll([x,
+        y,
+        r,
+        q,
+        ret,
+        x$IN$Invariant#1,
+        y$IN$Invariant#1,
+        r$IN$Invariant#1,
+        q$IN$Invariant#1,
+        ret$IN$Invariant#1],
+       Implies(And(Invariant#1(x, y, r, q, ret),
+                   And(And(And(And(x > 0, y > 0), q >= 0),
+                           r >= 0),
+                       x == q*y + r),
+                   r >= y,
+                   True,
+                   And(x$IN$Invariant#1 == x,
+                       y$IN$Invariant#1 == y,
+                       r$IN$Invariant#1 == r - y,
+                       q$IN$Invariant#1 == q + 1,
+                       ret$IN$Invariant#1 == ret)),
+               Invariant#1(x$IN$Invariant#1,
+                           y$IN$Invariant#1,
+                           r$IN$Invariant#1,
+                           q$IN$Invariant#1,
+                           ret$IN$Invariant#1)))
+#################################################################################################################
+ForAll([x, y, r, q, ret],
+       Implies(And(Invariant#1(x, y, r, q, ret),
+                   And(And(And(And(x > 0, y > 0), q >= 0),
+                           r >= 0),
+                       x == q*y + r),
+                   Not(r >= y),
+                   True),
+               And(And(r >= 0, r < y),
+                   Exists(RUN$VAR_i_0,
+                          x == RUN$VAR_i_0*y + r))))
+#################################################################################################################
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "mod" from "benchmarks\json\basic_math.c"
+Found 3 paths:
+
+***START***
+***ASSIGNMENT***	q = 0
+***ASSIGNMENT***	r = x - q*y
+***CONDITION***	r >= y
+
+R is:	True
+Simplified R is:	True
+T is:	{x: x, y: y, r: x - 0*y, q: 0, ret: ret}
+I_start(vars) is:	 And(x > 0, y > 0)
+Simplified I_start(vars) is:	 And(Not(x <= 0), Not(y <= 0))
+I_end(T(vars)) is:	 And(And(And(And(x > 0, y > 0), True), x - 0*y >= 0),
+    x == 0*y + x - 0*y)
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0), Not(y <= 0), x >= 0)
+Array constraints: True
+Proving formula:
+Implies(And(And(x > 0, y > 0), True, True),
+        And(And(And(And(x > 0, y > 0), True), x - 0*y >= 0),
+            x == 0*y + x - 0*y))
+PROVED
+
+
+
+
+***CONDITION***	r >= y
+True
+***ASSIGNMENT***	q = q + 1
+***ASSIGNMENT***	r = r - y
+***CONDITION***	r >= y
+
+R is:	r >= y
+Simplified R is:	r >= y
+T is:	{x: x, y: y, r: r - y, q: q + 1, ret: ret}
+I_start(vars) is:	 And(And(And(And(x > 0, y > 0), q >= 0), r >= 0),
+    x == q*y + r)
+Simplified I_start(vars) is:	 And(Not(x <= 0), Not(y <= 0), q >= 0, r >= 0, x == q*y + r)
+I_end(T(vars)) is:	 And(And(And(And(x > 0, y > 0), q + 1 >= 0), r - y >= 0),
+    x == (q + 1)*y + r - y)
+Simplified I_end(T(vars)) is:	 And(Not(x <= 0),
+    Not(y <= 0),
+    q >= -1,
+    r + -1*y >= 0,
+    x == y*(1 + q) + r + -1*y)
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(x > 0, y > 0), q >= 0), r >= 0),
+                x == q*y + r),
+            r >= y,
+            True),
+        And(And(And(And(x > 0, y > 0), q + 1 >= 0),
+                r - y >= 0),
+            x == (q + 1)*y + r - y))
+PROVED
+
+
+
+
+***CONDITION***	r >= y
+False
+***ASSIGNMENT***	ret = r
+***HALT***
+
+R is:	Not(r >= y)
+Simplified R is:	Not(r >= y)
+T is:	{x: x, y: y, r: r, q: q, ret: r}
+I_start(vars) is:	 And(And(And(And(x > 0, y > 0), q >= 0), r >= 0),
+    x == q*y + r)
+Simplified I_start(vars) is:	 And(Not(x <= 0), Not(y <= 0), q >= 0, r >= 0, x == q*y + r)
+I_end(T(vars)) is:	 And(And(r >= 0, r < y),
+    Exists(RUN$VAR_i_0, x == RUN$VAR_i_0*y + r))
+Simplified I_end(T(vars)) is:	 And(r >= 0,
+    Not(y <= r),
+    Exists(RUN$VAR_i_0, x == y*RUN$VAR_i_0 + r))
+Array constraints: True
+Proving formula:
+Implies(And(And(And(And(And(x > 0, y > 0), q >= 0), r >= 0),
+                x == q*y + r),
+            Not(r >= y),
+            True),
+        And(And(r >= 0, r < y),
+            Exists(RUN$VAR_i_0, x == RUN$VAR_i_0*y + r)))
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

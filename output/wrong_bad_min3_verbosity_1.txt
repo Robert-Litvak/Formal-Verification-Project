@@ -1,0 +1,101 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "bad_min3" from "benchmarks\json\wrong.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unsat
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "bad_min3" from "benchmarks\json\wrong.c"
+Found 4 paths:
+
+***START***
+***ASSIGNMENT***	tmp = x
+***CONDITION***	y < tmp
+False
+***CONDITION***	z < tmp
+False
+***ASSIGNMENT***	ret = tmp
+***HALT***
+
+PROVED
+
+
+
+
+***START***
+***ASSIGNMENT***	tmp = x
+***CONDITION***	y < tmp
+False
+***CONDITION***	z < tmp
+True
+***ASSIGNMENT***	tmp = x
+***ASSIGNMENT***	ret = tmp
+***HALT***
+
+FAILED TO PROVE
+Z3 returned sat
+ASSIGNMENT:
+z = -1
+y = 0
+x = 0
+
+
+
+
+***START***
+***ASSIGNMENT***	tmp = x
+***CONDITION***	y < tmp
+True
+***ASSIGNMENT***	tmp = y
+***CONDITION***	z < tmp
+False
+***ASSIGNMENT***	ret = tmp
+***HALT***
+
+PROVED
+
+
+
+
+***START***
+***ASSIGNMENT***	tmp = x
+***CONDITION***	y < tmp
+True
+***ASSIGNMENT***	tmp = y
+***CONDITION***	z < tmp
+True
+***ASSIGNMENT***	tmp = x
+***ASSIGNMENT***	ret = tmp
+***HALT***
+
+FAILED TO PROVE
+Z3 returned sat
+ASSIGNMENT:
+z = -1
+x = 1
+y = 0
+
+
+
+FAILED TO PROVE THE PROGRAM
+SEE THE FOLLOWING PATHS:
+Path begin at: ***START***
+Path ends at ***HALT***
+Path action items are [None, None, False, True, None, None]
+Path begin at: ***START***
+Path ends at ***HALT***
+Path action items are [None, None, True, None, True, None, None]

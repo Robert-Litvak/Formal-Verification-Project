@@ -1,0 +1,104 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "is_prime" from "benchmarks\json\advanced_math.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "is_prime" from "benchmarks\json\advanced_math.c"
+Found 7 paths:
+
+***START***
+***ASSIGNMENT***	i = 2
+***ASSIGNMENT***	j = 2
+***CONDITION***	x == 1
+False
+***ASSIGNMENT***	i = 2
+***CONDITION***	i < x
+
+PROVED
+
+
+
+
+***START***
+***ASSIGNMENT***	i = 2
+***ASSIGNMENT***	j = 2
+***CONDITION***	x == 1
+True
+***ASSIGNMENT***	ret = False
+***HALT***
+
+PROVED
+
+
+
+
+***CONDITION***	i < x
+True
+***ASSIGNMENT***	j = 2
+***CONDITION***	j < x
+
+PROVED
+
+
+
+
+***CONDITION***	i < x
+False
+***ASSIGNMENT***	ret = True
+***HALT***
+
+PROVED
+
+
+
+
+***CONDITION***	j < x
+True
+***CONDITION***	i*j == x
+False
+***ASSIGNMENT***	j = j + 1
+***CONDITION***	j < x
+
+PROVED
+
+
+
+
+***CONDITION***	j < x
+True
+***CONDITION***	i*j == x
+True
+***ASSIGNMENT***	ret = False
+***HALT***
+
+PROVED
+
+
+
+
+***CONDITION***	j < x
+False
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < x
+
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

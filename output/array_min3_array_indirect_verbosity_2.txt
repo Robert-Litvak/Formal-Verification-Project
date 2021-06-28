@@ -1,0 +1,67 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "min3_array_indirect" from "benchmarks\json\array.c"
+Adding rules:
+ForAll([arr, is, ret],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[is[0]] < arr[is[1]]),
+                       Not(arr[is[1]] < arr[is[2]])),
+                   True),
+               And(And(And(Or(Or(arr[is[2]] == arr[is[0]],
+                                 arr[is[2]] == arr[is[1]]),
+                              arr[is[2]] == arr[is[2]]),
+                           arr[is[2]] <= arr[is[0]]),
+                       arr[is[2]] <= arr[is[1]]),
+                   arr[is[2]] <= arr[is[2]])))
+#################################################################################################################
+ForAll([arr, is, ret],
+       Implies(And(True,
+                   True,
+                   And(Not(arr[is[0]] < arr[is[1]]),
+                       arr[is[1]] < arr[is[2]]),
+                   True),
+               And(And(And(Or(Or(arr[is[1]] == arr[is[0]],
+                                 arr[is[1]] == arr[is[1]]),
+                              arr[is[1]] == arr[is[2]]),
+                           arr[is[1]] <= arr[is[0]]),
+                       arr[is[1]] <= arr[is[1]]),
+                   arr[is[1]] <= arr[is[2]])))
+#################################################################################################################
+ForAll([arr, is, ret],
+       Implies(And(True,
+                   True,
+                   And(arr[is[0]] < arr[is[1]],
+                       Not(arr[is[0]] < arr[is[2]])),
+                   True),
+               And(And(And(Or(Or(arr[is[2]] == arr[is[0]],
+                                 arr[is[2]] == arr[is[1]]),
+                              arr[is[2]] == arr[is[2]]),
+                           arr[is[2]] <= arr[is[0]]),
+                       arr[is[2]] <= arr[is[1]]),
+                   arr[is[2]] <= arr[is[2]])))
+#################################################################################################################
+ForAll([arr, is, ret],
+       Implies(And(True,
+                   True,
+                   And(arr[is[0]] < arr[is[1]],
+                       arr[is[0]] < arr[is[2]]),
+                   True),
+               And(And(And(Or(Or(arr[is[0]] == arr[is[0]],
+                                 arr[is[0]] == arr[is[1]]),
+                              arr[is[0]] == arr[is[2]]),
+                           arr[is[0]] <= arr[is[0]]),
+                       arr[is[0]] <= arr[is[1]]),
+                   arr[is[0]] <= arr[is[2]])))
+#################################################################################################################
+PROVED
+No invariants required

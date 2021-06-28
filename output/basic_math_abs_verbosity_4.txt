@@ -1,0 +1,25 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Cannot use fixed point for programs with paths that do not pass in loops
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "abs" from "benchmarks\json\basic_math.c"
+Adding rules:
+ForAll([x, ret],
+       Implies(And(True, True, Not(x < 0), True),
+               Not(And(Not(And(x >= 0, x == x)),
+                       Not(And(x < 0, x == -x))))))
+#################################################################################################################
+ForAll([x, ret],
+       Implies(And(True, True, x < 0, True),
+               Not(And(Not(And(x >= 0, -x == x)),
+                       Not(And(x < 0, -x == -x))))))
+#################################################################################################################
+PROVED
+No invariants required

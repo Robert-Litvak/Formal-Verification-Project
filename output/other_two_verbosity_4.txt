@@ -1,0 +1,42 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "two" from "benchmarks\json\other.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(rule (=> (and (= D F) (= C E) (= B (* F 3)) (= A 1)) (|Invariant#1| D C B A)))
+(rule (=> (and (|Invariant#1| H G F E)
+         (= D H)
+         (= C G)
+         (<= E 6)
+         (= B (+ F 1))
+         (= A (+ E 1)))
+    (|Invariant#1| D C B A)))
+
+PROVED
+Solution:
+ForAll([x, magic, temp, i],
+       Invariant#1(x, magic, temp, i) ==
+       And(Or(Not(i <= 6), Not(x - ((1 + temp)/3) <= -3)),
+           Not(i <= 0),
+           Not(x - (temp/3) <= -3),
+           x - (temp/3) <= 0,
+           Or(Not(i >= 2), Not(x - ((2 + temp)/3) >= 0)),
+           Or(Not(i >= 3), Not(x - ((1 + temp)/3) >= 0)),
+           Or(Not(i >= 4), Not(x - (temp/3) >= 0)),
+           Or(Not(i >= 5), Not(x - ((2 + temp)/3) >= -1)),
+           Or(Not(i >= 6), Not(x - ((1 + temp)/3) >= -1)),
+           Or(Not(i >= 7), Not(x - (temp/3) >= -1)),
+           Or(Not(i <= 1), x - (temp/3) >= 0),
+           Or(Not(i <= 2), Not(x - ((2 + temp)/3) <= -2)),
+           Or(Not(i <= 3), Not(x - ((1 + temp)/3) <= -2)),
+           Or(Not(i <= 4), Not(x - (temp/3) <= -2)),
+           Or(Not(i <= 5), Not(x - ((2 + temp)/3) <= -3))))

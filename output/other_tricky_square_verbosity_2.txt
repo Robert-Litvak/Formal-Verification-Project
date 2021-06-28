@@ -1,0 +1,7 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "tricky_square" from "benchmarks\json\other.c"
+PROVED
+Solution:
+ForAll([x, dif, result, ret, i], Invariant#1(x, dif, result, ret, i) == True)

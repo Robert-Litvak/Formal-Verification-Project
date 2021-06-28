@@ -1,0 +1,34 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "tricky_square" from "benchmarks\json\other.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(declare-var I Int)
+(declare-var J Int)
+(rule (=> (and (= E G) (= D 1) (= C 0) (>= G 0) (= B F) (= A 0))
+    (|Invariant#1| E D C B A)))
+(rule (let ((a!1 (= I (- (* (+ F 1) (+ F 1)) (* F F)))))
+  (=> (and (|Invariant#1| J I H G F)
+           (<= F J)
+           (= B G)
+           (= C (+ H I))
+           (= D (+ I 2))
+           (= E J)
+           a!1
+           (< F J)
+           (= H (* F F))
+           (= A (+ F 1)))
+      (|Invariant#1| E D C B A))))
+
+PROVED
+Solution:
+ForAll([x, dif, result, ret, i], Invariant#1(x, dif, result, ret, i) == True)

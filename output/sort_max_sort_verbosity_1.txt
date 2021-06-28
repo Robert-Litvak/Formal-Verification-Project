@@ -1,0 +1,95 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+Fixed Point solver failed with error
+The error:
+b'spacer: quantifier in a recursive rule:\n<null>:\nquery!1(#6,#5,#4,#3,#2,#1,#0) :- \n Invariant#1(#5,#4,#3,#2,#1,#0),\n (> (:var 6) 0),\n (< (:var 6) (:var 4)),\n (not (>= (:var 2) 1)),\n (let ((a!1 (forall ((RUN$VAR_j3_8 Int))\n             (=> (and (>= RUN$VAR_j3_8 0) (< RUN$VAR_j3_8 (:var 3)))\n                 (<= (select (:var 6) RUN$VAR_j3_8) (select (:var 6) (:var 3)))))))\n  (=> (< (:var 2) (:var 4)) a!1)),\n (let ((a!1 (forall ((RUN$VAR_j2_7 Int))\n             (=> (and (< (:var 3) RUN$VAR_j2_7) (< RUN$VAR_j2_7 (:var 5)))\n                 (<= (select (:var 6) (- RUN$VAR_j2_7 1))\n                     (select (:var 6) RUN$VAR_j2_7))))))\n  (= a!1 true)),\n (<= (:var 2) (:var 4)),\n (>= (:var 2) 0),\n (not (<= (select (:var 5) (- (:var 6) 1)) (select (:var 5) (:var 6)))).\n'
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH MANUAL HORN CLAUSES
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+FAILED TO PROVE USING HORN CLAUSES
+Z3 returned unknown
+
+
+*****************************************************************************************************************
+*****************************************************************************************************************
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING PATHS
+Verifying the function "max_sort" from "benchmarks\json\sort.c"
+Found 6 paths:
+
+***START***
+***ASSIGNMENT***	length = size
+***CONDITION***	length >= 1
+
+PROVED
+
+
+
+
+***CONDITION***	length >= 1
+True
+***ASSIGNMENT***	i = 0
+***ASSIGNMENT***	i_max = 0
+***ASSIGNMENT***	i = 1
+***CONDITION***	i < length
+
+PROVED
+
+
+
+
+***CONDITION***	length >= 1
+False
+***HALT***
+
+PROVED
+
+
+
+
+***CONDITION***	i < length
+True
+***CONDITION***	array[i] > array[i_max]
+False
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < length
+
+PROVED
+
+
+
+
+***CONDITION***	i < length
+True
+***CONDITION***	array[i] > array[i_max]
+True
+***ASSIGNMENT***	i_max = i
+***ASSIGNMENT***	i = i + 1
+***CONDITION***	i < length
+
+PROVED
+
+
+
+
+***CONDITION***	i < length
+False
+***ASSIGNMENT***	tmp = array[length - 1]
+***ASSIGNMENT***	array[length - 1] = array[i_max]
+***ASSIGNMENT***	array[i_max] = tmp
+***ASSIGNMENT***	length = length - 1
+***CONDITION***	length >= 1
+
+PROVED
+
+
+
+PROGRAM IS SUCCESSFULLY PROVED

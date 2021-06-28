@@ -1,0 +1,31 @@
+temp_configuration.c  -->  temp_configuration.c.ast.json
+
+VERIFYING USING SPACER WITH FIXED POINT
+Verifying the function "bad_add" from "benchmarks\json\wrong.c"
+Proving the following:
+(declare-rel |Invariant#1| (Int Int Int Int Int))
+(declare-var A Int)
+(declare-var B Int)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(declare-var I Int)
+(declare-var J Int)
+(rule (=> (and (= E H) (= D G) (= C H) (= B F) (= A G)) (|Invariant#1| E D C B A)))
+(rule (=> (and (|Invariant#1| J I H G F)
+         (= D I)
+         (= E J)
+         (= C (+ H 1))
+         (> F 0)
+         (= B G)
+         (= A (- F 1)))
+    (|Invariant#1| E D C B A)))
+
+NOT PROVED
+Invariants signature:
+Invariant#I(x, y, result, ret, i)
+Invariants stack:
+Invariant#1(2, -1, 2, 0, -1)

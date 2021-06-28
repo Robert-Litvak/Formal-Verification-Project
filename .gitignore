@@ -8,4 +8,4 @@ ref-src/**
 Lectures/**
 *.docx
 output/**
-CFGs/**
+*.gv

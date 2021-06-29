@@ -114,7 +114,7 @@ def parse_arguments():
     Parses program command line arguments
     :return: Object containing a field for each parsed argument
     """
-    parser = argparse.ArgumentParser(description='CFG Builder arguments', add_help=True, allow_abbrev=True)
+    parser = argparse.ArgumentParser(description='Verifier arguments', add_help=True, allow_abbrev=True)
     parser.add_argument('-json_file', required=True, help='The name of the JSON file to get an AST from')
     parser.add_argument('-function_name', required=True, help='Name of the function that should be verified')
     parser.add_argument('-paths', action='store_const', const=True, help='Verify the program by paths')
